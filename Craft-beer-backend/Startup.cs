@@ -1,4 +1,10 @@
+using AutoMapper;
 using Craft_beer_backend.Entities;
+using Craft_beer_backend.Mappers;
+using Craft_beer_backend.Repositories.Implements;
+using Craft_beer_backend.Repositories.Interfaces;
+using Craft_beer_backend.Services.Implements;
+using Craft_beer_backend.Services.Interfaces;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
@@ -6,7 +12,6 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using OilShop.Entities;
 
 namespace Craft_beer_backend
 {
@@ -36,6 +41,12 @@ namespace Craft_beer_backend
                 options.Password.RequireUppercase = false;
                 options.Password.RequireLowercase = false;
             }).AddEntityFrameworkStores<ApplicationDbContext>().AddDefaultTokenProviders();
+
+            services.AddTransient<ICraftBeerRepository, CraftBeerRepository>();
+
+            services.AddScoped<ICraftBeerService,CraftBeerService>();
+
+            services.AddAutoMapper(typeof(Startup), typeof(MapperConfig));
 
             services.AddControllersWithViews();
         }
