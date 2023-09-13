@@ -7,7 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace OilShop.Entities
+namespace Craft_beer_backend.Entities
 {
     public class SeederDB
     {

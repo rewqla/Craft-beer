@@ -1,4 +1,7 @@
-﻿using Craft_beer_backend.Models;
+﻿using Craft_beer_backend.Entities;
+using Craft_beer_backend.Models;
+using Craft_beer_backend.Repositories.Interfaces;
+using Craft_beer_backend.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
@@ -12,15 +15,19 @@ namespace Craft_beer_backend.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly ICraftBeerService _craftBeerService;
 
-        public HomeController(ILogger<HomeController> logger)
+
+        public HomeController(ILogger<HomeController> logger, ICraftBeerService craftBeerService)
         {
             _logger = logger;
+            _craftBeerService = craftBeerService;
         }
 
         public IActionResult Index()
         {
-            return View();
+            var model = _craftBeerService.GetBeers();
+            return View(model);
         }
 
         public IActionResult Privacy()
