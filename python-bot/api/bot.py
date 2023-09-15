@@ -1,5 +1,4 @@
 from aiogram import Bot, Dispatcher, types
-import os
 
 TOKEN = '5680096668:AAHuis7pyG-G4G0taF7WeumTRdU-jgGUeY0'
 
