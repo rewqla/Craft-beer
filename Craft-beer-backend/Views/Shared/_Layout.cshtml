@@ -1,4 +1,9 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.AspNetCore.Identity
+@using Craft_beer_backend.Entities
+@inject SignInManager<DbUser> SignInManager
+@inject UserManager<DbUser> UserManager
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -25,6 +30,50 @@
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
                         </li>
                     </ul>
+                    @{
+                        if (SignInManager.IsSignedIn(User))
+                        {
+                            @*
+                @{
+                        var user = await UserManager.GetUserAsync(User);
+                        //if (await UserManager.IsInRoleAsync(user, "Admin")) //коли додамо адміна
+                        {
+                            <li class="nav-item"> //коли додамо товарне і користувацьке керування
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Products" asp-action="ProductsList">Керування товарами</a>
+                            </li>
+                            <li class="nav-item" style="margin-right:25px;">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Category" asp-action="CategoriesList">Керування категоріями</a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="ListUsers">Managment</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Administration" asp-action="ListRoles">Administration</a>
+                            </li>
+                        }
+                            *@
+                            <ul class="navbar-nav d-flex justify-content-end">
+                                <li class="nav-item">
+                                    <a class="btn btn-primary" href="@Url.Action("Logout", "Account", new { returnUrl = Context.Request.Path })">Logout</a>
+                                </li>
+                                <li class="nav-item" style="margin-left:10px;">
+                                    <a href="/Cart/CartIndex"><svg style="height:40px;" class="btn btn-primary" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256"><rect width="256" height="256" fill="none" /><path d="M184,184H69.8L41.9,30.6A8,8,0,0,0,34.1,24H16" fill="none" stroke="#FFF" stroke-linecap="round" stroke-linejoin="round" stroke-width="18" /><circle cx="80" cy="204" r="20" fill="none" stroke="#FFF" stroke-linecap="round" stroke-linejoin="round" stroke-width="18" /><circle cx="184" cy="204" r="20" fill="none" stroke="#FFF" stroke-linecap="round" stroke-linejoin="round" stroke-width="18" /><path d="M62.5,144H188.1a15.9,15.9,0,0,0,15.7-13.1L216,64H48" fill="none" stroke="#FFF" stroke-linecap="round" stroke-linejoin="round" stroke-width="18" /></svg></a>
+                                </li>
+                            </ul>
+                        }
+                        else
+                        {
+                            <ul class="navbar-nav d-flex justify-content-end flex-grow-1">
+                                <li class="nav-item">
+                                    <a class="btn btn-primary" asp-area="" asp-controller="Account" asp-action="Login">Login</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="btn btn-primary" asp-area="" asp-controller="Account" asp-action="Register">Register</a>
+                                </li>
+                            </ul>
+                        }
+                    }
                 </div>
             </div>
         </nav>
