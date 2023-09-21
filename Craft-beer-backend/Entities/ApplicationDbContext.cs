@@ -14,6 +14,12 @@ namespace Craft_beer_backend.Entities
 
         }
         public DbSet<CraftBeer> CraftBeers { get; set; }
+        public DbSet<OrderItem> OrderItems { get; set; }
+        public DbSet<OrderStatus> OrderStatuses { get; set; }
+        public DbSet<Order> Orders { get; set; }
+        public DbSet<DeliveryAddress> DeliveryAddresses { get; set; }
+        public DbSet<DeliveryCompany> DeliveryCompanies { get; set; }
+        public DbSet<CustomerInfo> CustomerInfos { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
