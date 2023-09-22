@@ -1,0 +1,73 @@
+﻿@model Craft_beer_backend.ViewModels.EditUserViewModel
+
+@{
+    ViewBag.Title = "Edit User";
+}
+
+
+<h1>Edit Role</h1>
+<form method="post" class="mt-3">
+    <div class="form-group row">
+        <label asp-for="Id" class="col-sm-2 col-form-label"></label> <div class="col-sm-10">
+            <input asp-for="Id" disabled class="form-control">
+        </div>
+    </div>
+    <div class="form-group row">
+        <label asp-for="UserName" class="col-sm-2 col-form-label"></label>
+        <div class="col-sm-10">
+            <input asp-for="UserName" class="form-control">
+            <span asp-validation-for="UserName" class="text-danger"></span>
+        </div>
+        <label asp-for="Password" class="col-sm-2 col-form-label"></label>
+        <div class="col-sm-10">
+            <input asp-for="Password" class="form-control">
+            <span asp-validation-for="Password" class="text-danger"></span>
+        </div>
+    </div>
+    <div asp-validation-summary="All" class="text-danger"></div>
+
+    <div class="form-group row">
+        <div class="col-sm-10">
+            <button type="submit" class="btn btn-primary">Update</button>
+            <a asp-action="ListUsers" class="btn btn-primary">Cancel</a>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-header"><h3>Users personal data</h3></div>
+        <div class="card-body">
+            <label asp-for="FirstName" class="col-sm-2 col-form-label"></label>
+            <div class="col-sm-10">
+                <input asp-for="FirstName" class="form-control">
+                <span asp-validation-for="FirstName" class="text-danger"></span>
+            </div>
+            <label asp-for="LastName" class="col-sm-2 col-form-label"></label>
+            <div class="col-sm-10">
+                <input asp-for="LastName" class="form-control">
+                <span asp-validation-for="LastName" class="text-danger"></span>
+            </div>
+            <label asp-for="Birthday" class="col-sm-2 col-form-label"></label>
+            <div class="col-sm-10">
+                <input asp-for="Birthday" class="form-control">
+                <span asp-validation-for="Birthday" class="text-danger"></span>
+            </div>
+            <label asp-for="Role" class="col-sm-2 col-form-label"></label>
+            <div class="col-sm-10">
+                <input asp-for="Role" class="form-control" type="text" value="@Model.Role" autocomplete="off" list="suggestions">
+        <datalist id="suggestions">
+
+            @*@foreach (var option in @Model.allProducts)
+            {
+                <option value="@option.id @option.name"></option>
+            }*@
+
+        </datalist>
+
+                <span asp-validation-for="Role" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="card-footer">
+
+        </div>
+    </div>
+</form>

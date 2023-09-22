@@ -4,6 +4,7 @@ using Craft_beer_backend.Entities;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Craft_beer_backend.ViewModels;
 
 namespace Craft_beer_backend.Controllers
 {
@@ -24,7 +25,7 @@ namespace Craft_beer_backend.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Register(ViewModels.RegisterViewModel Model)
+        public async Task<IActionResult> Register(RegisterViewModel Model)
         {
             if (ModelState.IsValid)
             {
@@ -58,7 +59,7 @@ namespace Craft_beer_backend.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Login(ViewModels.LoginViewModel Model)
+        public async Task<IActionResult> Login(LoginViewModel Model)
         {
             if (ModelState.IsValid)
             {
@@ -106,62 +107,67 @@ namespace Craft_beer_backend.Controllers
             return View(users);
         }
 
-        //[HttpGet]
-        //public async Task<IActionResult> EditUser(string id)
-        //{
-        //    var user = await userManager.FindByIdAsync(id);
+        [HttpGet]
+        public async Task<IActionResult> EditUser(string id)
+        {
+            DbUser user = await userManager.FindByIdAsync(id);
 
-        //    if (user == null)
-        //    {
-        //        ViewBag.ErrorMessage = $"Користувача з id = {id} не знайдено";
-        //        return View("NotFound");
-        //    }
+            if (user == null)
+            {
+                ViewBag.ErrorMessage = $"Користувача з id = {id} не знайдено";
+                return View("NotFound");
+            }
 
-        //    var model = new EditUserViewModel
-        //    {
-        //        Id = user.Id,
-        //        UserName = user.UserName,
-        //        Email = user.Email,
-        //        PhoneNumber = user.PhoneNumber
-        //    };
+            var model = new EditUserViewModel
+            {
+                Id = user.Id,
+                UserName = user.UserName,
+                FirstName = user.FirstName,
+                LastName = user.LastName,
+                UserRoles = user.UserRoles,
+                Role = user.Role,
+                Birthday = user.Birthday
+            };
 
-        //    return View(model);
-        //}
-
-
-        //[HttpPost]
-        //public async Task<IActionResult> EditUser(EditUserViewModel model)
-        //{
-        //    var user = await userManager.FindByIdAsync(model.Id);
-
-        //    if (user == null)
-        //    {
-        //        ViewBag.ErrorMessage = $"Користувача з id = {model.Id} не знайдено";
-        //        return View("NotFound");
-        //    }
-        //    else
-        //    {
-        //        user.UserName = model.UserName;
-        //        user.Email = model.Email;
-        //        user.PhoneNumber = model.UserName;
-        //        if (model.Password != null)
-        //            if (model.Password.Replace(" ", "") != "")
-        //                user.PasswordHash = userManager.PasswordHasher.HashPassword(user, model.Password);
+            return View(model);
+        }
 
 
-        //        var result = await userManager.UpdateAsync(user);
+        [HttpPost]
+        public async Task<IActionResult> EditUser(EditUserViewModel model)
+        {
+            var user = await userManager.FindByIdAsync(model.Id.ToString());
 
-        //        if (result.Succeeded)
-        //        { return RedirectToAction("ListUsers"); }
+            if (user == null)
+            {
+                ViewBag.ErrorMessage = $"Користувача з id = {model.Id} не знайдено";
+                return View("NotFound");
+            }
+            else
+            {
+                user.Birthday = model.Birthday;
+                user.FirstName = model.FirstName;
+                user.LastName = model.LastName;
+                user.UserRoles = model.UserRoles;
+                user.Role = model.Role;
+                if (model.Password != null)
+                    if (model.Password.Replace(" ", "") != "")
+                        user.PasswordHash = userManager.PasswordHasher.HashPassword(user, model.Password);
 
-        //        foreach (var error in result.Errors)
-        //        {
-        //            ModelState.AddModelError("", error.Description);
-        //        }
-        //    }
 
-        //    return View(model);
-        //}
+                var result = await userManager.UpdateAsync(user);
+
+                if (result.Succeeded)
+                { return RedirectToAction("ListUsers"); }
+
+                foreach (var error in result.Errors)
+                {
+                    ModelState.AddModelError("", error.Description);
+                }
+            }
+
+            return View(model);
+        }
 
         public async Task<IActionResult> DeleteUser(string Id)
         {
