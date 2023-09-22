@@ -163,26 +163,26 @@ namespace Craft_beer_backend.Controllers
         //    return View(model);
         //}
 
-        //public async Task<IActionResult> DeleteUser(string Id)
-        //{
-        //    var role = await userManager.FindByIdAsync(Id);
+        public async Task<IActionResult> DeleteUser(string Id)
+        {
+            var role = await userManager.FindByIdAsync(Id);
 
-        //    if (role != null)
-        //    {
-        //        var result = await userManager.DeleteAsync(role);
-        //        if (result.Succeeded)
-        //        {
-        //            return RedirectToAction("ListUsers");
-        //        }
-        //        else
-        //        {
-        //            ViewBag.ErrorMessage = $"При спробі видалити користувача, виникла проблема з базою даних";
-        //            return View("NotFound");
-        //        }
-        //    }
-        //    ViewBag.ErrorMessage = $"Користувача з id = {Id} не знайдено";
-        //    return View("NotFound");
-        //}
+            if (role != null)
+            {
+                var result = await userManager.DeleteAsync(role);
+                if (result.Succeeded)
+                {
+                    return RedirectToAction("ListUsers");
+                }
+                else
+                {
+                    ViewBag.ErrorMessage = $"При спробі видалити користувача, виникла проблема з базою даних";
+                    return View("NotFound");
+                }
+            }
+            ViewBag.ErrorMessage = $"Користувача з id = {Id} не знайдено";
+            return View("NotFound");
+        }
 
 
     }
