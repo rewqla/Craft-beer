@@ -118,7 +118,7 @@ namespace Craft_beer_backend.Controllers
             if (user == null)
             {
                 ViewBag.ErrorMessage = $"Користувача з id = {id} не знайдено";
-                return View("NotFound");
+                return View("Error");
             }
 
 
@@ -156,7 +156,7 @@ namespace Craft_beer_backend.Controllers
             if (user == null)
             {
                 ViewBag.ErrorMessage = $"Користувача з id = {model.Id} не знайдено";
-                return View("NotFound");
+                return View("Error");
             }
             else
             {
@@ -208,11 +208,11 @@ namespace Craft_beer_backend.Controllers
                 else
                 {
                     ViewBag.ErrorMessage = $"При спробі видалити користувача, виникла проблема з базою даних";
-                    return View("NotFound");
+                    return View("Error");
                 }
             }
             ViewBag.ErrorMessage = $"Користувача з id = {Id} не знайдено";
-            return View("NotFound");
+            return View("Error");
         }
 
 
