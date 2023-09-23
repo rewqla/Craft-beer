@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using Craft_beer_backend.Models;
+using Craft_beer_backend.ViewModels;
 using Craft_beer_backend.Repositories.Interfaces;
 using Craft_beer_backend.Services.Interfaces;
 using System;

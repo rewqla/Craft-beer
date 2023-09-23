@@ -29,7 +29,11 @@ namespace Craft_beer_backend.Controllers
             var model = _craftBeerService.GetBeers();
             return View(model);
         }
-
+        [Route("/shopping-cart")]
+        public IActionResult Cart()
+        {
+            return View();
+        }
         public IActionResult Privacy()
         {
             return View();

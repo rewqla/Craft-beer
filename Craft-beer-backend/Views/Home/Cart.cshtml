@@ -1,0 +1,64 @@
+﻿<h1>This is my cart</h1>
+<button id="clear-cart">Clear</button>
+<ul id="cart-items"></ul>
+<p id="empty-cart-message">Nothing in the cart.</p>
+<p id="total-price">Total Price: $<span id="total-price-span"></span></p>
+<script>
+    // Function to display items in the cart
+    function displayCart() {
+        const cartItemsList = document.getElementById('cart-items');
+        const emptyCartMessage = document.getElementById('empty-cart-message');
+        const totalPriceElement = document.getElementById('total-price-span');
+        const clearCartButton = document.getElementById('clear-cart');
+        const shoppingCart = JSON.parse(localStorage.getItem('shopping-cart')) || [];
+
+        cartItemsList.innerHTML = '';
+
+        if (shoppingCart.length === 0) {
+            emptyCartMessage.style.display = 'block';
+            document.getElementById("total-price").style.display = "none";
+            clearCartButton.style.display = "none"; // Hide the clear button
+        } else {
+            emptyCartMessage.style.display = 'none';
+            clearCartButton.style.display = "block"; // Show the clear button
+            let total = 0;
+
+            shoppingCart.forEach(item => {
+                const listItem = document.createElement('li');
+                listItem.textContent = `${item.Name} ${item.Volume} Л - Price: $${item.Price}`;
+
+                const itemCountInput = document.createElement('input');
+                itemCountInput.type = 'number';
+                itemCountInput.value = item.Count || 1; 
+                itemCountInput.min = '1';
+                itemCountInput.max = '15';
+
+                total += item.Price * 1 ;
+
+                itemCountInput.addEventListener('change', function () {
+                    total -= item.Price * (item.Count || 1); 
+                    item.Count = parseInt(this.value);
+                    total += item.Price * +item.Count
+                    totalPriceElement.textContent = `${total.toFixed(2)}`;
+                });
+
+                listItem.appendChild(itemCountInput);
+                cartItemsList.appendChild(listItem);
+
+            });
+            document.getElementById("total-price").style.display = 'block';
+            totalPriceElement.textContent = `$${total.toFixed(2)}`;
+        }
+    }
+
+
+    function clearShoppingCart() {
+        localStorage.removeItem('shopping-cart');
+        displayCart();
+    }
+
+    document.getElementById('clear-cart').addEventListener('click', clearShoppingCart);
+
+    displayCart();
+
+</script>

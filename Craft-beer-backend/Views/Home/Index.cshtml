@@ -6,9 +6,11 @@
     <h1 class="display-4">Welcome</h1>
     <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
 </div>
-   <ul>
-        @foreach (var item in Model)
-        {
-            <li>@item.Name @item.Volume</li>
-        }
+<ul>
+    @foreach (var item in Model)
+    {
+        <li class="my-2">@item.Name @item.Volume <button name="craft-beer-button" class="btn btn-primary" data-id="@item.Id" onclick="addToCart('@item.Id','@item.Name',' @item.Volume',' @item.Price','@item.ImageUrl',this)">Додати в корзину</button></li>
+    }
 </ul>
+
+<script src=~/js/home_index.js></script> 
