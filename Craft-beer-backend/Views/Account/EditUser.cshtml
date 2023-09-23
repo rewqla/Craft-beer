@@ -51,19 +51,20 @@
                 <input asp-for="Birthday" class="form-control">
                 <span asp-validation-for="Birthday" class="text-danger"></span>
             </div>
-            <label asp-for="Role" class="col-sm-2 col-form-label"></label>
+            <label asp-for="AllRoles" class="col-sm-2 col-form-label"></label>
             <div class="col-sm-10">
-                <input asp-for="Role" class="form-control" type="text" value="@Model.Role" autocomplete="off" list="suggestions">
-        <datalist id="suggestions">
+                @for (int i = 0; i < Model.AllRoles.Count; i++)
+                {
+                <div class="form-check m-1">
+                    <input asp-for="@Model.AllRoles[i].RoleName" type="hidden" value="@Model.AllRoles[i].RoleName" />
+                    <input asp-for="@Model.AllRoles[i].IsSelected" class="form-check-input" />
+                    <label class="form-check-label" asp-for="@Model.AllRoles[i].IsSelected">
+                        @Model.AllRoles[i].RoleName
+                    </label>
+                </div>
+                }
 
-            @*@foreach (var option in @Model.allProducts)
-            {
-                <option value="@option.id @option.name"></option>
-            }*@
-
-        </datalist>
-
-                <span asp-validation-for="Role" class="text-danger"></span>
+                <span asp-validation-for="AllRoles" class="text-danger"></span>
             </div>
         </div>
         <div class="card-footer">

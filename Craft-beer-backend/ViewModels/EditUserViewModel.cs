@@ -17,8 +17,7 @@ namespace Craft_beer_backend.ViewModels
         public string LastName { get; set; }
         [Required(ErrorMessage = "Необхідно бути старше 18 років")]
         public string Birthday { get; set; }
-        public DbRole Role { get; set; }
-        public virtual ICollection<DbUserRole> UserRoles { get; set; }
-
+        //public IList<string> UserRoles { get; set; }
+        public List<AllRoleViewModel> AllRoles { get; set; }
     }
 }

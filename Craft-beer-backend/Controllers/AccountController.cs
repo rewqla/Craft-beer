@@ -12,11 +12,13 @@ namespace Craft_beer_backend.Controllers
     {
         private readonly UserManager<DbUser> userManager;
         private readonly SignInManager<DbUser> signInManager;
+        private readonly RoleManager<DbRole> roleManager;
 
-        public AccountController(UserManager<DbUser> userManager, SignInManager<DbUser> signInManager)
+        public AccountController(UserManager<DbUser> userManager, SignInManager<DbUser> signInManager, RoleManager<DbRole> roleManager)
         {
             this.userManager = userManager;
             this.signInManager = signInManager;
+            this.roleManager = roleManager;
         }
         [HttpGet]
         public IActionResult Register()
@@ -32,12 +34,13 @@ namespace Craft_beer_backend.Controllers
                 var user = new DbUser()
                 {
                     UserName = Model.Email,
-                    Email = Model.Email
+                    Email = Model.Email,
                 };
 
                 var result = await userManager.CreateAsync(user, Model.Password);
                 if (result.Succeeded)
                 {
+                    await userManager.AddToRoleAsync(user, "User");
                     await signInManager.SignInAsync(user, false);
                     return RedirectToAction("Index", "Home");
                 }
@@ -118,25 +121,37 @@ namespace Craft_beer_backend.Controllers
                 return View("NotFound");
             }
 
+
+            IList<string> _allUserRoles = userManager.GetRolesAsync(user).Result;
+            IList<string> _allRoles = roleManager.Roles.Select(x => x.Name).ToList();
+
+            List<AllRoleViewModel> allRolesModel = new List<AllRoleViewModel>();
+
+            foreach (var role in _allRoles)
+            {
+                allRolesModel.Add(new AllRoleViewModel { RoleName = role, IsSelected = _allUserRoles.Contains(role) });
+            }
+
+
             var model = new EditUserViewModel
             {
                 Id = user.Id,
                 UserName = user.UserName,
                 FirstName = user.FirstName,
                 LastName = user.LastName,
-                UserRoles = user.UserRoles,
-                Role = user.Role,
+                //UserRoles = _allUserRoles,
+                AllRoles = allRolesModel,
                 Birthday = user.Birthday
             };
 
             return View(model);
         }
 
-
         [HttpPost]
         public async Task<IActionResult> EditUser(EditUserViewModel model)
         {
             var user = await userManager.FindByIdAsync(model.Id.ToString());
+            IList<string> _allUserRoles = userManager.GetRolesAsync(user).Result;
 
             if (user == null)
             {
@@ -148,8 +163,18 @@ namespace Craft_beer_backend.Controllers
                 user.Birthday = model.Birthday;
                 user.FirstName = model.FirstName;
                 user.LastName = model.LastName;
-                user.UserRoles = model.UserRoles;
-                user.Role = model.Role;
+
+                foreach(var role in model.AllRoles)
+                {
+                    if(role.IsSelected)
+                    await userManager.AddToRoleAsync(user, role.RoleName);
+                    else
+                    {
+                        if(_allUserRoles.Contains(role.RoleName))
+                            await userManager.RemoveFromRoleAsync(user, role.RoleName);
+                    }
+                }
+
                 if (model.Password != null)
                     if (model.Password.Replace(" ", "") != "")
                         user.PasswordHash = userManager.PasswordHasher.HashPassword(user, model.Password);
