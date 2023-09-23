@@ -101,3 +101,4 @@ D:\vodnik\3 курс\Менеджмент\Craft-beer\Craft-beer-backend\obj\Debu
 D:\vodnik\3 курс\Менеджмент\Craft-beer\Craft-beer-backend\obj\Debug\net5.0\Craft-beer-backend.genruntimeconfig.cache
 D:\vodnik\3 курс\Менеджмент\Craft-beer\Craft-beer-backend\obj\Debug\net5.0\Razor\Views\Account\Logout.cshtml.g.cs
 D:\vodnik\3 курс\Менеджмент\Craft-beer\Craft-beer-backend\obj\Debug\net5.0\Razor\Views\Account\ListUsers.cshtml.g.cs
+D:\vodnik\3 курс\Менеджмент\Craft-beer\Craft-beer-backend\obj\Debug\net5.0\Razor\Views\Account\EditUser.cshtml.g.cs
