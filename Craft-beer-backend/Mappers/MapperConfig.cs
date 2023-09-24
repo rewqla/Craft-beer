@@ -10,6 +10,7 @@ namespace Craft_beer_backend.Mappers
         public MapperConfig()
         {
             CreateMap<CraftBeer, CraftBeerViewModel>();
+            CreateMap<CraftBeer, FullProductViewModel>();
         }
     }
 }

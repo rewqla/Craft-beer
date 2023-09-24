@@ -14,5 +14,6 @@ namespace Craft_beer_backend.ViewModels
         public string ImageUrl { get; set; }
         public double Volume { get; set; }
         public double ABV { get; set; }
+        public IEnumerable<Entities.OrderItem> OrderItems { get; set; }
     }
 }

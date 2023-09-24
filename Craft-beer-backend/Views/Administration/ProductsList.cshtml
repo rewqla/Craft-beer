@@ -1,6 +1,6 @@
 ﻿@using Craft_beer_backend.ViewModels
 
-@model IEnumerable<CraftBeerViewModel>
+@model IEnumerable<FullProductViewModel>
 
 @{
     ViewBag.Title = "All products";
@@ -10,22 +10,24 @@
 @{
     if (Model.Any())
     {
-        <a class="btn btn-primary mb-3" style="width:auto" asp-action="CreateProduct" asp-controller="Products">Add new product</a>
+        <a class="btn btn-primary mb-3" style="width:auto" asp-action="CreateProduct" asp-controller="Administration">Add new product</a>
         foreach (var product in Model)
         {
-            <div style="margin-bottom:50px;">
-                <div class="card mb-3">
-                    <div class="card-header">
-                        <h5 class="card-title">@product.Name</h5>
-                    </div>
-                </div>
-                <div class="card-body">
-                </div>
-                <div class="card-footer">
-                    <a class="btn btn-primary" asp-action="EditProduct" asp-route-id="">Edit</a>
-                    <a href="#" class="btn btn-danger">Delete</a>
+        <div style="margin-bottom:50px;">
+            <div class="card mb-3">
+                <div class="card-header">
+                    <h5 class="card-title">@product.Name</h5>
                 </div>
             </div>
+            <div class="card-body">
+                <p>Id: @product.Id</p>
+                <p>Price: @product.Price</p>
+            </div>
+            <div class="card-footer">
+                <a class="btn btn-primary" asp-action="EditProduct" asp-route-id="@product.Id">Edit</a>
+                <a asp-action="DeleteProduct" asp-route-id="@product.Id" class="btn btn-danger">Delete</a>
+            </div>
+        </div>
         }
     }
     else
@@ -40,4 +42,3 @@
     }
 }
 
-<a asp-action="EditToMostPopulars" asp-controller="Products" class="btn btn-primary">Edit to most populars</a>
