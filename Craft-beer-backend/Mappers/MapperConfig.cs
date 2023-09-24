@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Craft_beer_backend.Entities;
 using Craft_beer_backend.Models;
+using Craft_beer_backend.ViewModels;
 
 namespace Craft_beer_backend.Mappers
 {
@@ -9,6 +10,7 @@ namespace Craft_beer_backend.Mappers
         public MapperConfig()
         {
             CreateMap<CraftBeer, CraftBeerViewModel>();
+            CreateMap<CraftBeer, FullProductViewModel>();
         }
     }
 }

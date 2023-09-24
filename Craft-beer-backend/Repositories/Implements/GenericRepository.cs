@@ -34,7 +34,7 @@ namespace Craft_beer_backend.Repositories.Implements
         }
         public TEntity FindById(long id)
         {
-            return _dbSet.Find(id);
+            return _dbSet.Find((int)id);
         }
 
         public void Delete(TEntity item)
