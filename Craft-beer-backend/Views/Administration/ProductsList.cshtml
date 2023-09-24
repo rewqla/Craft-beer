@@ -1,0 +1,43 @@
+﻿@using Craft_beer_backend.ViewModels
+
+@model IEnumerable<CraftBeerViewModel>
+
+@{
+    ViewBag.Title = "All products";
+}
+<h1>All products</h1>
+
+@{
+    if (Model.Any())
+    {
+        <a class="btn btn-primary mb-3" style="width:auto" asp-action="CreateProduct" asp-controller="Products">Add new product</a>
+        foreach (var product in Model)
+        {
+            <div style="margin-bottom:50px;">
+                <div class="card mb-3">
+                    <div class="card-header">
+                        <h5 class="card-title">@product.Name</h5>
+                    </div>
+                </div>
+                <div class="card-body">
+                </div>
+                <div class="card-footer">
+                    <a class="btn btn-primary" asp-action="EditProduct" asp-route-id="">Edit</a>
+                    <a href="#" class="btn btn-danger">Delete</a>
+                </div>
+            </div>
+        }
+    }
+    else
+    {
+        <div class="card ">
+            <div class="card-header"> Ще не створено продуктів </div>
+            <div class=" card - body ">
+                <h5 class="card-title"> Скористайтеся кнопкою нижче створити продукт</h5>
+                <a class="btn btn-primary" style="width:auto" asp-action="CreateProduct">Створити продукт </a>
+            </div>
+        </div>
+    }
+}
+
+<a asp-action="EditToMostPopulars" asp-controller="Products" class="btn btn-primary">Edit to most populars</a>
