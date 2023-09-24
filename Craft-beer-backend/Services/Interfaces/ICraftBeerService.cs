@@ -12,7 +12,7 @@ namespace Craft_beer_backend.Services.Interfaces
         void AddProduct(FullProductViewModel model);
         void UpdateProduct(FullProductViewModel model);
         void DeleteProduct(CraftBeer product);
-        void DeleteProduct(long productId);
+        void DeleteProduct(int productId);
     }
 
 }
