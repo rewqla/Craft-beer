@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Craft_beer_backend.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Craft_beer_backend.Controllers
 {
@@ -100,12 +101,75 @@ namespace Craft_beer_backend.Controllers
             return RedirectToAction("Index", "Home");
         }
 
-
-
-
-
-        public async Task<IActionResult> ListUsers()
+        [HttpGet]
+        public async Task<IActionResult> ManageUser()
         {
+            DbUser user = await userManager.GetUserAsync(User);
+
+            if (user == null)
+            {
+                ViewBag.ErrorMessage = $"Користувача не знайдено";
+                return View("Error");
+            }
+
+
+            var model = new EditUserViewModel
+            {
+                Id = user.Id,
+                UserName = user.UserName,
+                FirstName = user.FirstName,
+                LastName = user.LastName,
+                Birthday = user.Birthday
+            };
+
+            return View(model);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> ManageUser(EditUserViewModel model)
+        {
+            var user = await userManager.FindByIdAsync(model.Id.ToString());
+            IList<string> _allUserRoles = userManager.GetRolesAsync(user).Result;
+
+            if (user == null)
+            {
+                ViewBag.ErrorMessage = $"Користувача з id = {model.Id} не знайдено";
+                return View("Error");
+            }
+            else
+            {
+                user.Birthday = model.Birthday;
+                user.FirstName = model.FirstName;
+                user.LastName = model.LastName;
+                user.Id = model.Id;
+                user.UserName = model.UserName;
+
+                if (model.Password != null)
+                    if (model.Password.Replace(" ", "") != "")
+                        user.PasswordHash = userManager.PasswordHasher.HashPassword(user, model.Password);
+
+
+                var result = await userManager.UpdateAsync(user);
+
+                if (result.Succeeded)
+                { return RedirectToAction("Index","Home"); }
+
+                foreach (var error in result.Errors)
+                {
+                    ModelState.AddModelError("", error.Description);
+                }
+            }
+
+            return View(model);
+        }
+
+
+
+        //Administration
+        public async Task<IActionResult> ListUsers(string id)
+        {
+            DbUser user = await userManager.FindByIdAsync(id);
+
             var users = userManager.Users;
             return View(users);
         }
@@ -139,7 +203,6 @@ namespace Craft_beer_backend.Controllers
                 UserName = user.UserName,
                 FirstName = user.FirstName,
                 LastName = user.LastName,
-                //UserRoles = _allUserRoles,
                 AllRoles = allRolesModel,
                 Birthday = user.Birthday
             };
