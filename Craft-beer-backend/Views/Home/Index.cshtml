@@ -204,7 +204,7 @@
             for (var i = 0; i < elements.length; i++) {
                 let mismaches = elements[i].querySelector(".mismatches");
 
-                if (Number(elements[i].querySelector(".price").textContent) > Number(min.value) && Number(elements[i].querySelector(".price").textContent) < Number(max.value)) {
+                if (Number(elements[i].querySelector(".price").textContent) >= Number(min.value) && Number(elements[i].querySelector(".price").textContent) <= Number(max.value)) {
                     if (mismaches.textContent != "1")
                         if (mismaches.textContent % 2 == 0) {
                             mismaches.textContent = (mismaches.textContent / 2);
