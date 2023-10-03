@@ -13,3 +13,13 @@ def get_beer_data():
             return beer_data
     except SQLAlchemyError as e:
         return str(e)
+
+def get_order_data():
+    try:
+        with app.app_context():
+            sql_query = text('SELECT * FROM "Orders"')
+            result = db.session.execute(sql_query)
+            beer_data = result.fetchall()
+            return beer_data
+    except SQLAlchemyError as e:
+        return str(e)
