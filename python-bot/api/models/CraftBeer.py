@@ -2,6 +2,8 @@ from api.app import db
 
 
 class CraftBeer(db.Model):
+    __tablename__ = 'CraftBeers'
+
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(255))
     description = db.Column(db.String(500))
