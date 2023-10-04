@@ -119,7 +119,8 @@ namespace Craft_beer_backend.Controllers
                 UserName = user.UserName,
                 FirstName = user.FirstName,
                 LastName = user.LastName,
-                Birthday = user.Birthday
+                Birthday = user.Birthday,
+                PhoneNumber = user.PhoneNumber
             };
 
             return View(model);
@@ -143,6 +144,7 @@ namespace Craft_beer_backend.Controllers
                 user.LastName = model.LastName;
                 user.Id = model.Id;
                 user.UserName = model.UserName;
+                user.PhoneNumber = model.PhoneNumber;
 
                 if (model.Password != null)
                     if (model.Password.Replace(" ", "") != "")
@@ -204,7 +206,8 @@ namespace Craft_beer_backend.Controllers
                 FirstName = user.FirstName,
                 LastName = user.LastName,
                 AllRoles = allRolesModel,
-                Birthday = user.Birthday
+                Birthday = user.Birthday,
+                PhoneNumber=user.PhoneNumber
             };
 
             return View(model);
@@ -226,6 +229,7 @@ namespace Craft_beer_backend.Controllers
                 user.Birthday = model.Birthday;
                 user.FirstName = model.FirstName;
                 user.LastName = model.LastName;
+                user.PhoneNumber = model.PhoneNumber;
 
                 foreach(var role in model.AllRoles)
                 {
