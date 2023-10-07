@@ -16,17 +16,19 @@ namespace Craft_beer_backend.Controllers
     {
         private readonly ILogger<HomeController> _logger;
         private readonly ICraftBeerService _craftBeerService;
-
+        private List<string> productList;
 
         public HomeController(ILogger<HomeController> logger, ICraftBeerService craftBeerService)
         {
             _logger = logger;
             _craftBeerService = craftBeerService;
+            productList = _craftBeerService.GetFullProducts().Select(p => p.Name).ToList();
         }
 
         public IActionResult Index()
         {
-            var model = _craftBeerService.GetBeers();
+            var model = _craftBeerService.GetFullProducts();
+            ViewBag.ProductList = productList;
             return View(model);
         }
         [Route("/shopping-cart")]
@@ -36,6 +38,7 @@ namespace Craft_beer_backend.Controllers
         }
         public IActionResult Privacy()
         {
+            ViewBag.ProductList = productList;
             return View();
         }
 

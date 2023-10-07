@@ -1,16 +1,295 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
 }
 
+@using Craft_beer_backend.ViewModels
+<style>
+    .item {
+        width: 100px;
+        height: 100px;
+        margin: 10px;
+        float: left;
+        border: solid;
+    }
+
+    .miniInp {
+        width: 50px;
+    }
+
+    .slider {
+        -webkit-appearance: none;
+        height: 3px;
+        background: #6f6f80;
+        outline: none;
+    }
+
+        .slider::-webkit-slider-thumb {
+            appearance: none;
+            width: 11px;
+            height: 11px;
+            border-radius: 100%;
+            background: #bfb5a6;
+            cursor: pointer;
+        }
+
+    .unselected {
+        display: none;
+    }
+</style>
+@model IEnumerable<FullProductViewModel>
 <div class="text-center">
     <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
 </div>
-<ul>
-    @foreach (var item in Model)
-    {
-        <li class="my-2">@item.Name @item.Volume <button name="craft-beer-button" class="btn btn-primary" data-id="@item.Id" onclick="addToCart('@item.Id','@item.Name',' @item.Volume',' @item.Price','@item.ImageUrl',this)">Додати в корзину</button></li>
-    }
-</ul>
+<br />
+<div style="height:400px">
+    <div style="width: 230px; height: 100%; float: left; background-color: lightgray;">
+        <div>від<input id="min" value="0" class="miniInp minmaxInp" /> : до<input id="max" value="9999" class="miniInp minmaxInp" /></div>
+        <div>
+            об'єм
+            <input type="range" min="0" max="2" step="1" value="1" class="slider" id="volumeslider">
+            <span id="volumesliderValue">всі</span>
+            <input type="checkbox" checked id="volumeselectAll">
+            <label for="volumeselectAll">Вибрати всі</label>
+        </div>
+        <div>
+            оберти
+            <input type="range" min="0" max="5" step="1" value="2" class="slider" id="abvslider">
+            <span id="abvsliderValue">всі</span>
+            <input type="checkbox" checked id="abvselectAll">
+            <label for="abvselectAll">Вибрати всі</label>
+        </div>
+    </div>
+    <div>
+        <ul>
+            @foreach (var item in Model)
+            {
 
-<script src=~/js/home_index.js></script> 
+                <li class="item">@item.Name<div hidden class="mismatches">1</div><div class="volume">@item.Volume</div><div class="price">@item.Price</div><div class="abv">@item.ABV</div></li>
+            }
+        </ul>
+    </div>
+</div>
+
+
+
+
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function () {
+        var min = document.getElementById("min");
+        var max = document.getElementById("max");
+        var volslider = $("#volumeslider");
+        var volsliderValue = $("#volumesliderValue");
+        var volselectAll = $("#volumeselectAll");
+        var abvslider = $("#abvslider");
+        var abvsliderValue = $("#abvsliderValue");
+        var abvselectAll = $("#abvselectAll");
+        var elements = document.querySelectorAll(".item");
+        ////////////
+        // VOLUME
+        ////////////
+        //scripts for slider
+        volselectAll.on("change", function () {
+
+            if ($(this).prop("checked")) {
+                volsliderValue.text("Всі");
+                volslider.css("background-color", "#6f6f80");
+                ViewAllItemsByVolume();
+            } else {
+                setVolTextValue(volslider.val())
+                volslider.css("background-color", "#a3610a");
+                ViewItemsByVolume();
+            }
+        });
+
+        volslider.on("input", function () {
+            if (volselectAll.prop("checked")) {
+                volslider.css("background-color", "#a3610a");
+                volselectAll.prop("checked", false);
+            }
+
+            setVolTextValue(volslider.val());
+            ViewItemsByVolume();
+        });
+
+        function setVolTextValue(val) {
+            if (val == 0)
+                volsliderValue.text("0,33");
+            else if (val == 1)
+                volsliderValue.text("0,5");
+            else
+                volsliderValue.text("1,0");
+        }
+
+
+        //scripts for viewing
+        function ViewItemsByVolume() {
+            for (var i = 0; i < elements.length; i++) {
+                let mismaches = elements[i].querySelector(".mismatches");
+                if (elements[i].querySelector(".volume").textContent == document.getElementById("volumesliderValue").textContent) {
+                    if (mismaches.textContent != "1")
+                        if (mismaches.textContent % 3 == 0) {
+                            mismaches.textContent = (mismaches.textContent / 3);
+
+                            if (mismaches.textContent == "1")
+                                elements[i].classList.remove("unselected");
+                        }
+                }
+                else {
+                    if (mismaches.textContent == "1")
+                        elements[i].classList.add("unselected");
+                    if (mismaches.textContent % 3 != 0)
+                        mismaches.textContent = (Number(mismaches.textContent) * 3);
+                }
+            }
+        }
+
+        function ViewAllItemsByVolume() {
+            var elements = document.querySelectorAll(".item");
+            for (var i = 0; i < elements.length; i++) {
+                let mismaches = elements[i].querySelector(".mismatches");
+                if (mismaches.textContent % 3 == 0) {
+                    mismaches.textContent = (mismaches.textContent / 3);
+                    if (mismaches.textContent == "1")
+                        elements[i].classList.remove("unselected");
+                }
+                console.log(mismaches, 1);
+            }
+        }
+
+
+        ////////////
+        // VOLUME
+
+        // PRICE
+        ////////////
+
+
+        min.addEventListener("change", function () {
+            checkMinValid();
+        });
+        max.addEventListener("change", function () {
+            checkMaxValid();
+        });
+
+        function checkMinValid() {
+            if (Number(min.value) < Number(max.value)) {
+                ViewItemsByPrice();
+                min.style.backgroundColor = "#ffffff";
+            }
+            else {
+                min.style.backgroundColor = "#f77c88";
+                min.value = "0";
+                ViewItemsByPrice();
+            }
+
+        }
+        function checkMaxValid() {
+            if (Number(min.value) < Number(max.value)) {
+                ViewItemsByPrice();
+                max.style.backgroundColor = "#ffffff";
+            }
+            else {
+                max.style.backgroundColor = "#f77c88";
+                max.value = "9999";
+                ViewItemsByPrice();
+            }
+
+        }
+
+
+        function ViewItemsByPrice() {
+            for (var i = 0; i < elements.length; i++) {
+                let mismaches = elements[i].querySelector(".mismatches");
+
+                if (Number(elements[i].querySelector(".price").textContent) >= Number(min.value) && Number(elements[i].querySelector(".price").textContent) <= Number(max.value)) {
+                    if (mismaches.textContent != "1")
+                        if (mismaches.textContent % 2 == 0) {
+                            mismaches.textContent = (mismaches.textContent / 2);
+
+                            if (mismaches.textContent == "1")
+                                elements[i].classList.remove("unselected");
+                        }
+                }
+                else {
+                    if (mismaches.textContent == "1")
+                        elements[i].classList.add("unselected");
+
+                    if (mismaches.textContent % 2 != 0)
+                        mismaches.textContent = (Number(mismaches.textContent) * 2);
+                }
+            }
+
+        }
+
+
+        ////////////
+        // PRICE
+
+        // ABV
+        ////////////
+
+        abvselectAll.on("change", function () {
+
+            if ($(this).prop("checked")) {
+                abvsliderValue.text("Всі");
+                abvslider.css("background-color", "#6f6f80");
+                ViewAllItemsByABV();
+            } else {
+                abvsliderValue.text(abvslider.val());
+                abvslider.css("background-color", "#a3610a");
+                ViewItemsByABV();
+            }
+        });
+
+        abvslider.on("input", function () {
+            if (abvselectAll.prop("checked")) {
+                abvslider.css("background-color", "#a3610a");
+                abvselectAll.prop("checked", false);
+            }
+
+            abvsliderValue.text(abvslider.val());
+            ViewItemsByABV();
+        });
+
+        //scripts for viewing
+        function ViewItemsByABV() {
+            for (var i = 0; i < elements.length; i++) {
+                let mismaches = elements[i].querySelector(".mismatches");
+                if (elements[i].querySelector(".abv").textContent == document.getElementById("abvsliderValue").textContent) {
+                    if (mismaches.textContent != "1")
+                        if (mismaches.textContent % 5 == 0) {
+                            mismaches.textContent = (mismaches.textContent / 5);
+
+                            if (mismaches.textContent == "1")
+                                elements[i].classList.remove("unselected");
+                        }
+                }
+                else {
+                    if (mismaches.textContent == "1")
+                        elements[i].classList.add("unselected");
+                    if (mismaches.textContent % 5 != 0)
+                        mismaches.textContent = (Number(mismaches.textContent) * 5);
+                }
+            }
+        }
+
+        function ViewAllItemsByABV() {
+            var elements = document.querySelectorAll(".item");
+            for (var i = 0; i < elements.length; i++) {
+                let mismaches = elements[i].querySelector(".mismatches");
+                if (mismaches.textContent % 5 == 0) {
+                    mismaches.textContent = (mismaches.textContent / 5);
+                    if (mismaches.textContent == "1")
+                        elements[i].classList.remove("unselected");
+                }
+                console.log(mismaches, 1);
+            }
+        }
+        ////////////
+        // ABV
+        ////////////
+    });
+</script>

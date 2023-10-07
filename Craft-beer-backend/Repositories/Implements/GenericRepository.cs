@@ -32,7 +32,7 @@ namespace Craft_beer_backend.Repositories.Implements
         {
             return _dbSet.AsNoTracking().ToList();
         }
-        public TEntity FindById(long id)
+        public TEntity FindById(int id)
         {
             return _dbSet.Find(id);
         }

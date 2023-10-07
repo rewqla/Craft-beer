@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Craft_beer_backend.ViewModels;
+using Craft_beer_backend.Entities;
 using Craft_beer_backend.Repositories.Interfaces;
 using Craft_beer_backend.Services.Interfaces;
 using System;
@@ -24,5 +25,27 @@ namespace Craft_beer_backend.Services.Implements
         {
             return _mapper.Map<IEnumerable<CraftBeerViewModel>>(_craftBeerRepository.GetAll());
         }
+
+        public IEnumerable<FullProductViewModel> GetFullProducts()
+        {
+            return _mapper.Map<IEnumerable<FullProductViewModel>>(_craftBeerRepository.GetAll());
+        }
+        public void AddProduct(FullProductViewModel model)
+        {
+            _craftBeerRepository.Add(new CraftBeer { ABV=model.ABV, Description=model.Description, ImageUrl=model.ImageUrl, Name=model.Name, Price=model.Price, Volume=model.Volume});
+        }
+        public void UpdateProduct(FullProductViewModel model)
+        {
+            _craftBeerRepository.Update(new CraftBeer { Id=model.Id, ABV = model.ABV, Description = model.Description, ImageUrl = model.ImageUrl, Name = model.Name, Price = model.Price, Volume = model.Volume, OrderItems=model.OrderItems });
+        }
+        public void DeleteProduct(CraftBeer product)
+        {
+            _craftBeerRepository.Delete(product);
+        }
+        public void DeleteProduct(int productId)
+        {
+            _craftBeerRepository.Delete(_craftBeerRepository.FindById(productId));
+        }
+
     }
 }

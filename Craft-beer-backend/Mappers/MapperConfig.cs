@@ -16,7 +16,7 @@ namespace Craft_beer_backend.Mappers
             CreateMap<List<string>, DeliveryViewModel>()
                 .ForMember(dest => dest.Companies, opt => opt.MapFrom(src => src));
 
-
+            CreateMap<CraftBeer, FullProductViewModel>();
         }
     }
 }

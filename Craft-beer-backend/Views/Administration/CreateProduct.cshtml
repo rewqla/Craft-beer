@@ -1,0 +1,46 @@
+﻿@model Craft_beer_backend.ViewModels.FullProductViewModel
+
+
+<div class="container mt-5">
+    <div class="row justify-content-center align-items-center">
+        <div class="col-sm-12 col-md-12 col-lg-4">
+            <h1 class="mb-3">Product creator</h1>
+            <form method="post">
+                <div asp-validation-summary="All" class="text-danger"> </div>
+                <div class="mb-3">
+                    <label asp-for="@Model.Name">Product name</label>
+                    <input type="text" asp-for="@Model.Name" class="form-control" />
+                    <span asp-validation-for="@Model.Name" class="text-danger"></span>
+                </div>
+                <div class="mb-3">
+                    <label asp-for="@Model.Price">Price</label>
+                    <input type="text" asp-for="@Model.Price" class="form-control" />
+                    <span asp-validation-for="@Model.Price" class="text-danger"></span>
+                </div>
+                <div class="mb-3">
+                    <label asp-for="@Model.ImageUrl">ImageUrl</label>
+                    <input type="text" asp-for="@Model.ImageUrl" class="form-control" />
+                    <span asp-validation-for="@Model.ImageUrl" class="text-danger"></span>
+                </div>
+                <div class="mb-3">
+                    <label asp-for="@Model.Volume">Volume</label>
+                    <input type="text" asp-for="@Model.Volume" class="form-control" />
+                    <span asp-validation-for="@Model.Volume" class="text-danger"></span>
+                </div>
+                <div class="mb-3">
+                    <label asp-for="@Model.Description">Description</label>
+                    <input type="text" asp-for="@Model.Description" class="form-control" />
+                    <span asp-validation-for="@Model.Description" class="text-danger"></span>
+                </div>
+                <div class="mb-3">
+                    <label asp-for="@Model.ABV">ABV</label>
+                    <input type="text" asp-for="@Model.ABV" class="form-control" />
+                    <span asp-validation-for="@Model.ABV" class="text-danger"></span>
+                </div>
+
+                <button type="submit" class="btn btn-primary">Створити продукт</button>
+                <a asp-action="ProductsList" class="btn btn-primary">Cancel</a>
+            </form>
+        </div>
+    </div>
+</div>
