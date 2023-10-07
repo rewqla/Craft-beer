@@ -117,3 +117,9 @@ D:\vodnik\3 курс\Менеджмент\Craft-beer\Craft-beer-backend\obj\Debu
 D:\vodnik\3 курс\Менеджмент\Craft-beer\Craft-beer-backend\obj\Debug\net5.0\Razor\Views\Account\ManageUser.cshtml.g.cs
 D:\vodnik\3 курс\Менеджмент\Craft-beer\Craft-beer-backend\obj\Debug\net5.0\Razor\Views\Shared\_UserLayout.cshtml.g.cs
 >>>>>>> 70c65361dc43baf37fc2d837a6c8bed9b96ee918
+E:\yura\projects\Craft-beer\Craft-beer-backend\obj\Debug\net5.0\Razor\Views\Account\EditUser.cshtml.g.cs
+E:\yura\projects\Craft-beer\Craft-beer-backend\obj\Debug\net5.0\Razor\Views\Account\ManageUser.cshtml.g.cs
+E:\yura\projects\Craft-beer\Craft-beer-backend\obj\Debug\net5.0\Razor\Views\Administration\CreateProduct.cshtml.g.cs
+E:\yura\projects\Craft-beer\Craft-beer-backend\obj\Debug\net5.0\Razor\Views\Administration\EditProduct.cshtml.g.cs
+E:\yura\projects\Craft-beer\Craft-beer-backend\obj\Debug\net5.0\Razor\Views\Administration\ProductsList.cshtml.g.cs
+E:\yura\projects\Craft-beer\Craft-beer-backend\obj\Debug\net5.0\Razor\Views\Shared\_UserLayout.cshtml.g.cs
