@@ -107,3 +107,4 @@ E:\yura\projects\Craft-beer\Craft-beer-backend\obj\Debug\net5.0\Razor\Views\Acco
 E:\yura\projects\Craft-beer\Craft-beer-backend\obj\Debug\net5.0\Razor\Views\Account\Logout.cshtml.g.cs
 E:\yura\projects\Craft-beer\Craft-beer-backend\obj\Debug\net5.0\Razor\Views\Account\Register.cshtml.g.cs
 E:\yura\projects\Craft-beer\Craft-beer-backend\obj\Debug\net5.0\Razor\Views\Home\Cart.cshtml.g.cs
+E:\yura\projects\Craft-beer\Craft-beer-backend\obj\Debug\net5.0\Razor\Views\Order\Index.cshtml.g.cs

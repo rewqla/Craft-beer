@@ -8,7 +8,6 @@ namespace Craft_beer_backend.Entities
         public int Id { get; set; }
         public string UniqueCode { get; set; }
         public string Date { get; set; }
-        public int UserId { get; set; }
         public DbUser DbUser { get; set; }
         public int OrderStatusId { get; set; }
         public OrderStatus OrderStatus { get; set; }
