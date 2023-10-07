@@ -1,0 +1,122 @@
+﻿@model OrderViewModel;
+<h2>Total price @Model.Cart.TotalPrice</h2>
+<ul>
+    @foreach (var item in Model.Cart.Items)
+    {
+        <li class="my-2">@item.Name @item.Volume @item.Price @item.Count</li>
+    }
+</ul>
+<div>
+    <div class="form-group">
+        <label asp-for="Delivery.City" class="control-label"></label>
+        <input asp-for="Delivery.City" class="form-control" placeholder="Введіть місто" />
+        <span asp-validation-for="Delivery.City" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Delivery.Address" class="control-label"></label>
+        <input asp-for="Delivery.Address" class="form-control" placeholder="Введіть адресу" />
+        <span asp-validation-for="Delivery.Address" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Delivery.Companies" class="control-label"></label>
+        <select class="form-control" asp-for="Delivery.SelectedCompany">
+            @foreach (var item in Model.Delivery.Companies)
+            {
+                <option>
+                    @item
+                </option>
+            }
+        </select>
+        <span asp-validation-for="Delivery.Companies" class="text-danger"></span>
+    </div>
+</div>
+
+
+@if (Model.Customers.Count > 0)
+{
+    <div id="existingCustomerSection">
+        <div class="form-group">
+            <label asp-for="Customers" class="control-label"></label>
+            <select class="form-control" asp-for="SelectedCustomer">
+                @foreach (var item in Model.Customers)
+                {
+                    <option>
+                        @item.FirstName @item.LastName @item.Phone
+                    </option>
+                }
+            </select>
+            <span asp-validation-for="Customers" class="text-danger"></span>
+        </div>
+    </div>
+}
+
+<div id="newCustomerSection" @if (Model.Customers.Count <= 0) { <text>style="display: block;"</text> } else { <text>style="display: none;"</text> }>
+    <div class="form-group">
+        <label asp-for="SelectedCustomer.FirstName" class="control-label"></label>
+        <input asp-for="SelectedCustomer.FirstName" class="form-control" placeholder="Введіть ім'я отримувача" />
+        <span asp-validation-for="SelectedCustomer.FirstName" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="SelectedCustomer.LastName" class="control-label"></label>
+        <input asp-for="SelectedCustomer.LastName" class="form-control" placeholder="Введіть прізвище отримувача" />
+        <span asp-validation-for="SelectedCustomer.LastName" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="SelectedCustomer.Phone" class="control-label"></label>
+        <input asp-for="SelectedCustomer.Phone" class="form-control" placeholder="Введіть телефон отримувача" />
+        <span asp-validation-for="SelectedCustomer.Phone" class="text-danger"></span>
+    </div>
+</div>
+
+<button id="toggleCustomerSection" class="btn btn-primary" @if (Model.Customers.Count <= 0) { <text>style="display: none;"</text> } else { <text>style="display: block;"</text> }>Create New Customer</button>
+<button id="selectExistingCustomer" class="btn btn-primary" style="display: none;">Select from Existing</button>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        var toggleButton = document.getElementById("toggleCustomerSection");
+        var selectExistingButton = document.getElementById("selectExistingCustomer");
+        var existingCustomerSection = document.getElementById("existingCustomerSection");
+        var newCustomerSection = document.getElementById("newCustomerSection");
+
+        toggleButton.addEventListener("click", function () {
+            toggleButton.style.display = "none";
+            selectExistingButton.style.display = "block";
+            existingCustomerSection.style.display = "none";
+            newCustomerSection.style.display = "block";
+        });
+
+        selectExistingButton.addEventListener("click", function () {
+            toggleButton.style.display = "block";
+            selectExistingButton.style.display = "none";
+            existingCustomerSection.style.display = "block";
+            newCustomerSection.style.display = "none";
+        });
+    });
+</script>
+
+
+
+<div>
+     <div class="form-group">
+        <label for="card-number">Card Number</label>
+        <input type="text" id="card-number" class="form-control" placeholder="1234 5678 9012 3456" required>
+    </div>
+
+    <!-- Expiry Date and CVV -->
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label for="expiry-date">Expiry Date (MM/YY)</label>
+            <input type="text" id="expiry-date" class="form-control" placeholder="MM/YY" required>
+        </div>
+        <div class="form-group col-md-6">
+            <label for="cvv">CVV</label>
+            <input type="text" id="cvv" class="form-control" placeholder="123" required>
+        </div>
+    </div>
+
+</div>
+<button class="btn btn-primary">Замовити замовлення</button>

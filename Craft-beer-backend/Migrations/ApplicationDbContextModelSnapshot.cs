@@ -41,6 +41,9 @@ namespace Craft_beer_backend.Migrations
                     b.Property<double>("Price")
                         .HasColumnType("double precision");
 
+                    b.Property<double>("Raiting")
+                        .HasColumnType("double precision");
+
                     b.Property<double>("Volume")
                         .HasColumnType("double precision");
 
@@ -67,9 +70,6 @@ namespace Craft_beer_backend.Migrations
 
                     b.Property<string>("Phone")
                         .HasColumnType("text");
-
-                    b.Property<int>("UserId")
-                        .HasColumnType("integer");
 
                     b.HasKey("Id");
 

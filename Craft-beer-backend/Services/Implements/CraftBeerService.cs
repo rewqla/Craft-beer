@@ -1,9 +1,8 @@
 ﻿using AutoMapper;
+using Craft_beer_backend.ViewModels;
 using Craft_beer_backend.Entities;
-using Craft_beer_backend.Models;
 using Craft_beer_backend.Repositories.Interfaces;
 using Craft_beer_backend.Services.Interfaces;
-using Craft_beer_backend.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
