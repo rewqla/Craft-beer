@@ -35,6 +35,6 @@ async def beer_info_answer(message: types.Message):
     else:
         response_text = ""
         for order in order_data:
-            response_text += f"ID: {order[0]} \n Unique Code: {order[1]}, \n Date: {order[2]} \n User: {order[3]} \n Status: {order[4]} \n Customer: {order[5]} \n Delivery: {order[6]}\n\n"
+            response_text += f"ID: {order[0]} \n Unique Code: {order[1]}, \n Date: {order[2]} \n Status: {order[3]} \n Name: {order[4]} \n Surname: {order[5]} \n Phone: {order[6]} \n City: {order[7]} \n Delivery: {order[8]}\n\n"
 
         await message.reply(response_text)
