@@ -14,7 +14,8 @@ def get_beer_data():
     except SQLAlchemyError as e:
         return str(e)
 
-def get_order_data():
+
+def get_order_data(unique_code):
     try:
         with app.app_context():
             sql_query = text('''
@@ -36,8 +37,9 @@ def get_order_data():
                     "CustomerInfos" AS ci ON o."CustomerInfoId" = ci."Id"
                 LEFT JOIN
                     "DeliveryAddresses" AS da ON o."DeliveryAddressId" = da."Id"
+                WHERE o."UniqueCode" = :unique_code
             ''')
-            result = db.session.execute(sql_query)
+            result = db.session.execute(sql_query,{'unique_code': unique_code})
             order_data = result.fetchall()
             return order_data
     except SQLAlchemyError as e:
