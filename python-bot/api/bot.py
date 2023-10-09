@@ -28,8 +28,8 @@ async def beer_info_answer(message: types.Message):
 
 @dp.message_handler(commands=['order'])
 async def beer_info_answer(message: types.Message):
-    order_data = get_order_data()
-
+    unique_code = message.text.partition(" ")[2]
+    order_data = get_order_data(unique_code)
     if isinstance(order_data, str):
         await message.reply(f"Помилка бази даних: {order_data}")
     else:
