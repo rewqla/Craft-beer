@@ -16,7 +16,9 @@ namespace Craft_beer_backend.Mappers
 
             CreateMap<CraftBeer, FullProductViewModel>();
             CreateMap<DeliveryViewModel, DeliveryAddress>();
+            CreateMap<DeliveryAddress, DeliveryViewModel>();
             CreateMap<CustomerViewModel, CustomerInfo>();
+            CreateMap<CustomerInfo, CustomerViewModel>();
         }
     }
 }

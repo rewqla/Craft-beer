@@ -13,5 +13,4 @@ namespace Craft_beer_backend.Services.Interfaces
         void DeleteProduct(CraftBeer product);
         void DeleteProduct(int productId);
     }
-
 }
