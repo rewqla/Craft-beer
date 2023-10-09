@@ -20,7 +20,11 @@ namespace Craft_beer_backend.Controllers
         public IActionResult Index(string cartModel)
         {
             var userId = HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier);
-            var model = _orderService.PrepareOrderViewModel(cartModel, long.Parse(userId));
+
+            var model = new CheckoutViewModel()
+            {
+                Order= _orderService.PrepareOrderViewModel(cartModel, long.Parse(userId))
+            };
 
             return View(model);
         }
@@ -28,8 +32,16 @@ namespace Craft_beer_backend.Controllers
         public IActionResult Checkout(CheckoutViewModel model, string cartData)
         {
             var userId = HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier);
-            _orderService.Checkout(model, cartData, long.Parse(userId));
-            return View("Success");
+
+            if (ModelState.IsValid)
+            {
+                _orderService.Checkout(model, cartData, long.Parse(userId));
+                return View("Success");
+            }
+
+            model.Order = _orderService.PrepareOrderViewModel(cartData, long.Parse(userId));
+
+            return View("index", model);
         }
     }
 }

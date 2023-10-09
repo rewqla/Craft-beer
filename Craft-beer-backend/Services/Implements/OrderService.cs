@@ -104,16 +104,13 @@ namespace Craft_beer_backend.Services.Implements
             return customer.Id;
         }
 
-        public CheckoutViewModel PrepareOrderViewModel(string URI, long userId)
+        public OrderViewModel PrepareOrderViewModel(string URI, long userId)
         {
-            var model = new CheckoutViewModel()
-            {
-                Order = new OrderViewModel(),
-            };
+            var model = new OrderViewModel();
 
-            model.Order.Cart = _mapper.Map<CartViewModel>(GetCartFromUri(URI));
-            model.Order.Customers = _mapper.Map<List<CustomerViewModel>>(_customerInfoRepository.GetAll().Where(x => x.DbUserId == userId).ToList());
-            model.Order.Companies = _deliveryCompanyRepository.GetAll().Select(x => x.Name).ToList();
+            model.Cart = _mapper.Map<CartViewModel>(GetCartFromUri(URI));
+            model.Customers = _mapper.Map<List<CustomerViewModel>>(_customerInfoRepository.GetAll().Where(x => x.DbUserId == userId).ToList());
+            model.Companies = _deliveryCompanyRepository.GetAll().Select(x => x.Name).ToList();
 
             return model;
         }
