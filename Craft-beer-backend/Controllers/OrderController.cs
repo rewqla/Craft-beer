@@ -24,5 +24,12 @@ namespace Craft_beer_backend.Controllers
 
             return View(model);
         }
+        [HttpPost]
+        public IActionResult Checkout(CheckoutViewModel model, string cartData)
+        {
+            var userId = HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier);
+            _orderService.Checkout(model, cartData, long.Parse(userId));
+            return View("Success");
+        }
     }
 }

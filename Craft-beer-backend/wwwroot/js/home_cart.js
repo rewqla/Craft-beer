@@ -1,9 +1,9 @@
-﻿const shoppingCart = JSON.parse(localStorage.getItem('shopping-cart')) || [];
+﻿let shoppingCart = JSON.parse(localStorage.getItem('shopping-cart')) || [];
 const totalPriceElement = document.getElementById('total-price-span');
 const cartItemsList = document.getElementById('cart-items');
 const emptyCartMessage = document.getElementById('empty-cart-message');
 const clearCartButton = document.getElementById('clear-cart');
-
+const orderButton = document.getElementById('make-order');
 function createInputNumber(value = 1, min = 1, max = 15, changeHandler) {
     const input = document.createElement('input');
     input.type = 'number';
@@ -21,9 +21,12 @@ function displayCart() {
         emptyCartMessage.style.display = 'block';
         document.getElementById("total-price").style.display = "none";
         clearCartButton.style.display = "none";
+        orderButton.style.display = "none";
     } else {
         emptyCartMessage.style.display = 'none';
         clearCartButton.style.display = "block";
+        orderButton.style.display = "block";
+
         let total = 0;
 
         shoppingCart.forEach(item => {
@@ -52,6 +55,7 @@ function displayCart() {
 
 function clearShoppingCart() {
     localStorage.removeItem('shopping-cart');
+    shoppingCart = [];
     displayCart();
 }
 
@@ -75,6 +79,6 @@ async function makeOrder() {
     window.location.href = url;
 }
 document.getElementById('clear-cart').addEventListener('click', clearShoppingCart);
-document.getElementById('make-order').addEventListener('click', makeOrder);
+orderButton.addEventListener('click', makeOrder);
 
 displayCart();
