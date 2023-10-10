@@ -1,6 +1,6 @@
 from aiogram import Bot, Dispatcher, types
 
-from api.utils.utils import get_beer_data, get_order_data
+from api.utils.utils import get_beer_data, get_order_data, get_user_order_data
 
 TOKEN = '5680096668:AAHuis7pyG-G4G0taF7WeumTRdU-jgGUeY0'
 
@@ -22,14 +22,29 @@ async def beer_info_answer(message: types.Message):
     else:
         response_text = ""
         for beer in beer_data:
-            response_text += f"ID: {beer[0]} \n Name: {beer[1]}, \n Description: {beer[2]}\n\n"
+            response_text += f"ID: {beer[0]} \n Name: {beer[1]}, \n Description: {beer[2]} \n Price: {beer[3]} \n Volume: {beer[5]} \n Abv: {beer[6]} \n Raiting: {beer[7]}\n\n"
 
         await message.reply(response_text)
 
-@dp.message_handler(commands=['order'])
-async def beer_info_answer(message: types.Message):
+
+@dp.message_handler(commands=['orderByCode'])
+async def order_info_answer(message: types.Message):
     unique_code = message.text.partition(" ")[2]
     order_data = get_order_data(unique_code)
+    if isinstance(order_data, str):
+        await message.reply(f"Помилка бази даних: {order_data}")
+    else:
+        response_text = ""
+        for order in order_data:
+            response_text += f"ID: {order[0]} \n Unique Code: {order[1]}, \n Date: {order[2]} \n Status: {order[3]} \n Name: {order[4]} \n Surname: {order[5]} \n Phone: {order[6]} \n City: {order[7]} \n Delivery: {order[8]}\n\n"
+
+        await message.reply(response_text)
+
+
+@dp.message_handler(commands=['orders'])
+async def order_user_info_answer(message: types.Message):
+    unique_code = message.text.partition(" ")[2]
+    order_data = get_user_order_data(unique_code)
     if isinstance(order_data, str):
         await message.reply(f"Помилка бази даних: {order_data}")
     else:
