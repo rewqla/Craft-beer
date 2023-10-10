@@ -39,7 +39,7 @@ def get_order_data(unique_code):
                     "DeliveryAddresses" AS da ON o."DeliveryAddressId" = da."Id"
                 WHERE o."UniqueCode" = :unique_code
             ''')
-            result = db.session.execute(sql_query,{'unique_code': unique_code})
+            result = db.session.execute(sql_query, {'unique_code': unique_code})
             order_data = result.fetchall()
             return order_data
     except SQLAlchemyError as e:
@@ -70,7 +70,7 @@ def get_user_order_data(phone):
                     "DeliveryAddresses" AS da ON o."DeliveryAddressId" = da."Id"
                 WHERE ci."PhoneNumber" = :Phone
             ''')
-            result = db.session.execute(sql_query,{'Phone': phone})
+            result = db.session.execute(sql_query, {'Phone': phone})
             order_data = result.fetchall()
             return order_data
     except SQLAlchemyError as e:
