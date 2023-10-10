@@ -44,3 +44,34 @@ def get_order_data(unique_code):
             return order_data
     except SQLAlchemyError as e:
         return str(e)
+
+
+def get_user_order_data(phone):
+    try:
+        with app.app_context():
+            sql_query = text('''
+                SELECT
+                    o."Id" AS "OrderId",
+                    o."UniqueCode" AS "OrderUniqueCode",
+                    o."Date" AS "OrderDate",
+                    os."Name" AS "OrderStatus",
+                    ci."FirstName" AS "CustomerFirstName",
+                    ci."LastName" AS "CustomerLastName",
+                    ci."PhoneNumber" AS "CustomerPhone",
+                    da."City" AS "DeliveryCity",
+                    da."Address" AS "DeliveryAddress"
+                FROM
+                    "Orders" AS o
+                LEFT JOIN
+                    "OrderStatuses" AS os ON o."OrderStatusId" = os."Id"
+                LEFT JOIN
+                    "AspNetUsers" AS ci ON o."CustomerInfoId" = ci."Id"
+                LEFT JOIN
+                    "DeliveryAddresses" AS da ON o."DeliveryAddressId" = da."Id"
+                WHERE ci."PhoneNumber" = :Phone
+            ''')
+            result = db.session.execute(sql_query,{'Phone': phone})
+            order_data = result.fetchall()
+            return order_data
+    except SQLAlchemyError as e:
+        return str(e)
