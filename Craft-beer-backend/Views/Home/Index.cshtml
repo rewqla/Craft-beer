@@ -59,13 +59,15 @@
             <input type="checkbox" checked id="abvselectAll">
             <label for="abvselectAll">Вибрати всі</label>
         </div>
+        <button onclick="sortAscending()">Сортувати за зростанням</button>
+        <button onclick="sortDescending()">Сортувати за спаданням</button>
     </div>
     <div>
-        <ul>
+        <ul id="itemsContainer">
             @foreach (var item in Model)
             {
 
-                <li class="item" ><a href="Home/ItemPreview/@item.Id">@item.Name<div hidden class="mismatches">1</div><div class="volume">@item.Volume</div><div class="price">@item.Price</div><div class="abv">@item.ABV</div></a></li>
+                <li class="item"><a href="Home/ItemPreview/@item.Id">@item.Name<div hidden class="mismatches">1</div><div class="volume">@item.Volume</div><div class="abv">@item.ABV</div><div class="price">@item.Price</div></a></li>
             }
         </ul>
     </div>
@@ -77,6 +79,7 @@
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
+    var elements = Array.from(document.querySelectorAll('.item'));
     $(document).ready(function () {
         var min = document.getElementById("min");
         var max = document.getElementById("max");
@@ -86,7 +89,6 @@
         var abvslider = $("#abvslider");
         var abvsliderValue = $("#abvsliderValue");
         var abvselectAll = $("#abvselectAll");
-        var elements = document.querySelectorAll(".item");
         ////////////
         // VOLUME
         ////////////
@@ -155,7 +157,6 @@
                     if (mismaches.textContent == "1")
                         elements[i].classList.remove("unselected");
                 }
-                console.log(mismaches, 1);
             }
         }
 
@@ -277,7 +278,7 @@
         }
 
         function ViewAllItemsByABV() {
-            var elements = document.querySelectorAll(".item");
+
             for (var i = 0; i < elements.length; i++) {
                 let mismaches = elements[i].querySelector(".mismatches");
                 if (mismaches.textContent % 5 == 0) {
@@ -288,8 +289,30 @@
                 console.log(mismaches, 1);
             }
         }
-        ////////////
-        // ABV
-        ////////////
+    ////////////
+    // ABV
+    ////////////
+
+
     });
+    const itemsContainer = document.getElementById('itemsContainer');
+    function sortAscending() {
+        elements.sort((a, b) => {
+            const priceA = parseInt(a.querySelector('.price').textContent);
+            const priceB = parseInt(b.querySelector('.price').textContent);
+            return priceA - priceB;
+        });
+
+        elements.forEach(item => itemsContainer.appendChild(item));
+    }
+
+    function sortDescending() {
+        elements.sort((a, b) => {
+            const priceA = parseInt(a.querySelector('.price').textContent);
+            const priceB = parseInt(b.querySelector('.price').textContent);
+            return priceB - priceA;
+        });
+
+        elements.forEach(item => itemsContainer.appendChild(item));
+    }
 </script>
