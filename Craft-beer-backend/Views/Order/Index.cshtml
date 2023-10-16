@@ -1,122 +1,189 @@
-﻿@model OrderViewModel;
-<h2>Total price @Model.Cart.TotalPrice</h2>
-<ul>
-    @foreach (var item in Model.Cart.Items)
-    {
-        <li class="my-2">@item.Name @item.Volume @item.Price @item.Count</li>
-    }
-</ul>
-<div>
-    <div class="form-group">
-        <label asp-for="Delivery.City" class="control-label"></label>
-        <input asp-for="Delivery.City" class="form-control" placeholder="Введіть місто" />
-        <span asp-validation-for="Delivery.City" class="text-danger"></span>
-    </div>
-
-    <div class="form-group">
-        <label asp-for="Delivery.Address" class="control-label"></label>
-        <input asp-for="Delivery.Address" class="form-control" placeholder="Введіть адресу" />
-        <span asp-validation-for="Delivery.Address" class="text-danger"></span>
-    </div>
-
-    <div class="form-group">
-        <label asp-for="Delivery.Companies" class="control-label"></label>
-        <select class="form-control" asp-for="Delivery.SelectedCompany">
-            @foreach (var item in Model.Delivery.Companies)
-            {
-                <option>
-                    @item
-                </option>
-            }
-        </select>
-        <span asp-validation-for="Delivery.Companies" class="text-danger"></span>
-    </div>
-</div>
-
-
-@if (Model.Customers.Count > 0)
-{
-    <div id="existingCustomerSection">
+﻿@model CheckoutViewModel;
+<form action="Checkout" method="post">
+    <h2>Total price @Model.Order.Cart.TotalPrice</h2>
+    <ul>
+        @foreach (var item in Model.Order.Cart.Items)
+        {
+            <li class="my-2">@item.Name @item.Volume @item.Price @item.Count</li>
+        }
+    </ul>
+    <div>
         <div class="form-group">
-            <label asp-for="Customers" class="control-label"></label>
-            <select class="form-control" asp-for="SelectedCustomer">
-                @foreach (var item in Model.Customers)
+            <label asp-for="Delivery.City" class="control-label"></label>
+            <input asp-for="Delivery.City" class="form-control" placeholder="Введіть місто" />
+            <span asp-validation-for="Delivery.City" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Delivery.Address" class="control-label"></label>
+            <input asp-for="Delivery.Address" class="form-control" placeholder="Введіть адресу" />
+            <span asp-validation-for="Delivery.Address" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Delivery.Company" class="control-label"></label>
+            <select class="form-control" asp-for="Delivery.Company">
+                @foreach (var item in Model.Order.Companies)
                 {
                     <option>
-                        @item.FirstName @item.LastName @item.Phone
+                        @item
                     </option>
                 }
             </select>
-            <span asp-validation-for="Customers" class="text-danger"></span>
+            <span asp-validation-for="Delivery.Company" class="text-danger"></span>
         </div>
     </div>
-}
 
-<div id="newCustomerSection" @if (Model.Customers.Count <= 0) { <text>style="display: block;"</text> } else { <text>style="display: none;"</text> }>
+    <input type="hidden" id="cartData" name="cartData" />
+
+
+    @if (Model.Order.Customers.Count > 0)
+    {
+        <div id="existingCustomerSection">
+            <div class="form-group">
+                <label asp-for="Customer" class="control-label"></label>
+                <select id="customerDropdown" class="form-control">
+                    @foreach (var customer in Model.Order.Customers)
+                    {
+                        <option>
+                            @customer.FirstName @customer.LastName @customer.Phone
+                        </option>
+                    }
+                </select>
+                <span asp-validation-for="Customer" class="text-danger"></span>
+            </div>
+        </div>
+    }
+
+    <div id="newCustomerSection" @if (Model.Order.Customers.Count <= 0) {
+    <text>style="display: block;"</text>
+ } else {
+    <text>style="display: none;"</text>
+ }>
     <div class="form-group">
-        <label asp-for="SelectedCustomer.FirstName" class="control-label"></label>
-        <input asp-for="SelectedCustomer.FirstName" class="form-control" placeholder="Введіть ім'я отримувача" />
-        <span asp-validation-for="SelectedCustomer.FirstName" class="text-danger"></span>
+        <label asp-for="Customer.FirstName" class="control-label"></label>
+        <input asp-for="Customer.FirstName" class="form-control" placeholder="Введіть ім'я отримувача" />
+        <span asp-validation-for="Customer.FirstName" class="text-danger"></span>
     </div>
 
     <div class="form-group">
-        <label asp-for="SelectedCustomer.LastName" class="control-label"></label>
-        <input asp-for="SelectedCustomer.LastName" class="form-control" placeholder="Введіть прізвище отримувача" />
-        <span asp-validation-for="SelectedCustomer.LastName" class="text-danger"></span>
+        <label asp-for="Customer.LastName" class="control-label"></label>
+        <input asp-for="Customer.LastName" class="form-control" placeholder="Введіть прізвище отримувача" />
+        <span asp-validation-for="Customer.LastName" class="text-danger"></span>
     </div>
 
     <div class="form-group">
-        <label asp-for="SelectedCustomer.Phone" class="control-label"></label>
-        <input asp-for="SelectedCustomer.Phone" class="form-control" placeholder="Введіть телефон отримувача" />
-        <span asp-validation-for="SelectedCustomer.Phone" class="text-danger"></span>
+        <label asp-for="Customer.Phone" class="control-label"></label>
+        <input asp-for="Customer.Phone" class="form-control" placeholder="Введіть телефон отримувача" />
+        <span asp-validation-for="Customer.Phone" class="text-danger"></span>
     </div>
 </div>
 
-<button id="toggleCustomerSection" class="btn btn-primary" @if (Model.Customers.Count <= 0) { <text>style="display: none;"</text> } else { <text>style="display: block;"</text> }>Create New Customer</button>
-<button id="selectExistingCustomer" class="btn btn-primary" style="display: none;">Select from Existing</button>
+    <button id="toggleCustomerSection" type="button" class="btn btn-primary" @if (Model.Order.Customers.Count <= 0) {
+    <text>style="display: none;"</text>
+ } else {
+    <text>style="display: block;"</text>
+ }>Create New Customer</button>
+    <button id="selectExistingCustomer" class="btn btn-primary" type="button" style="display: none;">Select from Existing</button>
 
+
+
+    <div>
+        <div class="form-group">
+            <label asp-for="Card.Number" class="control-label"></label>
+            <input asp-for="Card.Number" class="form-control" placeholder="1234 5678 9012 3456" />
+            <span asp-validation-for="Card.Number" class="text-danger"></span>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label asp-for="Card.Date" class="control-label">Expiry Date (MM/YY)</label>
+                <input asp-for="Card.Date" class="form-control" placeholder="MM/YY" />
+                <span asp-validation-for="Card.Date" class="text-danger"></span>
+            </div>
+
+            <div class="form-group col-md-6">
+                <label asp-for="Card.CVV" class="control-label">CVV</label>
+                <input asp-for="Card.CVV" class="form-control" placeholder="123" />
+                <span asp-validation-for="Card.CVV" class="text-danger"></span>
+            </div>
+        </div>
+    </div>
+
+    <button class="btn btn-primary" type="submit">Замовити замовлення</button>
+</form>
 <script>
-    document.addEventListener("DOMContentLoaded", function () {
-        var toggleButton = document.getElementById("toggleCustomerSection");
-        var selectExistingButton = document.getElementById("selectExistingCustomer");
-        var existingCustomerSection = document.getElementById("existingCustomerSection");
-        var newCustomerSection = document.getElementById("newCustomerSection");
+            document.addEventListener("DOMContentLoaded", function () {
+                var toggleButton = document.getElementById("toggleCustomerSection");
+                var selectExistingButton = document.getElementById("selectExistingCustomer");
+                var existingCustomerSection = document.getElementById("existingCustomerSection");
+                var newCustomerSection = document.getElementById("newCustomerSection");
 
-        toggleButton.addEventListener("click", function () {
-            toggleButton.style.display = "none";
-            selectExistingButton.style.display = "block";
-            existingCustomerSection.style.display = "none";
-            newCustomerSection.style.display = "block";
-        });
+                toggleButton.addEventListener("click", function () {
+                    toggleButton.style.display = "none";
+                    selectExistingButton.style.display = "block";
+                    existingCustomerSection.style.display = "none";
+                    newCustomerSection.style.display = "block";
 
-        selectExistingButton.addEventListener("click", function () {
-            toggleButton.style.display = "block";
-            selectExistingButton.style.display = "none";
-            existingCustomerSection.style.display = "block";
-            newCustomerSection.style.display = "none";
-        });
-    });
+                         newCustomerFirstName.value = "";
+                newCustomerLastName.value = "";
+                newCustomerPhone.value = "";
+                });
+
+                selectExistingButton.addEventListener("click", function () {
+                    toggleButton.style.display = "block";
+                    selectExistingButton.style.display = "none";
+                    existingCustomerSection.style.display = "block";
+                    newCustomerSection.style.display = "none";
+                });
+
+                 var customerDropdown = document.getElementById("customerDropdown");
+                var newCustomerFirstName = document.getElementById("Customer_FirstName");
+                var newCustomerLastName = document.getElementById("Customer_LastName");
+                var newCustomerPhone = document.getElementById("Customer_Phone");
+
+                function updateInputFields(selectedCustomer) {
+                    var parts = selectedCustomer.split(' ');
+                    newCustomerFirstName.value = parts[0];
+                    newCustomerLastName.value = parts[1];
+                    newCustomerPhone.value = parts[2];
+                }
+
+                customerDropdown.addEventListener("change", function () {
+                    var selectedCustomer = customerDropdown.value;
+                    updateInputFields(selectedCustomer);
+                });
+
+                if (@Model.Order.Customers.Count > 0) {
+                    var firstCustomerOption = customerDropdown.querySelector("option");
+                        updateInputFields(firstCustomerOption.value);
+                }
+
+                var bb=@Html.Raw(Json.Serialize(@Model.Order.Cart))
+                console.log(bb)
+                function capitalizeObjectKeys(obj) {
+      const newObj = {};
+      for (const key in obj) {
+        if (obj.hasOwnProperty(key)) {
+          const capitalizedKey = key.charAt(0).toUpperCase() + key.slice(1);
+          newObj[capitalizedKey] = obj[key];
+        }
+      }
+      return newObj;
+    }
+
+
+                var form = document.querySelector("form");
+            form.addEventListener("submit", function () {
+                let model=@Html.Raw(Json.Serialize(@Model.Order.Cart));
+
+                model.items[0]=capitalizeObjectKeys(model.items[0])
+                model.items[1]=capitalizeObjectKeys(model.items[1])
+                model=capitalizeObjectKeys(model);
+
+                var cartData = JSON.stringify(model);
+                document.getElementById("cartData").value = cartData;
+                });
+            });
 </script>
 
-
-
-<div>
-     <div class="form-group">
-        <label for="card-number">Card Number</label>
-        <input type="text" id="card-number" class="form-control" placeholder="1234 5678 9012 3456" required>
-    </div>
-
-    <!-- Expiry Date and CVV -->
-    <div class="form-row">
-        <div class="form-group col-md-6">
-            <label for="expiry-date">Expiry Date (MM/YY)</label>
-            <input type="text" id="expiry-date" class="form-control" placeholder="MM/YY" required>
-        </div>
-        <div class="form-group col-md-6">
-            <label for="cvv">CVV</label>
-            <input type="text" id="cvv" class="form-control" placeholder="123" required>
-        </div>
-    </div>
-
-</div>
-<button class="btn btn-primary">Замовити замовлення</button>

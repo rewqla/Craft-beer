@@ -6,6 +6,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Craft_beer_backend.ViewModels;
 using Microsoft.AspNetCore.Authorization;
+using Craft_beer_backend.Services.Interfaces;
 
 namespace Craft_beer_backend.Controllers
 {
@@ -14,12 +15,15 @@ namespace Craft_beer_backend.Controllers
         private readonly UserManager<DbUser> userManager;
         private readonly SignInManager<DbUser> signInManager;
         private readonly RoleManager<DbRole> roleManager;
+        private readonly IOrderService _orderService;
 
-        public AccountController(UserManager<DbUser> userManager, SignInManager<DbUser> signInManager, RoleManager<DbRole> roleManager)
+        public AccountController(UserManager<DbUser> userManager, SignInManager<DbUser> signInManager,
+            RoleManager<DbRole> roleManager, IOrderService orderService)
         {
             this.userManager = userManager;
             this.signInManager = signInManager;
             this.roleManager = roleManager;
+            _orderService = orderService;
         }
         [HttpGet]
         public IActionResult Register()
@@ -163,7 +167,27 @@ namespace Craft_beer_backend.Controllers
             return View(model);
         }
 
+        [HttpGet]
+        public async Task<IActionResult> OrdersAsync()
+        {
+            var model = _orderService.GetUserOrders((await userManager.GetUserAsync(User)).Id);
 
+            return View(model);
+        }
+
+        [HttpGet]
+        public IActionResult OrderDetails(string uniqueCode)
+        {
+            var model = _orderService.GetOrderDetails(uniqueCode);
+
+            return View(model);
+        }
+        [HttpPost]
+        public IActionResult CancelOrder(string uniqueCode)
+        {
+            _orderService.CancelOrder(uniqueCode);
+            return RedirectToAction("OrderDetails","Account", new { uniqueCode = uniqueCode });
+        }
 
         //Administration
         public async Task<IActionResult> ListUsers(string id)

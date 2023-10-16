@@ -19,19 +19,74 @@ namespace Craft_beer_backend.Services.Implements
         private readonly IDeliveryCompanyRepository _deliveryCompanyRepository;
         private readonly IDeliveryAddressRepository _deliveryAddressRepository;
         private readonly ICustomerInfoRepository _customerInfoRepository;
-        private readonly UserManager<DbUser> _userManager;
+        private readonly IOrderRepository _orderRepository;
+        private readonly IOrderItemRepository _orderItemRepository;
+        private readonly IOrderStatusRepository _orderStatusRepository;
+        private readonly IOrderItemRepository _orderItem;
+        private readonly ICraftBeerRepository _craftBeerRepository;
         public OrderService(IMapper mapper, IDeliveryCompanyRepository deliveryCompanyRepository,
-            ICustomerInfoRepository customerInfoRepository, UserManager<DbUser> userManager, 
-            IDeliveryAddressRepository deliveryAddressRepository = null)
+            ICustomerInfoRepository customerInfoRepository, IDeliveryAddressRepository deliveryAddressRepository,
+            IOrderRepository orderRepository, IOrderStatusRepository orderStatusRepository,
+            IOrderItemRepository orderItem, ICraftBeerRepository craftBeerRepository, IOrderItemRepository orderItemRepository)
         {
             _mapper = mapper;
             _deliveryCompanyRepository = deliveryCompanyRepository;
             _customerInfoRepository = customerInfoRepository;
-            _userManager = userManager;
             _deliveryAddressRepository = deliveryAddressRepository;
+            _orderRepository = orderRepository;
+            _orderStatusRepository = orderStatusRepository;
+            _orderItem = orderItem;
+            _craftBeerRepository = craftBeerRepository;
+            _orderItemRepository = orderItemRepository;
         }
 
-        public ClaimsPrincipal User { get; private set; }
+        public void CancelOrder(string uniqueCode)
+        {
+            var order = _orderRepository.GetAll().FirstOrDefault(x => x.UniqueCode == uniqueCode);
+
+            if (order != null)
+            {
+                order.OrderStatusId = 5;
+            }
+
+            _orderRepository.Update(order);
+        }
+
+        public void Checkout(CheckoutViewModel model, string cartData, long userId)
+        {
+            model.Order = new OrderViewModel()
+            {
+                Cart = JsonSerializer.Deserialize<CartViewModel>(cartData)
+            };
+
+            var address = _mapper.Map<DeliveryAddress>(model.Delivery);
+            address.DeliveryCompanyId = _deliveryCompanyRepository.GetAll().FirstOrDefault(x => x.Name == model.Delivery.Company).Id;
+            _deliveryAddressRepository.Add(address);
+
+            var order = new Order()
+            {
+                UniqueCode = GenerateOrderUniqueId(),
+                Date = DateTime.Now.ToString(),
+                OrderStatusId = 3,
+                DeliveryAddressId = address.Id,
+                CustomerInfoId = GetCustomerId(model.Customer, userId),
+                DbUserId = userId,
+            };
+
+            _orderRepository.Add(order);
+
+            foreach (var item in model.Order.Cart.Items)
+            {
+                _orderItem.Add(new OrderItem
+                {
+                    ItemPrice = item.Price,
+                    Count = item.Count,
+                    CraftBeerId = _craftBeerRepository.GetAll()
+                        .FirstOrDefault(x => x.Name == item.Name && x.Volume == item.Volume).Id,
+                    OrderId = order.Id,
+                });
+            }
+        }
 
         public string GenerateOrderUniqueId()
         {
@@ -45,14 +100,74 @@ namespace Craft_beer_backend.Services.Implements
             return JsonSerializer.Deserialize<CartViewModel>(decodedModelJson);
         }
 
+        public int GetCustomerId(CustomerViewModel model, long userId)
+        {
+            var customer = _customerInfoRepository.GetAll().FirstOrDefault
+                (x => x.FirstName == model.FirstName && x.LastName == model.LastName && x.Phone == model.Phone);
+
+            if (customer != null)
+            {
+                return customer.Id;
+            }
+
+            customer = _mapper.Map<CustomerInfo>(model);
+            customer.DbUserId = userId;
+            _customerInfoRepository.Add(customer);
+
+            return customer.Id;
+        }
+
+        public OrderInfoViewModel GetOrderDetails(string uniqueCode)
+        {
+            var order = _orderRepository.GetAll().FirstOrDefault(x => x.UniqueCode == uniqueCode);
+
+            var customerInfo = _customerInfoRepository.FindById(order.CustomerInfoId);
+            var deliveryAddress = _deliveryAddressRepository.FindById(order.DeliveryAddressId);
+
+            var items = _orderItemRepository.GetAll().Where(x => x.OrderId == order.Id).Select(item => new CartItemViewModel
+            {
+                Count = item.Count,
+                Price = item.ItemPrice,
+                Image = _craftBeerRepository.FindById(item.CraftBeerId).ImageUrl,
+                Name = _craftBeerRepository.FindById(item.CraftBeerId).Name,
+                Volume = _craftBeerRepository.FindById(item.CraftBeerId).Volume
+            }).ToList();
+
+            var model = new OrderInfoViewModel
+            {
+                UniqueCode = uniqueCode,
+                Date = order.Date,
+                Status = _orderStatusRepository.FindById(order.OrderStatusId).Name,
+                Customer = _mapper.Map<CustomerViewModel>(customerInfo),
+                Delivery = _mapper.Map<DeliveryViewModel>(deliveryAddress),
+                Items = items
+            };
+            model.Delivery.Company = _deliveryCompanyRepository.FindById(deliveryAddress.DeliveryCompanyId).Name;
+
+
+            return model;
+        }
+
+        public List<OrderShortInfoViewModel> GetUserOrders(long userId)
+        {
+            var orders = _orderRepository.GetAll().Where(x => x.DbUserId == userId)
+                .Select(item => new OrderShortInfoViewModel
+                {
+                    Status = _orderStatusRepository.FindById(item.OrderStatusId).Name,
+                    UniqueCode = item.UniqueCode,
+                    Date = item.Date,
+                }).ToList();
+
+            return orders;
+        }
+
         public OrderViewModel PrepareOrderViewModel(string URI, long userId)
         {
             var model = new OrderViewModel();
 
-            model = _mapper.Map(GetCartFromUri(URI),model);
-            model.Delivery = _mapper.Map<DeliveryViewModel>(_deliveryCompanyRepository.GetAll().Select(x => x.Name).ToList());
+            model.Cart = _mapper.Map<CartViewModel>(GetCartFromUri(URI));
             model.Customers = _mapper.Map<List<CustomerViewModel>>(_customerInfoRepository.GetAll().Where(x => x.DbUserId == userId).ToList());
-            //model.Customers = new List<CustomerViewModel>();
+            model.Companies = _deliveryCompanyRepository.GetAll().Select(x => x.Name).ToList();
 
             return model;
         }

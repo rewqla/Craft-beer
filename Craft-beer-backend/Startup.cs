@@ -46,6 +46,9 @@ namespace Craft_beer_backend
             services.AddTransient<IDeliveryCompanyRepository, DeliveryCompanyRepository>();
             services.AddTransient<IDeliveryAddressRepository, DeliveryAddressRepository>();
             services.AddTransient<ICustomerInfoRepository, CustomerInfoRepository>();
+            services.AddTransient<IOrderRepository, OrderRepository>();
+            services.AddTransient<IOrderStatusRepository, OrderStatusRepository>();
+            services.AddTransient<IOrderItemRepository, OrderItemRepository>();
 
             services.AddScoped<ICraftBeerService,CraftBeerService>();
             services.AddScoped<IOrderService,OrderService>();
