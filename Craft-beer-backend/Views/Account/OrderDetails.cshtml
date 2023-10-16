@@ -47,5 +47,12 @@
                 }
             </tbody>
         </table>
+        @if (Model.Status == "Нове")
+        {
+            <form method="post" asp-action="CancelOrder" asp-controller="Account">
+                <input type="hidden" name="uniqueCode" value="@Model.UniqueCode">
+                <button type="submit" class="btn btn-danger">Cancel Order</button>
+            </form>
+        }
     </div>
 </div>

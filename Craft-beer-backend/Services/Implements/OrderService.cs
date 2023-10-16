@@ -26,7 +26,7 @@ namespace Craft_beer_backend.Services.Implements
         private readonly ICraftBeerRepository _craftBeerRepository;
         public OrderService(IMapper mapper, IDeliveryCompanyRepository deliveryCompanyRepository,
             ICustomerInfoRepository customerInfoRepository, IDeliveryAddressRepository deliveryAddressRepository,
-            IOrderRepository orderRepository, IOrderStatusRepository orderStatusRepository, 
+            IOrderRepository orderRepository, IOrderStatusRepository orderStatusRepository,
             IOrderItemRepository orderItem, ICraftBeerRepository craftBeerRepository, IOrderItemRepository orderItemRepository)
         {
             _mapper = mapper;
@@ -40,6 +40,17 @@ namespace Craft_beer_backend.Services.Implements
             _orderItemRepository = orderItemRepository;
         }
 
+        public void CancelOrder(string uniqueCode)
+        {
+            var order = _orderRepository.GetAll().FirstOrDefault(x => x.UniqueCode == uniqueCode);
+
+            if (order != null)
+            {
+                order.OrderStatusId = 5;
+            }
+
+            _orderRepository.Update(order);
+        }
 
         public void Checkout(CheckoutViewModel model, string cartData, long userId)
         {
@@ -108,12 +119,12 @@ namespace Craft_beer_backend.Services.Implements
 
         public OrderInfoViewModel GetOrderDetails(string uniqueCode)
         {
-            var order=_orderRepository.GetAll().FirstOrDefault(x => x.UniqueCode == uniqueCode);
+            var order = _orderRepository.GetAll().FirstOrDefault(x => x.UniqueCode == uniqueCode);
 
             var customerInfo = _customerInfoRepository.FindById(order.CustomerInfoId);
             var deliveryAddress = _deliveryAddressRepository.FindById(order.DeliveryAddressId);
 
-            var items = _orderItemRepository.GetAll().Where(x=>x.OrderId==order.Id).Select(item=>new CartItemViewModel
+            var items = _orderItemRepository.GetAll().Where(x => x.OrderId == order.Id).Select(item => new CartItemViewModel
             {
                 Count = item.Count,
                 Price = item.ItemPrice,
@@ -144,7 +155,7 @@ namespace Craft_beer_backend.Services.Implements
                 {
                     Status = _orderStatusRepository.FindById(item.OrderStatusId).Name,
                     UniqueCode = item.UniqueCode,
-                    Date=item.Date,
+                    Date = item.Date,
                 }).ToList();
 
             return orders;

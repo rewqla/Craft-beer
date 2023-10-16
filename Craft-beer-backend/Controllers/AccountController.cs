@@ -182,6 +182,12 @@ namespace Craft_beer_backend.Controllers
 
             return View(model);
         }
+        [HttpPost]
+        public IActionResult CancelOrder(string uniqueCode)
+        {
+            _orderService.CancelOrder(uniqueCode);
+            return RedirectToAction("OrderDetails","Account", new { uniqueCode = uniqueCode });
+        }
 
         //Administration
         public async Task<IActionResult> ListUsers(string id)
