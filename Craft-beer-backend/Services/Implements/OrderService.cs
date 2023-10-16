@@ -148,6 +148,20 @@ namespace Craft_beer_backend.Services.Implements
             return model;
         }
 
+        public List<OrderShortInfoViewModel> GetOrders()
+        {
+            var orders = _orderRepository.GetAll()
+                .Select(item => new OrderShortInfoViewModel
+                {
+                    Status = _orderStatusRepository.FindById(item.OrderStatusId).Name,
+                    UniqueCode = item.UniqueCode,
+                    Date = item.Date,
+                    Customer = _customerInfoRepository.FindById(item.CustomerInfoId).FirstName + " " + _customerInfoRepository.FindById(item.CustomerInfoId).LastName
+                }).ToList();
+
+            return orders;
+        }
+
         public List<OrderShortInfoViewModel> GetUserOrders(long userId)
         {
             var orders = _orderRepository.GetAll().Where(x => x.DbUserId == userId)

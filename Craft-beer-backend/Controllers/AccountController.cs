@@ -186,6 +186,7 @@ namespace Craft_beer_backend.Controllers
         public IActionResult CancelOrder(string uniqueCode)
         {
             _orderService.CancelOrder(uniqueCode);
+
             return RedirectToAction("OrderDetails","Account", new { uniqueCode = uniqueCode });
         }
 

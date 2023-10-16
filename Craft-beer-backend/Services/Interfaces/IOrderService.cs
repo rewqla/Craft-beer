@@ -12,6 +12,7 @@ namespace Craft_beer_backend.Services.Interfaces
         public string GenerateOrderUniqueId();
         public int GetCustomerId(CustomerViewModel model, long userId);
         public List<OrderShortInfoViewModel> GetUserOrders(long userId);
+        public List<OrderShortInfoViewModel> GetOrders();
         public OrderInfoViewModel GetOrderDetails(string uniqueCode);
         public void CancelOrder(string uniqueCode);
     }
