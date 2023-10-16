@@ -31,6 +31,22 @@ namespace Craft_beer_backend.Services.Implements
         {
             return _mapper.Map<IEnumerable<FullProductViewModel>>(_craftBeerRepository.GetAll());
         }
+        public FullProductViewModel GetProductById(int id)=> _mapper.Map<FullProductViewModel>(_craftBeerRepository.FindById(id));
+        public FullProductViewModel GetProductById(string id)
+        {
+            int intId = 0;
+
+            try
+            {
+                intId = Int32.Parse(id);
+            }
+            catch (Exception er)
+            {
+                Console.WriteLine(er);
+            }
+            return _mapper.Map<FullProductViewModel>(_craftBeerRepository.FindById(intId));
+        }
+
         public void AddProduct(FullProductViewModel model)
         {
             _craftBeerRepository.Add(new CraftBeer { ABV=model.ABV, Description=model.Description, ImageUrl=model.ImageUrl, Name=model.Name, Price=model.Price, Volume=model.Volume, Rating=model.Rating});
