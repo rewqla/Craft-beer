@@ -32,6 +32,7 @@ namespace Craft_beer_backend.Controllers
             return View(model);
         }
 
+
         public IActionResult Privacy()
         {
             ViewBag.ProductList = productList;

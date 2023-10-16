@@ -33,11 +33,11 @@ namespace Craft_beer_backend.Services.Implements
         }
         public void AddProduct(FullProductViewModel model)
         {
-            _craftBeerRepository.Add(new CraftBeer { ABV=model.ABV, Description=model.Description, ImageUrl=model.ImageUrl, Name=model.Name, Price=model.Price, Volume=model.Volume, Raiting=model.Raiting});
+            _craftBeerRepository.Add(new CraftBeer { ABV=model.ABV, Description=model.Description, ImageUrl=model.ImageUrl, Name=model.Name, Price=model.Price, Volume=model.Volume, Rating=model.Rating});
         }
         public void UpdateProduct(FullProductViewModel model)
         {
-            _craftBeerRepository.Update(new CraftBeer { Id=model.Id, ABV = model.ABV, Description = model.Description, ImageUrl = model.ImageUrl, Name = model.Name, Price = model.Price, Volume = model.Volume, OrderItems=model.OrderItems, Raiting = model.Raiting });
+            _craftBeerRepository.Update(new CraftBeer { Id=model.Id, ABV = model.ABV, Description = model.Description, ImageUrl = model.ImageUrl, Name = model.Name, Price = model.Price, Volume = model.Volume, OrderItems=model.OrderItems, Rating = model.Rating });
         }
         public void DeleteProduct(CraftBeer product)
         {
