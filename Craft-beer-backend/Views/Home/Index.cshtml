@@ -59,15 +59,30 @@
             <input type="checkbox" checked id="abvselectAll">
             <label for="abvselectAll">Вибрати всі</label>
         </div>
-        <button onclick="sortAscending()">Сортувати за зростанням</button>
-        <button onclick="sortDescending()">Сортувати за спаданням</button>
+        <button onclick="sortAscending('price')">Сортувати за зростанням ціни</button>
+        <button onclick="sortDescending('price')">Сортувати за спаданням ціни</button>
+        <div>Сортувати за ціною</div>
+        <input type="checkbox" checked id="priceSortCheckbox" onchange="sortElems('price')">
+
+        <button onclick="sortAscending('abv')">Сортувати за зростанням обертів</button>
+        <button onclick="sortDescending('abv')">Сортувати за спаданням обертів</button>
+        <div>Сортувати за обертами</div>
+        <input type="checkbox" checked id="abvSortCheckbox" onchange="sortElems('abv')">
     </div>
     <div>
         <ul id="itemsContainer">
             @foreach (var item in Model)
             {
 
-                <li class="item"><a href="Home/ItemPreview/@item.Id">@item.Name<div hidden class="mismatches">1</div><div class="volume">@item.Volume</div><div class="abv">@item.ABV</div><div class="price">@item.Price</div></a></li>
+                <li class="item">
+                    <a href="Home/ItemPreview/@item.Id">
+                        @item.Name
+                        <div hidden class="mismatches">1</div>
+                        <div class="volume">@item.Volume</div>
+                        <div class="abv">@item.ABV</div>
+                        <div class="price">@item.Price</div>
+                    </a>
+                </li>
             }
         </ul>
     </div>
@@ -289,30 +304,38 @@
                 console.log(mismaches, 1);
             }
         }
-    ////////////
-    // ABV
-    ////////////
+        ////////////
+        // ABV
+        ////////////
 
 
     });
     const itemsContainer = document.getElementById('itemsContainer');
-    function sortAscending() {
+    function sortAscending(parameter) {
         elements.sort((a, b) => {
-            const priceA = parseInt(a.querySelector('.price').textContent);
-            const priceB = parseInt(b.querySelector('.price').textContent);
+            const priceA = parseInt(a.querySelector('.' + parameter).textContent);
+            const priceB = parseInt(b.querySelector('.' + parameter).textContent);
             return priceA - priceB;
         });
 
         elements.forEach(item => itemsContainer.appendChild(item));
     }
 
-    function sortDescending() {
+    function sortDescending(parameter) {
         elements.sort((a, b) => {
-            const priceA = parseInt(a.querySelector('.price').textContent);
-            const priceB = parseInt(b.querySelector('.price').textContent);
+            const priceA = parseInt(a.querySelector('.' + parameter).textContent);
+            const priceB = parseInt(b.querySelector('.' + parameter).textContent);
             return priceB - priceA;
         });
 
         elements.forEach(item => itemsContainer.appendChild(item));
+    }
+
+    function sortElems(parameter) {
+        if (document.getElementById(parameter + "SortCheckbox").checked) {
+            sortAscending(parameter);
+        } else {
+            sortDescending(parameter);
+        }
     }
 </script>
