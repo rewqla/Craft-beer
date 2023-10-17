@@ -36,15 +36,18 @@
                             <ul class="navbar-nav d-flex justify-content-end">
 
                                 @{
-                                    var user = await UserManager.GetUserAsync(User);
-                                    //if (await UserManager.IsInRoleAsync(user, "Admin"))//коли додамо адміна
+                                    if (User.IsInRole("Admin"))
                                     {
                                         <li class="nav-item">
                                             <a class="nav-link text-dark" asp-area="" asp-controller="Administration" asp-action="ProductsList">Керування товарами</a>
                                         </li>
 
                                         <li class="nav-item">
-                                            <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="ListUsers">Managment</a>
+                                            <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="ListUsers">Користувачі</a>
+                                        </li>
+
+                                        <li class="nav-item">
+                                            <a class="nav-link text-dark" asp-area="" asp-controller="Administration" asp-action="ListOrders">Замовлення</a>
                                         </li>
                                     }
                                 }
@@ -75,17 +78,17 @@
             </div>
         </nav>
         <div style=" margin: 10px auto; display: block;  width:100%; height:40px;">
-          <form style=" padding: 10px; font-size: 17px; border: 1px solid grey; border-radius: 5px; float: left; margin-left: 10%; width: 80%; background: #f1f1f1;" action="">
-            <input type="text" placeholder="Search.." name="search" style="width: 80%;" list="beers_list">
-            <datalist id="beers_list">
-                @foreach (var option in ViewBag.ProductList)
-                {
-                    <option value="@option"></option>
-                }
-            </datalist>
-            <button type="submit" style=" height:30px; padding:5px; float: left; margin-left: 3%; width: 10%; font-size: 17px; border: 1px solid grey; text-transform: uppercase;">Пошук</button>
+            <form style=" padding: 10px; font-size: 17px; border: 1px solid grey; border-radius: 5px; float: left; margin-left: 10%; width: 80%; background: #f1f1f1;" action="">
+                <input type="text" placeholder="Search.." name="search" style="width: 80%;" list="beers_list">
+                <datalist id="beers_list">
+                    @foreach (var option in ViewBag.ProductList)
+                    {
+                        <option value="@option"></option>
+                    }
+                </datalist>
+                <button type="submit" style=" height:30px; padding:5px; float: left; margin-left: 3%; width: 10%; font-size: 17px; border: 1px solid grey; text-transform: uppercase;">Пошук</button>
 
-        </form>
+            </form>
         </div>
     </header>
     <div class="container">

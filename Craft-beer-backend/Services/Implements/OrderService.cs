@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Security.Claims;
 using System.Text.Json;
@@ -50,6 +51,18 @@ namespace Craft_beer_backend.Services.Implements
             }
 
             _orderRepository.Update(order);
+        }
+
+        public void ChangeStatus(string uniqueCode, string status)
+        {
+            var order=_orderRepository.GetAll().FirstOrDefault(x=>x.UniqueCode == uniqueCode);
+
+            if(order != null)
+            {
+                order.OrderStatusId = _orderStatusRepository.GetAll().FirstOrDefault(x=>x.Name == status).Id;
+
+                _orderRepository.Update(order);
+            }
         }
 
         public void Checkout(CheckoutViewModel model, string cartData, long userId)
@@ -119,6 +132,7 @@ namespace Craft_beer_backend.Services.Implements
 
         public OrderInfoViewModel GetOrderDetails(string uniqueCode)
         {
+
             var order = _orderRepository.GetAll().FirstOrDefault(x => x.UniqueCode == uniqueCode);
 
             var customerInfo = _customerInfoRepository.FindById(order.CustomerInfoId);
@@ -142,10 +156,33 @@ namespace Craft_beer_backend.Services.Implements
                 Delivery = _mapper.Map<DeliveryViewModel>(deliveryAddress),
                 Items = items
             };
+
             model.Delivery.Company = _deliveryCompanyRepository.FindById(deliveryAddress.DeliveryCompanyId).Name;
 
+            List<string> orderStatuses = new List<string>() { "Скасоване", "Нове", "Відхилене", "У процесі обробки", "Відправлене", "Успішно виконане" };
+
+            int startIndex = orderStatuses.IndexOf(model.Status);
+
+            if (startIndex != -1)
+            {
+                model.Statuses = orderStatuses.GetRange(startIndex, orderStatuses.Count - startIndex);
+            }
 
             return model;
+        }
+
+        public List<OrderShortInfoViewModel> GetOrders()
+        {
+            var orders = _orderRepository.GetAll()
+                .Select(item => new OrderShortInfoViewModel
+                {
+                    Status = _orderStatusRepository.FindById(item.OrderStatusId).Name,
+                    UniqueCode = item.UniqueCode,
+                    Date = item.Date,
+                    Customer = _customerInfoRepository.FindById(item.CustomerInfoId).FirstName + " " + _customerInfoRepository.FindById(item.CustomerInfoId).LastName
+                }).ToList();
+
+            return orders;
         }
 
         public List<OrderShortInfoViewModel> GetUserOrders(long userId)

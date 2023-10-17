@@ -1,7 +1,7 @@
 ﻿@model List<OrderShortInfoViewModel>
 
 <div class="container">
-    <h1 class="mt-5">My Orders</h1>
+    <h1 class="mt-5">Мої замовлення</h1>
 
     <table class="table table-bordered table-striped mt-4">
         <thead class="thead-dark">
@@ -20,7 +20,7 @@
                     <td>@order.Date</td>
                     <td>@order.Status</td>
                     <td>
-                        <a class="btn btn-primary" href="@Url.Action("OrderDetails", "Account", new { uniqueCode = @order.UniqueCode })">View</a>
+                        <a class="btn btn-primary" href="@Url.Action("OrderDetails", "Account", new { uniqueCode = @order.UniqueCode })">Переглянути</a>
                     </td>
                 </tr>
             }
