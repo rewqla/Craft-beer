@@ -96,5 +96,12 @@ namespace Craft_beer_backend.Controllers
 
             return View(model);
         }
+
+        public IActionResult OrderDetails(string uniqueCode)
+        {
+            var model = _orderService.GetOrderDetails(uniqueCode);
+
+            return View(model);
+        }
     }
 }

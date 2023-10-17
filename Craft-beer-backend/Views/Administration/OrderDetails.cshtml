@@ -1,0 +1,80 @@
+﻿@model OrderInfoViewModel
+
+<div class="container mt-5">
+    <div class="card mb-4">
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-6">
+                    <h5 class="card-title">Деталі замовлення</h5>
+                    <p><strong>Унікальний код:</strong> @Model.UniqueCode</p>
+                    <p><strong>Статус:</strong> @Model.Status</p>
+                    <p><strong>Дата:</strong> @Model.Date</p>
+                    <p><strong>Загальна вартість:</strong> <span id="total-price"></span></p>
+                </div>
+                <div class="col-md-6">
+                    <h5 class="card-title">Інформація про клієнта</h5>
+                    <p><strong>Ім'я:</strong> @Model.Customer.FirstName @Model.Customer.LastName</p>
+                    <p><strong>Телефон:</strong> @Model.Customer.Phone</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card mt-4">
+        <div class="card-body">
+            <h5 class="card-title">Інформація про доставку</h5>
+            <p><strong>Місто:</strong> @Model.Delivery.City</p>
+            <p><strong>Адреса:</strong> @Model.Delivery.Address</p>
+            <p><strong>Компанія:</strong> @Model.Delivery.Company</p>
+        </div>
+    </div>
+
+    <div class="card mt-4">
+        <div class="card-body">
+            <h5 class="card-title">Товари у замовленні</h5>
+            <table class="table table-bordered table-striped">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>Найменування</th>
+                        <th>Об'єм</th>
+                        <th>Кількість</th>
+                        <th>Ціна</th>
+                        <th>Зображення</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.Items)
+                    {
+                        <tr>
+                            <td>@item.Name</td>
+                            <td>@item.Volume</td>
+                            <td class="item-count">@item.Count</td>
+                            <td class="item-price">@item.Price</td>
+                            <td><img src="@item.Image" alt="Зображення пива" width="100" height="100"></td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<script>
+    function calculateTotalPrice() {
+        var total = 0;
+        var priceElements = document.querySelectorAll('.item-price');
+        var countElements = document.querySelectorAll('.item-count');
+        console.log(priceElements)
+        console.log(countElements)
+
+        for (var i = 0; i < priceElements.length; i++) {
+            var price = parseFloat(priceElements[i].textContent);
+            var count = parseInt(countElements[i].textContent);
+            total += price * count;
+        }
+        console.log(total)
+        document.getElementById('total-price').textContent = total.toFixed(2);
+    }
+
+    calculateTotalPrice();
+</script>

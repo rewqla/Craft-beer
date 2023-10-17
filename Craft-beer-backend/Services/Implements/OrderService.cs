@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Security.Claims;
 using System.Text.Json;
@@ -117,6 +118,7 @@ namespace Craft_beer_backend.Services.Implements
             return customer.Id;
         }
 
+
         public OrderInfoViewModel GetOrderDetails(string uniqueCode)
         {
             var order = _orderRepository.GetAll().FirstOrDefault(x => x.UniqueCode == uniqueCode);
@@ -142,6 +144,7 @@ namespace Craft_beer_backend.Services.Implements
                 Delivery = _mapper.Map<DeliveryViewModel>(deliveryAddress),
                 Items = items
             };
+
             model.Delivery.Company = _deliveryCompanyRepository.FindById(deliveryAddress.DeliveryCompanyId).Name;
 
 
