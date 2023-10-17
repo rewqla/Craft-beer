@@ -15,5 +15,6 @@ namespace Craft_beer_backend.Services.Interfaces
         public List<OrderShortInfoViewModel> GetOrders();
         public OrderInfoViewModel GetOrderDetails(string uniqueCode);
         public void CancelOrder(string uniqueCode);
+        public void ChangeStatus(string uniqueCode, string status);
     }
 }

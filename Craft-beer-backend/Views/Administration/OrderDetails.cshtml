@@ -29,6 +29,37 @@
         </div>
     </div>
 
+    @if (Model.Statuses.Count() > 1 && Model.Status != "Скасоване" && Model.Status != "Відхилене")
+    {
+        <div class="card mt-4">
+            <div class="card-body">
+                <h5 class="card-title">Статус</h5>
+                <form asp-controller="Administration" asp-action="ChangeStatus" method="post">
+                    <select class="form-control" asp-for="Status">
+                        @foreach (var item in Model.Statuses)
+                        {
+                            if (Model.Status == item)
+                            {
+                                <option selected>
+                                    @item
+                                </option>
+                            }
+                            else
+                            {
+                                <option>
+                                    @item
+                                </option>
+                            }
+                        }
+                    </select>
+                    <input type="hidden" asp-for="UniqueCode" value=@Model.UniqueCode />
+
+                    <button type="submit" class="btn btn-primary mt-2">Змінити статус</button>
+                </form>
+            </div>
+        </div>
+    }
+
     <div class="card mt-4">
         <div class="card-body">
             <h5 class="card-title">Товари у замовленні</h5>
@@ -57,6 +88,8 @@
             </table>
         </div>
     </div>
+
+
 </div>
 
 <script>

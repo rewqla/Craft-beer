@@ -53,6 +53,18 @@ namespace Craft_beer_backend.Services.Implements
             _orderRepository.Update(order);
         }
 
+        public void ChangeStatus(string uniqueCode, string status)
+        {
+            var order=_orderRepository.GetAll().FirstOrDefault(x=>x.UniqueCode == uniqueCode);
+
+            if(order != null)
+            {
+                order.OrderStatusId = _orderStatusRepository.GetAll().FirstOrDefault(x=>x.Name == status).Id;
+
+                _orderRepository.Update(order);
+            }
+        }
+
         public void Checkout(CheckoutViewModel model, string cartData, long userId)
         {
             model.Order = new OrderViewModel()
@@ -118,9 +130,9 @@ namespace Craft_beer_backend.Services.Implements
             return customer.Id;
         }
 
-
         public OrderInfoViewModel GetOrderDetails(string uniqueCode)
         {
+
             var order = _orderRepository.GetAll().FirstOrDefault(x => x.UniqueCode == uniqueCode);
 
             var customerInfo = _customerInfoRepository.FindById(order.CustomerInfoId);
@@ -147,6 +159,14 @@ namespace Craft_beer_backend.Services.Implements
 
             model.Delivery.Company = _deliveryCompanyRepository.FindById(deliveryAddress.DeliveryCompanyId).Name;
 
+            List<string> orderStatuses = new List<string>() { "Скасоване", "Нове", "Відхилене", "У процесі обробки", "Відправлене", "Успішно виконане" };
+
+            int startIndex = orderStatuses.IndexOf(model.Status);
+
+            if (startIndex != -1)
+            {
+                model.Statuses = orderStatuses.GetRange(startIndex, orderStatuses.Count - startIndex);
+            }
 
             return model;
         }

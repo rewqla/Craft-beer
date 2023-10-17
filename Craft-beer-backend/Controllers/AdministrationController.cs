@@ -103,5 +103,12 @@ namespace Craft_beer_backend.Controllers
 
             return View(model);
         }
+        [HttpPost]
+        public IActionResult ChangeStatus(string uniqueCode, string status)
+        {
+            _orderService.ChangeStatus(uniqueCode,status);
+
+            return RedirectToAction("OrderDetails", "Administration", new { uniqueCode = uniqueCode });
+        }
     }
 }
