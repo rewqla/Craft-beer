@@ -41,6 +41,9 @@ namespace Craft_beer_backend.Migrations
                     b.Property<double>("Price")
                         .HasColumnType("double precision");
 
+                    b.Property<double>("Rating")
+                        .HasColumnType("double precision");
+
                     b.Property<double>("Volume")
                         .HasColumnType("double precision");
 
@@ -56,7 +59,7 @@ namespace Craft_beer_backend.Migrations
                         .HasColumnType("integer")
                         .UseIdentityByDefaultColumn();
 
-                    b.Property<long?>("DbUserId")
+                    b.Property<long>("DbUserId")
                         .HasColumnType("bigint");
 
                     b.Property<string>("FirstName")
@@ -67,9 +70,6 @@ namespace Craft_beer_backend.Migrations
 
                     b.Property<string>("Phone")
                         .HasColumnType("text");
-
-                    b.Property<int>("UserId")
-                        .HasColumnType("integer");
 
                     b.HasKey("Id");
 
@@ -255,7 +255,7 @@ namespace Craft_beer_backend.Migrations
                     b.Property<string>("Date")
                         .HasColumnType("text");
 
-                    b.Property<long?>("DbUserId")
+                    b.Property<long>("DbUserId")
                         .HasColumnType("bigint");
 
                     b.Property<int>("DeliveryAddressId")
@@ -266,9 +266,6 @@ namespace Craft_beer_backend.Migrations
 
                     b.Property<string>("UniqueCode")
                         .HasColumnType("text");
-
-                    b.Property<int>("UserId")
-                        .HasColumnType("integer");
 
                     b.HasKey("Id");
 
@@ -293,16 +290,13 @@ namespace Craft_beer_backend.Migrations
                     b.Property<int>("Count")
                         .HasColumnType("integer");
 
-                    b.Property<int?>("CraftBeerId")
+                    b.Property<int>("CraftBeerId")
                         .HasColumnType("integer");
 
                     b.Property<double>("ItemPrice")
                         .HasColumnType("double precision");
 
                     b.Property<int>("OrderId")
-                        .HasColumnType("integer");
-
-                    b.Property<int>("ProductId")
                         .HasColumnType("integer");
 
                     b.HasKey("Id");
@@ -419,7 +413,9 @@ namespace Craft_beer_backend.Migrations
                 {
                     b.HasOne("Craft_beer_backend.Entities.DbUser", "DbUser")
                         .WithMany("CustomerInfos")
-                        .HasForeignKey("DbUserId");
+                        .HasForeignKey("DbUserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("DbUser");
                 });
@@ -473,7 +469,9 @@ namespace Craft_beer_backend.Migrations
 
                     b.HasOne("Craft_beer_backend.Entities.DbUser", "DbUser")
                         .WithMany()
-                        .HasForeignKey("DbUserId");
+                        .HasForeignKey("DbUserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("Craft_beer_backend.Entities.DeliveryAddress", "DeliveryAddress")
                         .WithMany()
@@ -500,7 +498,9 @@ namespace Craft_beer_backend.Migrations
                 {
                     b.HasOne("Craft_beer_backend.Entities.CraftBeer", "CraftBeer")
                         .WithMany("OrderItems")
-                        .HasForeignKey("CraftBeerId");
+                        .HasForeignKey("CraftBeerId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("Craft_beer_backend.Entities.Order", "Order")
                         .WithMany("OrderItems")

@@ -31,7 +31,11 @@ namespace Craft_beer_backend.Controllers
             ViewBag.ProductList = productList;
             return View(model);
         }
-
+        [Route("/shopping-cart")]
+        public IActionResult Cart()
+        {
+            return View();
+        }
         public IActionResult Privacy()
         {
             ViewBag.ProductList = productList;

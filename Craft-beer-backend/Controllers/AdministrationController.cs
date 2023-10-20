@@ -13,10 +13,12 @@ namespace Craft_beer_backend.Controllers
     public class AdministrationController : Controller
     {
         private readonly ICraftBeerService craftBeerService;
+        private readonly IOrderService _orderService;
 
-        public AdministrationController(ICraftBeerService craftBeerService)
+        public AdministrationController(ICraftBeerService craftBeerService, IOrderService orderService)
         {
             this.craftBeerService = craftBeerService;
+            _orderService = orderService;
         }
 
 
@@ -37,7 +39,7 @@ namespace Craft_beer_backend.Controllers
             if (model.Name != null)
             {
                 craftBeerService.AddProduct(model);
-                    return RedirectToAction("ProductsList", "Administration");
+                return RedirectToAction("ProductsList", "Administration");
             }
             else
             {
@@ -79,7 +81,7 @@ namespace Craft_beer_backend.Controllers
 
         public IActionResult DeleteProduct(int id = 0)
         {
-            if (craftBeerService.GetFullProducts().Any(p=>p.Id==id))
+            if (craftBeerService.GetFullProducts().Any(p => p.Id == id))
             {
                 craftBeerService.DeleteProduct(id);
                 return RedirectToAction("ProductsList");
@@ -88,7 +90,25 @@ namespace Craft_beer_backend.Controllers
             return View("Error");
         }
 
+        public IActionResult ListOrders()
+        {
+            var model = _orderService.GetOrders();
 
+            return View(model);
+        }
 
+        public IActionResult OrderDetails(string uniqueCode)
+        {
+            var model = _orderService.GetOrderDetails(uniqueCode);
+
+            return View(model);
+        }
+        [HttpPost]
+        public IActionResult ChangeStatus(string uniqueCode, string status)
+        {
+            _orderService.ChangeStatus(uniqueCode,status);
+
+            return RedirectToAction("OrderDetails", "Administration", new { uniqueCode = uniqueCode });
+        }
     }
 }

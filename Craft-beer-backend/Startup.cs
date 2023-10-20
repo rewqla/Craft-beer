@@ -43,8 +43,15 @@ namespace Craft_beer_backend
             }).AddEntityFrameworkStores<ApplicationDbContext>().AddDefaultTokenProviders();
 
             services.AddTransient<ICraftBeerRepository, CraftBeerRepository>();
+            services.AddTransient<IDeliveryCompanyRepository, DeliveryCompanyRepository>();
+            services.AddTransient<IDeliveryAddressRepository, DeliveryAddressRepository>();
+            services.AddTransient<ICustomerInfoRepository, CustomerInfoRepository>();
+            services.AddTransient<IOrderRepository, OrderRepository>();
+            services.AddTransient<IOrderStatusRepository, OrderStatusRepository>();
+            services.AddTransient<IOrderItemRepository, OrderItemRepository>();
 
             services.AddScoped<ICraftBeerService,CraftBeerService>();
+            services.AddScoped<IOrderService,OrderService>();
 
             services.AddAutoMapper(typeof(Startup), typeof(MapperConfig));
 
@@ -65,6 +72,8 @@ namespace Craft_beer_backend
                 app.UseHsts();
             }
             app.UseHttpsRedirection();
+
+            app.UseDefaultFiles();
             app.UseStaticFiles();
 
             app.UseRouting();

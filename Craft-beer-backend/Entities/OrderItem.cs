@@ -3,7 +3,7 @@
     public class OrderItem
     {
         public int Id { get; set; }
-        public int ProductId { get; set; }
+        public int CraftBeerId { get; set; }
         public CraftBeer CraftBeer { get; set; }
         public int OrderId { get; set; }
         public Order Order { get; set; }
