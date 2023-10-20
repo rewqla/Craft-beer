@@ -21,13 +21,21 @@ using Craft_beer_backend;
 #nullable disable
 #nullable restore
 #line 2 "D:\vodnik\3 курс\Менеджмент\Craft-beer\Craft-beer-backend\Views\_ViewImports.cshtml"
+<<<<<<< Updated upstream
 using Craft_beer_backend.Models;
+=======
+using Craft_beer_backend.ViewModels;
+>>>>>>> Stashed changes
 
 #line default
 #line hidden
 #nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"ce1f11ad334bb364b5a8afd2597ac2860ad1d19d", @"/Views/Account/Register.cshtml")]
+<<<<<<< Updated upstream
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"ba0009f7aae7e2e840bf077c3eeb4b20414a49d4", @"/Views/_ViewImports.cshtml")]
+=======
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"2eea05f266d792f71b60ad9ba9142c1cc89c4555", @"/Views/_ViewImports.cshtml")]
+>>>>>>> Stashed changes
     public class Views_Account_Register : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<Craft_beer_backend.ViewModels.RegisterViewModel>
     {
         private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_0 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("class", new global::Microsoft.AspNetCore.Html.HtmlString("text-danger"), global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
@@ -75,9 +83,15 @@ using Craft_beer_backend.Models;
         <div class=""col-sm-12 col-md-12 col-lg-4"">
             <h1 class=""mb-3"">Register</h1>
             ");
+<<<<<<< Updated upstream
             __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "ce1f11ad334bb364b5a8afd2597ac2860ad1d19d6261", async() => {
                 WriteLiteral("\r\n                ");
                 __tagHelperExecutionContext = __tagHelperScopeManager.Begin("div", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "ce1f11ad334bb364b5a8afd2597ac2860ad1d19d6535", async() => {
+=======
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "ce1f11ad334bb364b5a8afd2597ac2860ad1d19d6265", async() => {
+                WriteLiteral("\r\n                ");
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("div", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "ce1f11ad334bb364b5a8afd2597ac2860ad1d19d6539", async() => {
+>>>>>>> Stashed changes
                     WriteLiteral(" ");
                 }
                 );
@@ -100,7 +114,11 @@ __Microsoft_AspNetCore_Mvc_TagHelpers_ValidationSummaryTagHelper.ValidationSumma
                 Write(__tagHelperExecutionContext.Output);
                 __tagHelperExecutionContext = __tagHelperScopeManager.End();
                 WriteLiteral("\r\n                <div class=\"mb-3\">\r\n                    ");
+<<<<<<< Updated upstream
                 __tagHelperExecutionContext = __tagHelperScopeManager.Begin("label", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "ce1f11ad334bb364b5a8afd2597ac2860ad1d19d8304", async() => {
+=======
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("label", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "ce1f11ad334bb364b5a8afd2597ac2860ad1d19d8308", async() => {
+>>>>>>> Stashed changes
                     WriteLiteral("Email Address");
                 }
                 );
@@ -123,7 +141,11 @@ __Microsoft_AspNetCore_Mvc_TagHelpers_LabelTagHelper.For = ModelExpressionProvid
                 Write(__tagHelperExecutionContext.Output);
                 __tagHelperExecutionContext = __tagHelperScopeManager.End();
                 WriteLiteral("\r\n                    ");
+<<<<<<< Updated upstream
                 __tagHelperExecutionContext = __tagHelperScopeManager.Begin("input", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "ce1f11ad334bb364b5a8afd2597ac2860ad1d19d9959", async() => {
+=======
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("input", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "ce1f11ad334bb364b5a8afd2597ac2860ad1d19d9963", async() => {
+>>>>>>> Stashed changes
                 }
                 );
                 __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.TagHelpers.InputTagHelper>();
@@ -147,7 +169,11 @@ __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper.For = ModelExpressionProvid
                 Write(__tagHelperExecutionContext.Output);
                 __tagHelperExecutionContext = __tagHelperScopeManager.End();
                 WriteLiteral("\r\n                    ");
+<<<<<<< Updated upstream
                 __tagHelperExecutionContext = __tagHelperScopeManager.Begin("span", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "ce1f11ad334bb364b5a8afd2597ac2860ad1d19d11772", async() => {
+=======
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("span", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "ce1f11ad334bb364b5a8afd2597ac2860ad1d19d11776", async() => {
+>>>>>>> Stashed changes
                 }
                 );
                 __Microsoft_AspNetCore_Mvc_TagHelpers_ValidationMessageTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.TagHelpers.ValidationMessageTagHelper>();
@@ -169,7 +195,11 @@ __Microsoft_AspNetCore_Mvc_TagHelpers_ValidationMessageTagHelper.For = ModelExpr
                 Write(__tagHelperExecutionContext.Output);
                 __tagHelperExecutionContext = __tagHelperScopeManager.End();
                 WriteLiteral("\r\n                </div>\r\n                <div class=\"mb-3\">\r\n                    ");
+<<<<<<< Updated upstream
                 __tagHelperExecutionContext = __tagHelperScopeManager.Begin("label", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "ce1f11ad334bb364b5a8afd2597ac2860ad1d19d13512", async() => {
+=======
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("label", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "ce1f11ad334bb364b5a8afd2597ac2860ad1d19d13516", async() => {
+>>>>>>> Stashed changes
                     WriteLiteral("Password");
                 }
                 );
@@ -192,7 +222,11 @@ __Microsoft_AspNetCore_Mvc_TagHelpers_LabelTagHelper.For = ModelExpressionProvid
                 Write(__tagHelperExecutionContext.Output);
                 __tagHelperExecutionContext = __tagHelperScopeManager.End();
                 WriteLiteral("\r\n                    ");
+<<<<<<< Updated upstream
                 __tagHelperExecutionContext = __tagHelperScopeManager.Begin("input", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "ce1f11ad334bb364b5a8afd2597ac2860ad1d19d15166", async() => {
+=======
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("input", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "ce1f11ad334bb364b5a8afd2597ac2860ad1d19d15170", async() => {
+>>>>>>> Stashed changes
                 }
                 );
                 __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.TagHelpers.InputTagHelper>();
@@ -216,7 +250,11 @@ __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper.For = ModelExpressionProvid
                 Write(__tagHelperExecutionContext.Output);
                 __tagHelperExecutionContext = __tagHelperScopeManager.End();
                 WriteLiteral("\r\n                    ");
+<<<<<<< Updated upstream
                 __tagHelperExecutionContext = __tagHelperScopeManager.Begin("span", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "ce1f11ad334bb364b5a8afd2597ac2860ad1d19d16983", async() => {
+=======
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("span", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "ce1f11ad334bb364b5a8afd2597ac2860ad1d19d16987", async() => {
+>>>>>>> Stashed changes
                 }
                 );
                 __Microsoft_AspNetCore_Mvc_TagHelpers_ValidationMessageTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.TagHelpers.ValidationMessageTagHelper>();
@@ -238,7 +276,11 @@ __Microsoft_AspNetCore_Mvc_TagHelpers_ValidationMessageTagHelper.For = ModelExpr
                 Write(__tagHelperExecutionContext.Output);
                 __tagHelperExecutionContext = __tagHelperScopeManager.End();
                 WriteLiteral("\r\n                </div>\r\n                <div class=\"mb-3\">\r\n                    ");
+<<<<<<< Updated upstream
                 __tagHelperExecutionContext = __tagHelperScopeManager.Begin("label", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "ce1f11ad334bb364b5a8afd2597ac2860ad1d19d18726", async() => {
+=======
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("label", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "ce1f11ad334bb364b5a8afd2597ac2860ad1d19d18730", async() => {
+>>>>>>> Stashed changes
                     WriteLiteral("Confirm Password");
                 }
                 );
@@ -261,7 +303,11 @@ __Microsoft_AspNetCore_Mvc_TagHelpers_LabelTagHelper.For = ModelExpressionProvid
                 Write(__tagHelperExecutionContext.Output);
                 __tagHelperExecutionContext = __tagHelperScopeManager.End();
                 WriteLiteral("\r\n                    ");
+<<<<<<< Updated upstream
                 __tagHelperExecutionContext = __tagHelperScopeManager.Begin("input", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "ce1f11ad334bb364b5a8afd2597ac2860ad1d19d20395", async() => {
+=======
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("input", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "ce1f11ad334bb364b5a8afd2597ac2860ad1d19d20399", async() => {
+>>>>>>> Stashed changes
                 }
                 );
                 __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.TagHelpers.InputTagHelper>();
@@ -285,7 +331,11 @@ __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper.For = ModelExpressionProvid
                 Write(__tagHelperExecutionContext.Output);
                 __tagHelperExecutionContext = __tagHelperScopeManager.End();
                 WriteLiteral("\r\n                    ");
+<<<<<<< Updated upstream
                 __tagHelperExecutionContext = __tagHelperScopeManager.Begin("span", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "ce1f11ad334bb364b5a8afd2597ac2860ad1d19d22219", async() => {
+=======
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("span", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "ce1f11ad334bb364b5a8afd2597ac2860ad1d19d22223", async() => {
+>>>>>>> Stashed changes
                 }
                 );
                 __Microsoft_AspNetCore_Mvc_TagHelpers_ValidationMessageTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.TagHelpers.ValidationMessageTagHelper>();

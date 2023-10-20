@@ -20,6 +20,7 @@ using Craft_beer_backend;
 #line hidden
 #nullable disable
 #nullable restore
+<<<<<<< Updated upstream
 #line 2 "D:\vodnik\3 курс\Менеджмент\Craft-beer\Craft-beer-backend\Views\_ViewImports.cshtml"
 using Craft_beer_backend.Models;
 
@@ -27,6 +28,8 @@ using Craft_beer_backend.Models;
 #line hidden
 #nullable disable
 #nullable restore
+=======
+>>>>>>> Stashed changes
 #line 1 "D:\vodnik\3 курс\Менеджмент\Craft-beer\Craft-beer-backend\Views\Administration\ProductsList.cshtml"
 using Craft_beer_backend.ViewModels;
 
@@ -34,7 +37,11 @@ using Craft_beer_backend.ViewModels;
 #line hidden
 #nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"2b7d5785542c0255febcbb897dbe1703c1802d7d", @"/Views/Administration/ProductsList.cshtml")]
+<<<<<<< Updated upstream
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"ba0009f7aae7e2e840bf077c3eeb4b20414a49d4", @"/Views/_ViewImports.cshtml")]
+=======
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"2eea05f266d792f71b60ad9ba9142c1cc89c4555", @"/Views/_ViewImports.cshtml")]
+>>>>>>> Stashed changes
     public class Views_Administration_ProductsList : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<IEnumerable<FullProductViewModel>>
     {
         private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_0 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("class", new global::Microsoft.AspNetCore.Html.HtmlString("btn btn-primary mb-3"), global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
@@ -90,7 +97,11 @@ using Craft_beer_backend.ViewModels;
 #line hidden
 #nullable disable
             WriteLiteral("        ");
+<<<<<<< Updated upstream
             __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "2b7d5785542c0255febcbb897dbe1703c1802d7d6638", async() => {
+=======
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "2b7d5785542c0255febcbb897dbe1703c1802d7d6440", async() => {
+>>>>>>> Stashed changes
                 WriteLiteral("Add new product");
             }
             );
@@ -143,7 +154,11 @@ using Craft_beer_backend.ViewModels;
 #line hidden
 #nullable disable
             WriteLiteral("</p>\r\n            </div>\r\n            <div class=\"card-footer\">\r\n                ");
+<<<<<<< Updated upstream
             __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "2b7d5785542c0255febcbb897dbe1703c1802d7d9635", async() => {
+=======
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "2b7d5785542c0255febcbb897dbe1703c1802d7d9437", async() => {
+>>>>>>> Stashed changes
                 WriteLiteral("Edit");
             }
             );
@@ -175,7 +190,11 @@ using Craft_beer_backend.ViewModels;
             Write(__tagHelperExecutionContext.Output);
             __tagHelperExecutionContext = __tagHelperScopeManager.End();
             WriteLiteral("\r\n                ");
+<<<<<<< Updated upstream
             __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "2b7d5785542c0255febcbb897dbe1703c1802d7d11934", async() => {
+=======
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "2b7d5785542c0255febcbb897dbe1703c1802d7d11736", async() => {
+>>>>>>> Stashed changes
                 WriteLiteral("Delete");
             }
             );
@@ -218,7 +237,11 @@ using Craft_beer_backend.ViewModels;
 #line hidden
 #nullable disable
             WriteLiteral("        <div class=\"card \">\r\n            <div class=\"card-header\"> Ще не створено продуктів </div>\r\n            <div class=\" card - body \">\r\n                <h5 class=\"card-title\"> Скористайтеся кнопкою нижче створити продукт</h5>\r\n                ");
+<<<<<<< Updated upstream
             __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "2b7d5785542c0255febcbb897dbe1703c1802d7d14748", async() => {
+=======
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "2b7d5785542c0255febcbb897dbe1703c1802d7d14550", async() => {
+>>>>>>> Stashed changes
                 WriteLiteral("Створити продукт ");
             }
             );

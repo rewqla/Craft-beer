@@ -21,13 +21,21 @@ using Craft_beer_backend;
 #nullable disable
 #nullable restore
 #line 2 "D:\vodnik\3 курс\Менеджмент\Craft-beer\Craft-beer-backend\Views\_ViewImports.cshtml"
+<<<<<<< Updated upstream
 using Craft_beer_backend.Models;
+=======
+using Craft_beer_backend.ViewModels;
+>>>>>>> Stashed changes
 
 #line default
 #line hidden
 #nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"dcf81fb9af409c3ec4bf8ffb91e4b4dcd831418e", @"/Views/Account/Logout.cshtml")]
+<<<<<<< Updated upstream
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"ba0009f7aae7e2e840bf077c3eeb4b20414a49d4", @"/Views/_ViewImports.cshtml")]
+=======
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"2eea05f266d792f71b60ad9ba9142c1cc89c4555", @"/Views/_ViewImports.cshtml")]
+>>>>>>> Stashed changes
     public class Views_Account_Logout : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<dynamic>
     {
         private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_0 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("asp-action", "Logout", global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
@@ -77,7 +85,11 @@ using Craft_beer_backend.Models;
             <p>Are you sure you want to logout?</p> <p>
             </p>
             ");
+<<<<<<< Updated upstream
             __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "dcf81fb9af409c3ec4bf8ffb91e4b4dcd831418e4587", async() => {
+=======
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "dcf81fb9af409c3ec4bf8ffb91e4b4dcd831418e4591", async() => {
+>>>>>>> Stashed changes
                 WriteLiteral("<button class=\"btn btn-primary\">Yes</button>");
             }
             );

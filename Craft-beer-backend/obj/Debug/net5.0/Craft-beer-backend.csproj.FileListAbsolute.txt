@@ -98,6 +98,7 @@ D:\vodnik\3 курс\Менеджмент\Craft-beer\Craft-beer-backend\obj\Debu
 D:\vodnik\3 курс\Менеджмент\Craft-beer\Craft-beer-backend\obj\Debug\net5.0\Craft-beer-backend.dll
 D:\vodnik\3 курс\Менеджмент\Craft-beer\Craft-beer-backend\obj\Debug\net5.0\ref\Craft-beer-backend.dll
 D:\vodnik\3 курс\Менеджмент\Craft-beer\Craft-beer-backend\obj\Debug\net5.0\Craft-beer-backend.pdb
+<<<<<<< Updated upstream
 D:\vodnik\3 курс\Менеджмент\Craft-beer\Craft-beer-backend\obj\Debug\net5.0\Craft-beer-backend.genruntimeconfig.cache
 D:\vodnik\3 курс\Менеджмент\Craft-beer\Craft-beer-backend\obj\Debug\net5.0\Razor\Views\Account\Logout.cshtml.g.cs
 D:\vodnik\3 курс\Менеджмент\Craft-beer\Craft-beer-backend\obj\Debug\net5.0\Razor\Views\Account\ListUsers.cshtml.g.cs
@@ -108,3 +109,12 @@ D:\vodnik\3 курс\Менеджмент\Craft-beer\Craft-beer-backend\obj\Debu
 D:\vodnik\3 курс\Менеджмент\Craft-beer\Craft-beer-backend\obj\Debug\net5.0\Razor\Views\Account\ManageUser.cshtml.g.cs
 D:\vodnik\3 курс\Менеджмент\Craft-beer\Craft-beer-backend\obj\Debug\net5.0\Razor\Views\Shared\_UserLayout.cshtml.g.cs
 D:\vodnik\3 курс\Менеджмент\Craft-beer\Craft-beer-backend\obj\Debug\net5.0\Razor\Views\Home\ItemPreview.cshtml.g.cs
+=======
+D:\vodnik\3 курс\Менеджмент\Craft-beer\Craft-beer-backend\obj\Debug\net5.0\Razor\Views\Account\OrderDetails.cshtml.g.cs
+D:\vodnik\3 курс\Менеджмент\Craft-beer\Craft-beer-backend\obj\Debug\net5.0\Razor\Views\Account\Orders.cshtml.g.cs
+D:\vodnik\3 курс\Менеджмент\Craft-beer\Craft-beer-backend\obj\Debug\net5.0\Razor\Views\Administration\ListOrders.cshtml.g.cs
+D:\vodnik\3 курс\Менеджмент\Craft-beer\Craft-beer-backend\obj\Debug\net5.0\Razor\Views\Administration\OrderDetails.cshtml.g.cs
+D:\vodnik\3 курс\Менеджмент\Craft-beer\Craft-beer-backend\obj\Debug\net5.0\Razor\Views\Home\Cart.cshtml.g.cs
+D:\vodnik\3 курс\Менеджмент\Craft-beer\Craft-beer-backend\obj\Debug\net5.0\Razor\Views\Order\Index.cshtml.g.cs
+D:\vodnik\3 курс\Менеджмент\Craft-beer\Craft-beer-backend\obj\Debug\net5.0\Razor\Views\Order\Success.cshtml.g.cs
+>>>>>>> Stashed changes
