@@ -65,7 +65,7 @@
             @foreach (var item in Model)
             {
 
-                <li class="item">@item.Name<div hidden class="mismatches">1</div><div class="volume">@item.Volume</div><div class="price">@item.Price</div><div class="abv">@item.ABV</div>
+                <li class="item"><a href="Home/SimpleItemPreview/@item.Id">@item.Name<div hidden class="mismatches">1</div><div class="volume">@item.Volume</div><div class="price">@item.Price</div><div class="abv">@item.ABV</div>
                     <button name="craft-beer-button" class="btn btn-primary" data-id="@item.Id" onclick="addToCart('@item.Id','@item.Name',' @item.Volume',' @item.Price','@item.ImageUrl',this)">Додати в корзину</button></li>
             }
         </ul>

@@ -131,3 +131,4 @@ D:\vodnik\3 курс\Менеджмент\Craft-beer\Craft-beer-backend\bin\Debu
 D:\vodnik\3 курс\Менеджмент\Craft-beer\Craft-beer-backend\obj\Debug\net5.0\Craft-beer-backend.Views.pdb
 D:\vodnik\3 курс\Менеджмент\Craft-beer\Craft-beer-backend\obj\Debug\net5.0\Craft-beer-backend.csproj.CopyComplete
 D:\vodnik\3 курс\Менеджмент\Craft-beer\Craft-beer-backend\obj\Debug\net5.0\Craft-beer-backend.genruntimeconfig.cache
+D:\vodnik\3 курс\Менеджмент\Craft-beer\Craft-beer-backend\obj\Debug\net5.0\Razor\Views\Home\SimpleItemPreview.cshtml.g.cs

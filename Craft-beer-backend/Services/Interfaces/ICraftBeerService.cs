@@ -8,6 +8,8 @@ namespace Craft_beer_backend.Services.Interfaces
     {
         IEnumerable<CraftBeerViewModel> GetBeers();
         IEnumerable<FullProductViewModel> GetFullProducts();
+        FullProductViewModel GetFullProductById(int id);
+        FullProductViewModel GetFullProductById(string id);
         void AddProduct(FullProductViewModel model);
         void UpdateProduct(FullProductViewModel model);
         void DeleteProduct(CraftBeer product);

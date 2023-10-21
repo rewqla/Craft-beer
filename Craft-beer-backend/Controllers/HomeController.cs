@@ -31,6 +31,14 @@ namespace Craft_beer_backend.Controllers
             ViewBag.ProductList = productList;
             return View(model);
         }
+
+        public IActionResult SimpleItemPreview(string id)
+        {
+            var model = _craftBeerService.GetFullProductById(id);
+            ViewBag.ProductList = productList;
+            return View(model);
+        }
+
         [Route("/shopping-cart")]
         public IActionResult Cart()
         {

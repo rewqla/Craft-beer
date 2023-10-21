@@ -13,7 +13,7 @@ namespace Craft_beer_backend.ViewModels
         public double Price { get; set; }
         public string ImageUrl { get; set; }
         public double Volume { get; set; }
-        public double Raiting { get; set; }
+        public double Rating { get; set; }
         public double ABV { get; set; }
         public IEnumerable<Entities.OrderItem> OrderItems { get; set; }
     }
