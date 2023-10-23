@@ -130,7 +130,6 @@ D:\vodnik\3 курс\Менеджмент\Craft-beer\Craft-beer-backend\obj\Debu
 D:\vodnik\3 курс\Менеджмент\Craft-beer\Craft-beer-backend\obj\Debug\net5.0\Craft-beer-backend.csproj.CopyComplete
 D:\vodnik\3 курс\Менеджмент\Craft-beer\Craft-beer-backend\obj\Debug\net5.0\Craft-beer-backend.genruntimeconfig.cache
 D:\vodnik\3 курс\Менеджмент\Craft-beer\Craft-beer-backend\obj\Debug\net5.0\Razor\Views\Home\SimpleItemPreview.cshtml.g.cs
-D:\vodnik\3 курс\Менеджмент\Craft-beer\Craft-beer-backend\bin\Debug\net5.0\Craft-beer-backend.StaticWebAssets.xml
 D:\vodnik\3 курс\Менеджмент\Craft-beer\Craft-beer-backend\obj\Debug\net5.0\staticwebassets\Craft-beer-backend.StaticWebAssets.Pack.cache
 D:\vodnik\3 курс\Менеджмент\Craft-beer\Craft-beer-backend\obj\Debug\net5.0\staticwebassets\msbuild.Craft-beer-backend.Microsoft.AspNetCore.StaticWebAssets.props
 D:\vodnik\3 курс\Менеджмент\Craft-beer\Craft-beer-backend\obj\Debug\net5.0\staticwebassets\msbuild.build.Craft-beer-backend.props
