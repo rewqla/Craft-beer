@@ -76,7 +76,6 @@ D:\vodnik\3 курс\Менеджмент\Craft-beer\Craft-beer-backend\obj\Debu
 D:\vodnik\3 курс\Менеджмент\Craft-beer\Craft-beer-backend\obj\Debug\net5.0\ref\Craft-beer-backend.dll
 D:\vodnik\3 курс\Менеджмент\Craft-beer\Craft-beer-backend\obj\Debug\net5.0\Craft-beer-backend.pdb
 D:\vodnik\3 курс\Менеджмент\Craft-beer\Craft-beer-backend\obj\Debug\net5.0\staticwebassets\Craft-beer-backend.StaticWebAssets.Manifest.cache
-D:\vodnik\3 курс\Менеджмент\Craft-beer\Craft-beer-backend\obj\Debug\net5.0\staticwebassets\Craft-beer-backend.StaticWebAssets.xml
 D:\vodnik\3 курс\Менеджмент\Craft-beer\Craft-beer-backend\obj\Debug\net5.0\scopedcss\bundle\Craft-beer-backend.styles.css
 D:\vodnik\3 курс\Менеджмент\Craft-beer\Craft-beer-backend\obj\Debug\net5.0\Craft-beer-backend.TagHelpers.input.cache
 D:\vodnik\3 курс\Менеджмент\Craft-beer\Craft-beer-backend\obj\Debug\net5.0\Craft-beer-backend.TagHelpers.output.cache
@@ -114,7 +113,6 @@ D:\vodnik\3 курс\Менеджмент\Craft-beer\Craft-beer-backend\bin\Debu
 D:\vodnik\3 курс\Менеджмент\Craft-beer\Craft-beer-backend\bin\Debug\net5.0\Craft-beer-backend.runtimeconfig.json
 D:\vodnik\3 курс\Менеджмент\Craft-beer\Craft-beer-backend\bin\Debug\net5.0\Craft-beer-backend.runtimeconfig.dev.json
 D:\vodnik\3 курс\Менеджмент\Craft-beer\Craft-beer-backend\bin\Debug\net5.0\Craft-beer-backend.dll
-D:\vodnik\3 курс\Менеджмент\Craft-beer\Craft-beer-backend\bin\Debug\net5.0\ref\Craft-beer-backend.dll
 D:\vodnik\3 курс\Менеджмент\Craft-beer\Craft-beer-backend\bin\Debug\net5.0\Craft-beer-backend.pdb
 D:\vodnik\3 курс\Менеджмент\Craft-beer\Craft-beer-backend\bin\Debug\net5.0\Craft-beer-backend.Views.dll
 D:\vodnik\3 курс\Менеджмент\Craft-beer\Craft-beer-backend\bin\Debug\net5.0\Craft-beer-backend.Views.pdb
@@ -132,3 +130,10 @@ D:\vodnik\3 курс\Менеджмент\Craft-beer\Craft-beer-backend\obj\Debu
 D:\vodnik\3 курс\Менеджмент\Craft-beer\Craft-beer-backend\obj\Debug\net5.0\Craft-beer-backend.csproj.CopyComplete
 D:\vodnik\3 курс\Менеджмент\Craft-beer\Craft-beer-backend\obj\Debug\net5.0\Craft-beer-backend.genruntimeconfig.cache
 D:\vodnik\3 курс\Менеджмент\Craft-beer\Craft-beer-backend\obj\Debug\net5.0\Razor\Views\Home\SimpleItemPreview.cshtml.g.cs
+D:\vodnik\3 курс\Менеджмент\Craft-beer\Craft-beer-backend\bin\Debug\net5.0\Craft-beer-backend.StaticWebAssets.xml
+D:\vodnik\3 курс\Менеджмент\Craft-beer\Craft-beer-backend\obj\Debug\net5.0\staticwebassets\Craft-beer-backend.StaticWebAssets.Pack.cache
+D:\vodnik\3 курс\Менеджмент\Craft-beer\Craft-beer-backend\obj\Debug\net5.0\staticwebassets\msbuild.Craft-beer-backend.Microsoft.AspNetCore.StaticWebAssets.props
+D:\vodnik\3 курс\Менеджмент\Craft-beer\Craft-beer-backend\obj\Debug\net5.0\staticwebassets\msbuild.build.Craft-beer-backend.props
+D:\vodnik\3 курс\Менеджмент\Craft-beer\Craft-beer-backend\obj\Debug\net5.0\staticwebassets\msbuild.buildMultiTargeting.Craft-beer-backend.props
+D:\vodnik\3 курс\Менеджмент\Craft-beer\Craft-beer-backend\obj\Debug\net5.0\staticwebassets\msbuild.buildTransitive.Craft-beer-backend.props
+D:\vodnik\3 курс\Менеджмент\Craft-beer\Craft-beer-backend\obj\Debug\net5.0\refint\Craft-beer-backend.dll
