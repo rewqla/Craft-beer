@@ -6,8 +6,8 @@
 @using Craft_beer_backend.ViewModels
 <style>
     .item {
-        width: 100px;
-        height: 100px;
+        width: 130px;
+        height: 125px;
         margin: 10px;
         float: left;
         border: solid;
@@ -59,13 +59,18 @@
             <input type="checkbox" checked id="abvselectAll">
             <label for="abvselectAll">Вибрати всі</label>
         </div>
+
+        <p>Сортування</p>
+        <div>Ціна :<button id="DivSort_price" onclick="sortItems('price')">за зростанням</button></div>
+        <div>Оберти :<button id="DivSort_abv" onclick="sortItems('abv')">за зростанням</button></div>
+        <div>Рейтинг :<button id="DivSort_rating" onclick="sortItems('rating')">за зростанням</button></div>
     </div>
     <div>
-        <ul>
+        <ul id="items">
             @foreach (var item in Model)
             {
 
-                <li class="item"><a href="Home/SimpleItemPreview/@item.Id">@item.Name<div hidden class="mismatches">1</div><div class="volume">@item.Volume</div><div class="price">@item.Price</div><div class="abv">@item.ABV</div>
+                <li class="item" onclick="redirect(@item.Id)">@item.Name<div hidden class="mismatches">1</div><div class="volume">@item.Volume</div><div class="price">@item.Price</div><div class="abv">@item.ABV</div><div class="rating">@item.Rating</div>
                     <button name="craft-beer-button" class="btn btn-primary" data-id="@item.Id" onclick="addToCart('@item.Id','@item.Name',' @item.Volume',' @item.Price','@item.ImageUrl',this)">Додати в корзину</button></li>
             }
         </ul>
@@ -78,19 +83,19 @@
 <script src=~/js/home_index.js></script> 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
+    var elements = Array.from(document.querySelectorAll('.item'));
+    var min = document.getElementById("min");
+    var max = document.getElementById("max");
+    var volslider = $("#volumeslider");
+    var volsliderValue = $("#volumesliderValue");
+    var volselectAll = $("#volumeselectAll");
+    var abvslider = $("#abvslider");
+    var abvsliderValue = $("#abvsliderValue");
+    var abvselectAll = $("#abvselectAll");
     $(document).ready(function () {
-        var min = document.getElementById("min");
-        var max = document.getElementById("max");
-        var volslider = $("#volumeslider");
-        var volsliderValue = $("#volumesliderValue");
-        var volselectAll = $("#volumeselectAll");
-        var abvslider = $("#abvslider");
-        var abvsliderValue = $("#abvsliderValue");
-        var abvselectAll = $("#abvselectAll");
-        var elements = document.querySelectorAll(".item");
-        ////////////
+
         // VOLUME
-        ////////////
+
         //scripts for slider
         volselectAll.on("change", function () {
 
@@ -124,49 +129,9 @@
                 volsliderValue.text("1,0");
         }
 
-
-        //scripts for viewing
-        function ViewItemsByVolume() {
-            for (var i = 0; i < elements.length; i++) {
-                let mismaches = elements[i].querySelector(".mismatches");
-                if (elements[i].querySelector(".volume").textContent == document.getElementById("volumesliderValue").textContent) {
-                    if (mismaches.textContent != "1")
-                        if (mismaches.textContent % 3 == 0) {
-                            mismaches.textContent = (mismaches.textContent / 3);
-
-                            if (mismaches.textContent == "1")
-                                elements[i].classList.remove("unselected");
-                        }
-                }
-                else {
-                    if (mismaches.textContent == "1")
-                        elements[i].classList.add("unselected");
-                    if (mismaches.textContent % 3 != 0)
-                        mismaches.textContent = (Number(mismaches.textContent) * 3);
-                }
-            }
-        }
-
-        function ViewAllItemsByVolume() {
-            var elements = document.querySelectorAll(".item");
-            for (var i = 0; i < elements.length; i++) {
-                let mismaches = elements[i].querySelector(".mismatches");
-                if (mismaches.textContent % 3 == 0) {
-                    mismaches.textContent = (mismaches.textContent / 3);
-                    if (mismaches.textContent == "1")
-                        elements[i].classList.remove("unselected");
-                }
-                console.log(mismaches, 1);
-            }
-        }
-
-
-        ////////////
         // VOLUME
 
         // PRICE
-        ////////////
-
 
         min.addEventListener("change", function () {
             checkMinValid();
@@ -175,62 +140,9 @@
             checkMaxValid();
         });
 
-        function checkMinValid() {
-            if (Number(min.value) < Number(max.value)) {
-                ViewItemsByPrice();
-                min.style.backgroundColor = "#ffffff";
-            }
-            else {
-                min.style.backgroundColor = "#f77c88";
-                min.value = "0";
-                ViewItemsByPrice();
-            }
-
-        }
-        function checkMaxValid() {
-            if (Number(min.value) < Number(max.value)) {
-                ViewItemsByPrice();
-                max.style.backgroundColor = "#ffffff";
-            }
-            else {
-                max.style.backgroundColor = "#f77c88";
-                max.value = "9999";
-                ViewItemsByPrice();
-            }
-
-        }
-
-
-        function ViewItemsByPrice() {
-            for (var i = 0; i < elements.length; i++) {
-                let mismaches = elements[i].querySelector(".mismatches");
-
-                if (Number(elements[i].querySelector(".price").textContent) >= Number(min.value) && Number(elements[i].querySelector(".price").textContent) <= Number(max.value)) {
-                    if (mismaches.textContent != "1")
-                        if (mismaches.textContent % 2 == 0) {
-                            mismaches.textContent = (mismaches.textContent / 2);
-
-                            if (mismaches.textContent == "1")
-                                elements[i].classList.remove("unselected");
-                        }
-                }
-                else {
-                    if (mismaches.textContent == "1")
-                        elements[i].classList.add("unselected");
-
-                    if (mismaches.textContent % 2 != 0)
-                        mismaches.textContent = (Number(mismaches.textContent) * 2);
-                }
-            }
-
-        }
-
-
-        ////////////
         // PRICE
 
         // ABV
-        ////////////
 
         abvselectAll.on("change", function () {
 
@@ -255,42 +167,191 @@
             ViewItemsByABV();
         });
 
-        //scripts for viewing
-        function ViewItemsByABV() {
-            for (var i = 0; i < elements.length; i++) {
-                let mismaches = elements[i].querySelector(".mismatches");
-                if (elements[i].querySelector(".abv").textContent == document.getElementById("abvsliderValue").textContent) {
-                    if (mismaches.textContent != "1")
-                        if (mismaches.textContent % 5 == 0) {
-                            mismaches.textContent = (mismaches.textContent / 5);
+        // ABV
+    });
 
-                            if (mismaches.textContent == "1")
-                                elements[i].classList.remove("unselected");
-                        }
-                }
-                else {
-                    if (mismaches.textContent == "1")
-                        elements[i].classList.add("unselected");
-                    if (mismaches.textContent % 5 != 0)
-                        mismaches.textContent = (Number(mismaches.textContent) * 5);
-                }
-            }
-        }
 
-        function ViewAllItemsByABV() {
-            var elements = document.querySelectorAll(".item");
-            for (var i = 0; i < elements.length; i++) {
-                let mismaches = elements[i].querySelector(".mismatches");
-                if (mismaches.textContent % 5 == 0) {
-                    mismaches.textContent = (mismaches.textContent / 5);
-                    if (mismaches.textContent == "1")
-                        elements[i].classList.remove("unselected");
-                }
-                console.log(mismaches, 1);
-            }
-        }
         ////////////
+        // VOLUME
+        ////////////
+
+    function ViewItemsByVolume() {
+        for (var i = 0; i < elements.length; i++) {
+            let mismaches = elements[i].querySelector(".mismatches");
+            if (elements[i].querySelector(".volume").textContent == document.getElementById("volumesliderValue").textContent) {
+                if (mismaches.textContent != "1")
+                    if (mismaches.textContent % 3 == 0) {
+                        mismaches.textContent = (mismaches.textContent / 3);
+
+                        if (mismaches.textContent == "1")
+                            elements[i].classList.remove("unselected");
+                    }
+            }
+            else {
+                if (mismaches.textContent == "1")
+                    elements[i].classList.add("unselected");
+                if (mismaches.textContent % 3 != 0)
+                    mismaches.textContent = (Number(mismaches.textContent) * 3);
+            }
+        }
+    }
+
+    function ViewAllItemsByVolume() {
+        var elements = document.querySelectorAll(".item");
+        for (var i = 0; i < elements.length; i++) {
+            let mismaches = elements[i].querySelector(".mismatches");
+            if (mismaches.textContent % 3 == 0) {
+                mismaches.textContent = (mismaches.textContent / 3);
+                if (mismaches.textContent == "1")
+                    elements[i].classList.remove("unselected");
+            }
+            console.log(mismaches, 1);
+        }
+    }
+
+        ////////////
+        // VOLUME
+
+        // PRICE
+        ////////////
+
+    function checkMinValid() {
+        if (Number(min.value) < Number(max.value)) {
+            ViewItemsByPrice();
+            min.style.backgroundColor = "#ffffff";
+        }
+        else {
+            min.style.backgroundColor = "#f77c88";
+            min.value = "0";
+            ViewItemsByPrice();
+        }
+
+    }
+    function checkMaxValid() {
+        if (Number(min.value) < Number(max.value)) {
+            ViewItemsByPrice();
+            max.style.backgroundColor = "#ffffff";
+        }
+        else {
+            max.style.backgroundColor = "#f77c88";
+            max.value = "9999";
+            ViewItemsByPrice();
+        }
+
+    }
+
+
+    function ViewItemsByPrice() {
+        for (var i = 0; i < elements.length; i++) {
+            let mismaches = elements[i].querySelector(".mismatches");
+
+            if (Number(elements[i].querySelector(".price").textContent) >= Number(min.value) && Number(elements[i].querySelector(".price").textContent) <= Number(max.value)) {
+                if (mismaches.textContent != "1")
+                    if (mismaches.textContent % 2 == 0) {
+                        mismaches.textContent = (mismaches.textContent / 2);
+
+                        if (mismaches.textContent == "1")
+                            elements[i].classList.remove("unselected");
+                    }
+            }
+            else {
+                if (mismaches.textContent == "1")
+                    elements[i].classList.add("unselected");
+
+                if (mismaches.textContent % 2 != 0)
+                    mismaches.textContent = (Number(mismaches.textContent) * 2);
+            }
+        }
+
+    }
+        ////////////
+        // PRICE
+
         // ABV
         ////////////
-    });
+    function ViewItemsByABV() {
+        for (var i = 0; i < elements.length; i++) {
+            let mismaches = elements[i].querySelector(".mismatches");
+            if (elements[i].querySelector(".abv").textContent == document.getElementById("abvsliderValue").textContent) {
+                if (mismaches.textContent != "1")
+                    if (mismaches.textContent % 5 == 0) {
+                        mismaches.textContent = (mismaches.textContent / 5);
+
+                        if (mismaches.textContent == "1")
+                            elements[i].classList.remove("unselected");
+                    }
+            }
+            else {
+                if (mismaches.textContent == "1")
+                    elements[i].classList.add("unselected");
+                if (mismaches.textContent % 5 != 0)
+                    mismaches.textContent = (Number(mismaches.textContent) * 5);
+            }
+        }
+    }
+
+    function ViewAllItemsByABV() {
+        var elements = document.querySelectorAll(".item");
+        for (var i = 0; i < elements.length; i++) {
+            let mismaches = elements[i].querySelector(".mismatches");
+            if (mismaches.textContent % 5 == 0) {
+                mismaches.textContent = (mismaches.textContent / 5);
+                if (mismaches.textContent == "1")
+                    elements[i].classList.remove("unselected");
+            }
+            console.log(mismaches, 1);
+        }
+    }
+
+    ////////////
+    // ABV
+
+    // SORTING
+    ////////////
+
+    var itemsContainer = document.getElementById('items');
+    var SortPriceField = false;
+    let DivSort = document.getElementById("DivSort_price");
+    function sortItems(parameter) {
+        DivSort.style.backgroundColor = "#f0f0f0";
+        DivSort = document.getElementById("DivSort_" + parameter);
+        DivSort.style.backgroundColor = "#ed9726";
+        console.log(DivSort);
+            if (SortPriceField) {
+                UplineSort(parameter);
+                DivSort.innerHTML = "за зростанням";
+            } else {
+                DeclineSort(parameter);
+                DivSort.innerHTML = "за спаданням";
+            }
+        SortPriceField= !SortPriceField;
+
+        // Очищаємо контейнер та вставляємо відсортовані елементи назад
+        elements.forEach(item => itemsContainer.appendChild(item));
+    }
+
+    function UplineSort(parameter) {
+        elements.sort((a, b) => {
+            const priceA = parseFloat(a.querySelector('.' + parameter).textContent.replace(',', '.'));
+            const priceB = parseFloat(b.querySelector('.' + parameter).textContent.replace(',', '.'));
+            return priceA - priceB;
+        });
+
+    }
+
+    function DeclineSort(parameter) {
+        elements.sort((a, b) => {
+            const priceA = parseFloat(a.querySelector('.' + parameter).textContent.replace(',','.'));
+            const priceB = parseFloat(b.querySelector('.' + parameter).textContent.replace(',', '.'));
+            return priceB - priceA;
+        });
+    }
+
+    ////////////
+    // SORTING
+    ////////////
+    function redirect(id) {
+        // Change the URL to the new page you want to redirect to
+        window.location.href = 'Home/SimpleItemPreview/' + id;
+    }
 </script>
