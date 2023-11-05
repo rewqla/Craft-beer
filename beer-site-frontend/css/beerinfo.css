@@ -95,168 +95,6 @@ h1{
 box-shadow: 0px 0px 5px 1px #65451F;
 border-color: transparent;
 }
-/* ------------ */
-.first-block{
-    /* width: 23%;  */
-    height: 80%;
-    background-color: #F5F5F5;
-
-}
-.first-block-text{
-    font-size: 1.3rem;
-}
-.first-block a{
-    display: flex;
-    align-items: center;
-    color: #412d01;
-    text-decoration: none;
-}
-.hr-item{
-    width: 95%;
-    margin: 0;
-    align-self: center;
-}
-
-.second-container{
-    border: 1px solid black;
-    border-radius: 5px; 
-    background-color: #F5F5F5;
-}
-.two-info{
-    display: flex;
-    flex-wrap: wrap;
-}
-.persInfo-one{
-    border-right: 1px solid black;
-    width: 400px;
-}
-@media only screen and (max-width: 859px) {
-    .second-container{
-        display: flex;
-        flex-direction: column;
-        justify-content: center
-        ;
-        align-items: center;
-    }
-    .two-info{
-        display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    }
-}
-@media only screen and (max-width: 859px) {
-    .persInfo-one {
-        border-right: none;
-        border-bottom: 1px solid black;
-        margin-bottom: 0.9rem;
-    }
-}
-.persInfo-two{
-    width: 400px;
-}
-.pers-h3{
-    margin-left: 10px;
-    font-family:  'Montserrat', sans-serif;
-    text-transform: uppercase;
-}
-.pers-form0{
-    align-self: center;
-    margin-top: 4px;
-    display: flex;
-    align-items: center;
-    margin-bottom: 4px;
-}
-#pers-form0{
-    width: 400px;
-    height: 40px;
-    font-size: large;
-    background-color: #f5f5f5;
-    border-radius: 10px;
-    border: solid 2px black;
-    margin-bottom:15px;
-    margin-left:15px ;
-    margin-right:15px ;
-    padding: 2px;
-    padding-left: 10px;
-    overflow: hidden;
-    outline: none;
-}
-.pers-form{
-    align-self: center;
-    margin-top: 4px;
- 
-    align-items: center;
-    margin-bottom: 6px;
-    
-    border-radius: 5px;
-}
-#pers-form{
-    width: 360px;
-    height: 40px;
-    font-size: large;
-    background-color: #f5f5f5;
-    border-radius: 10px;
-    border: solid 2px black;
-    margin-bottom:15px ;
-    margin-left:15px ;
-    padding: 2px;
-    padding-left: 10px;
-    overflow: hidden;
-    outline: none;
-}
-
-.pers-button{
-    margin-top: 15px;
-    margin-bottom: 35px;
-    text-align: center;
-    display: flex;
-    justify-content: center;
-    margin-left: 70px;
-}
-.pers-a{
-    color:#3E280E;
-    border: solid 2px #65451F;
-    border-radius: 5px;
-    padding: 10px;
-    background-color: #C8AE7D;
-    text-decoration: none;
-    margin-top: 15px;
-    
-    
-    display: flex;
-    justify-content: center;
-   
-}
-.pers-button-one{
-    width: 150px;
-}
-.pers-button-two{
-    width: 50px;
-    margin-top: 5px;
-    margin-left: 10px;
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 footer{
     border-top: 3px solid #3E280E ;
@@ -308,3 +146,104 @@ footer{
   ::-webkit-scrollbar-thumb:hover {
     background: #3E280E;
   }
+
+
+.img-beerinfo{
+    border: solid 3px black;
+    height: 500px;
+    width: 500px;
+    text-align: center;
+    display:flex;
+    justify-content: center;
+    margin-right: 20px;
+    
+}
+.text-beerinfo{
+    margin-left: 20px;
+    background-color: #F5F5F5;
+    padding: 50px;
+}
+.container1-beerinfo{
+    display: grid;
+    justify-content: center;
+    margin-top: 70px;
+}
+.container2-beerinfo{
+    display: flex;
+}
+.rating {
+    font-size: 0;
+  }
+  
+  .star {
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    background-image: url('../img/Star\ 1.png'); /* Посилання на зображення незаповненої зірки */
+    background-size: cover;
+    cursor: pointer;
+  }
+  
+  .star:hover {
+    background-image: url('../img/Star\ 1\ \(1\).png'); /* Посилання на зображення заповненої зірки */
+  }
+  .container-button {
+    display: flex;
+    align-items: center;
+    font-size: 24px;
+  
+    width: 148px;
+}
+.main-container-button{
+    display: flex;
+}
+.container-buy-button{
+    margin-left: 90px;
+   
+}
+.buy-button{
+    padding: 16px;
+    padding-left: 40px;
+    padding-right: 40px;
+    color: #8a6c47;
+    background-color: #F5F5F5;
+    border: solid 3px;
+}
+
+button {
+    padding: 10px 20px;
+    font-size: 24px;
+    cursor: pointer;
+    background-color: #8a6c47;
+    color: #F5F5F5;
+}
+
+#value {
+    margin: 0 20px;
+}
+@media only screen and (max-width: 859px) {
+    .img-beerinfo{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        border-bottom: 1px solid black;
+        align-items: center;
+        height: 300px;
+        margin: 0;
+        width: 550px;
+        margin-bottom: 10px;
+    }
+    .text-beerinfo{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        margin: 0;
+        align-items: center;
+        height: 400px;
+   
+    justify-content: center;
+    }
+    .container2-beerinfo{
+        display: inline;
+    }
+}

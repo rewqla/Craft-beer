@@ -28,3 +28,13 @@ window.onclick = function(event){
         modal.style.display = "none";      
     }
 }
+document.addEventListener('DOMContentLoaded', function() {
+    const stars = document.querySelectorAll('.star');
+  
+    stars.forEach(function(star) {
+      star.addEventListener('click', function() {
+        const rating = this.dataset.rating;
+        alert('Ваш рейтинг: ' + rating);
+      });
+    });
+  });
