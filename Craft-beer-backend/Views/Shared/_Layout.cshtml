@@ -1,5 +1,6 @@
 ﻿@using Microsoft.AspNetCore.Identity
 @using Craft_beer_backend.Entities
+@using Microsoft.EntityFrameworkCore;
 @inject SignInManager<DbUser> SignInManager
 @inject UserManager<DbUser> UserManager
 
@@ -80,19 +81,63 @@
                 </div>
             </div>
         </nav>
-        @*<div style=" margin: 10px auto; display: block;  width:100%; height:40px;"> // when we add
-            <form style=" padding: 10px; font-size: 17px; border: 1px solid grey; border-radius: 5px; float: left; margin-left: 10%; width: 80%; background: #f1f1f1;" action="">
-            <input type="text" placeholder="Search.." name="search" style="width: 80%;" list="beers_list">
-            <datalist id="beers_list">
-            @foreach (var option in ViewBag.ProductList)
-            {
-            <option value="@option"></option>
-            }
-            </datalist>
-            <button type="submit" style=" height:30px; padding:5px; float: left; margin-left: 3%; width: 10%; font-size: 17px; border: 1px solid grey; text-transform: uppercase;">Пошук</button>
+        @{
+            string connStr = "Host=tai.db.elephantsql.com;Port=5432;Database=ugpzeyle;Username=ugpzeyle;Password=YeOgrDWyliwZw3nd6TYa2szz4bWGT6ok;";
+            var contextOptions = new DbContextOptionsBuilder<ApplicationDbContext>()
+            .UseNpgsql(connStr)
+            .Options;
+            using var dbCon = new ApplicationDbContext(contextOptions);
 
-            </form>
-            </div>*@
+
+            var items = await dbCon.CraftBeers.Select(p => p.Name).ToListAsync();
+            <div style=" margin: 10px auto; display: block;  width:100%; height:40px;">
+                <form style=" padding: 10px; font-size: 17px; border: 1px solid grey; border-radius: 5px; float: left;margin-top: 50px; margin-left: 10%; width: 80%; background: #f1f1f1;" action="">
+                    <input type="text" placeholder="Search.." name="search" style="width: 80%;" list="list">
+                    <datalist id="list">
+                        @foreach (var option in items)
+                        {
+                            <option value="@option"></option>
+                        }
+                    </datalist>
+                    <button type="submit" style=" height:30px; padding:5px; float: left; margin-left: 3%; width: 10%; font-size: 17px; border: 1px solid grey; text-transform: uppercase;">Пошук</button>
+
+                </form>
+            </div>
+        }
+        <!-- MODAL -->
+        <div class="modal" id="sign-in-modal">
+            <div class="modal-content">
+                <h2>Увійти</h2>
+                <form asp-action="Login" asp-controller="Account" method="post">
+                    <input type="text" name="Email" placeholder="Електронна пошта..." id="sign-in-form">
+                    <input type="password" name="Password" placeholder="Пароль..." id="sign-in-form">
+                    <p>запам'ятати мене <input type="checkbox" name="RememberMe" id="sign-in-form"></p>
+                    <input type="hidden" name="ReturnUrl" value="@Context.Request.Path">
+                    <div class="button">
+                        <button class="sign-button" type="submit">Увійти</button>
+                    </div>
+                </form>
+                <a id="reg-link">Не маєте акаунту?<br> Зареєструйтесь</a>
+            </div>
+        </div>
+
+        <div class="modal" id="sign-up-modal">
+            <div class="modal-content">
+                <h2>Реєстрація</h2>
+                <form asp-action="Register" asp-controller="Account" method="post">
+                    <input type="email" name="Email" placeholder="Електронна пошта..." id="sign-up-form">
+                    <input type="password" name="Password" placeholder="Пароль..." id="sign-up-form">
+                    <input type="password" name="PasswordSubmit" placeholder="Повторіть Пароль" id="sign-up-form">
+                    <input type="hidden" name="ReturnUrl" value="@Context.Request.Path">
+                    <div class="button">
+                        <button type="submit" class="sign-button">Зареєструватись</button>
+                    </div>
+                </form>
+                <a id="sign-in-link">Вже маєте акаунт? Увійдіть</a>
+
+            </div>
+        </div>
+        <!-- END MODAL -->
     </header>
     <div class="container">
         <main role="main" class="pb-3">
