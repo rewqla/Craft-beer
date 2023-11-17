@@ -4,13 +4,6 @@ var btn = document.getElementById("sign-in-button");
 btn.onclick = function() {
   modal.style.display = "flex";
 }
-
-// window.onclick = function(event) {
-//   if (event.target == modal) {
-//     modal.style.display = "none";
-//   }
-// }
-
 var regLink = document.getElementById("reg-link");
 var signUpModal = document.getElementById("sign-up-modal");
 regLink.onclick = function() {
@@ -28,3 +21,25 @@ window.onclick = function(event){
         modal.style.display = "none";      
     }
 }
+
+function changeHeartIcon(x){
+    if (x.classList.contains("fa-regular")) {
+        x.classList.remove("fa-regular");
+        x.classList.remove("fa-heart");
+        x.classList.add("fa-solid");
+        x.classList.add("fa-heart");
+    } else {
+        x.classList.remove("fa-solid");
+        x.classList.remove("fa-heart");
+        x.classList.add("fa-regular");
+        x.classList.add("fa-heart");
+    }
+}
+var iconTrigger = document.getElementById("showAnimation");
+var basketAnim = document.getElementById("basket");
+iconTrigger.addEventListener("click", function() {
+    basketAnim.classList.remove("pulse-animation");
+    void basketAnim.offsetWidth; 
+    basketAnim.classList.add("pulse-animation");
+});
+

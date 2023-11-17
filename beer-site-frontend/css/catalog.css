@@ -31,6 +31,49 @@ h1{
     margin-right: 30px;
 
 }
+
+/* MY PAGE/LOGOUT BUTTONS STYLE */
+
+.my-page-btn-div{
+    float: right;
+    margin-top: 25px;
+    margin-right: 30px;
+}
+.logout-btn-div{
+    float: right;
+    margin-top: 25px;
+    margin-right: 15px;
+}
+.my-page-button{
+    font-size: large;
+    border-radius: 7px;
+    color: #3E280E;
+    padding: 10px 20px;
+    background-color: #fff;
+    text-decoration: none;
+    font-family: 'Montserrat', sans-serif;
+}
+.logout-button{
+    font-size: large;
+    border-radius: 7px;
+    color: #C8AE7D;
+    padding: 10px 20px;
+    background-color: #65451F;
+    text-decoration: none;
+    font-family: 'Montserrat', sans-serif;
+    border: 1px solid #C8AE7D
+}
+.logout-button:hover{
+    background-color: #fff;
+    color: #65451F;
+    border: 1px solid #3E280E;
+}
+.my-page-button:hover{
+    background-color: #65451F;
+    color: #C8AE7D;
+    border: 1px solid #C8AE7D;
+}
+
 .sign-in-button{
     font-size: large;
     border-radius: 7px;
@@ -147,14 +190,35 @@ border-color: transparent;
     font-size: 20px;
     margin: 0;
 }
+i.fa {
+  cursor: pointer;
+  user-select: none;
+}
 
+/* basket animation */
+@keyframes pulse {
+    0% {
+      transform: scale(0.5);
+    }
+    50% {
+      transform: scale(1.2);
+    }
+    90% {
+      transform: scale(0.9);
+    }
+    100%{
+        transform: scale(1.0);
+    }
 
+  }
+.pulse-animation {
+    animation: pulse 0.8s;
+  }
 
 
 footer{
     border-top: 3px solid #3E280E ;
     height: 70px;
-    /* position: fixed; */
     bottom: 0;
     width: 100%;
     margin-top: 70px;
@@ -185,19 +249,104 @@ footer{
 ::-webkit-scrollbar {
     width: 10px;
   }
-  
-  /* Track */
   ::-webkit-scrollbar-track {
     background: #C8AE7D;
   }
-  
-  /* Handle */
   ::-webkit-scrollbar-thumb {
     background: #65451F;
     border-radius: 3px;
   }
-  
-  /* Handle on hover */
   ::-webkit-scrollbar-thumb:hover {
     background: #3E280E;
   }
+
+
+   /* MODAL FOR REGISTRATION/AUTHORIZATION */
+
+   .modal {
+    display: none; 
+    position: fixed; 
+    justify-content: center;
+    align-items: center;
+    left: 0;
+    top: 0;
+    /* width: 100%; */
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0,0,0);
+    background-color: rgba(0,0,0,0.4);
+  }
+  .modal-content h2{
+
+    color: #65451F;
+    font-family: 'Montserrat', sans-serif;
+}
+.modal-content{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 500px !important;
+    height: 600px;
+    background-color: #fff;
+    box-shadow: 0px 3px 2px 2px rgb(0, 0, 0, 0.4);
+    border-radius: 10px;
+    place-items: center;
+    text-align: center;
+    text-decoration: none;
+}
+.modal-content input:focus{
+    outline: none;
+    background-color: #F5F5F5;
+}
+.modal-content a:visited{
+    color: #65451F;
+}
+#sign-in-form{
+    height: 45px;
+    width: 70%;
+    font-size: 20px;
+    margin: 15px;
+    border:none;
+    border-bottom: solid 3px ;
+    color: #65451F;
+}
+#sign-up-form{
+    height: 45px;
+    width: 70%;
+    font-size: 20px;
+    margin: 15px;
+    border:none;
+    border-bottom: solid 3px ;
+    color: #65451F;
+}
+.modal-content .button{
+    margin-top: 60px;
+}
+#sign-in-link{
+    margin-top: 20px;
+}
+#reg-link{
+    margin-top: 20px;
+}
+.sign-button{
+    font-size: large;
+    border-radius: 7px;
+    color: #3E280E;
+    padding: 10px 20px;
+    background-color: #F5F5F5;
+    text-decoration: none;
+    border: solid 2px #65451F;
+    border-radius: 20px;
+    padding: 10px 30px;
+    margin-left: 25px;
+    font-family: 'Montserrat', sans-serif;
+}
+.reg{
+    margin-top: 25px;
+    text-decoration: none;
+    color: #65451F;
+}
+.sign-button:hover{
+    background-color: #C8AE7D;
+}

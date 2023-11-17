@@ -21,3 +21,27 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
   
+
+
+var modal = document.getElementById("sign-in-modal");
+var btn = document.getElementById("sign-in-button");
+btn.onclick = function() {
+  modal.style.display = "flex";
+}
+var regLink = document.getElementById("reg-link");
+var signUpModal = document.getElementById("sign-up-modal");
+regLink.onclick = function() {
+    modal.style.display = "none";
+    signUpModal.style.display = "flex";
+}
+var signInLink = document.getElementById("sign-in-link");
+signInLink.onclick = function(){
+    signUpModal.style.display = "none";
+    modal.style.display = "flex";
+}  
+window.onclick = function(event){
+    if (event.target == signUpModal || event.target == modal) {
+        signUpModal.style.display = "none";
+        modal.style.display = "none";      
+    }
+}
