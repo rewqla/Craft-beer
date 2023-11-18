@@ -1,8 +1,10 @@
-﻿@using Microsoft.AspNetCore.Identity
+﻿@using Craft_beer_backend.Services.Interfaces;
+@using Microsoft.AspNetCore.Identity
 @using Craft_beer_backend.Entities
 @using Microsoft.EntityFrameworkCore;
 @inject SignInManager<DbUser> SignInManager
 @inject UserManager<DbUser> UserManager
+@inject ICraftBeerService craftBeerService
 
 <!DOCTYPE html>
 <html lang="en">
@@ -40,7 +42,7 @@
                             <ul class="navbar-nav d-flex justify-content-end">
 
                                 @{
-                                    if (User.IsInRole("Admin"))
+                                    //if (User.IsInRole("Admin"))
                                     {
                                         <li class="nav-item">
                                             <a class="nav-link text-dark" asp-area="" asp-controller="Administration" asp-action="ProductsList">Керування товарами</a>
@@ -82,18 +84,12 @@
             </div>
         </nav>
         @{
-            string connStr = "Host=tai.db.elephantsql.com;Port=5432;Database=ugpzeyle;Username=ugpzeyle;Password=YeOgrDWyliwZw3nd6TYa2szz4bWGT6ok;";
-            var contextOptions = new DbContextOptionsBuilder<ApplicationDbContext>()
-            .UseNpgsql(connStr)
-            .Options;
-            using var dbCon = new ApplicationDbContext(contextOptions);
-
-
-            var items = await dbCon.CraftBeers.Select(p => p.Name).ToListAsync();
+            var items = craftBeerService.GetNames();
             <div style=" margin: 10px auto; display: block;  width:100%; height:40px;">
-                <form style=" padding: 10px; font-size: 17px; border: 1px solid grey; border-radius: 5px; float: left;margin-top: 50px; margin-left: 10%; width: 80%; background: #f1f1f1;" action="">
+                <form style=" padding: 10px; font-size: 17px; border: 1px solid grey; border-radius: 5px; float: left;margin-top: 40px; margin-left: 10%; width: 80%; background: #f1f1f1;" action="">
                     <input type="text" placeholder="Search.." name="search" style="width: 80%;" list="list">
                     <datalist id="list">
+                    @if(items!=null)
                         @foreach (var option in items)
                         {
                             <option value="@option"></option>
