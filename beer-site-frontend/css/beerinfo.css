@@ -73,7 +73,7 @@ h1{
     color: #C8AE7D;
     border: 1px solid #C8AE7D;
 }
-
+/* END MY PAGE/LOGOUT BUTTONS STYLE */
 .sign-in-button{
     font-size: large;
     border-radius: 7px;
@@ -119,106 +119,11 @@ h1{
 box-shadow: 0px 0px 5px 1px #65451F;
 border-color: transparent;
 }
-.container{
-    margin-top: 50px;
-    width: 100%;
-    display: grid;
-    /* grid-template-columns: repeat(4, 1fr);  */
-    gap: 20px;
-    justify-content: space-between;
-    /* border-left: 1px solid black;
-    border-right: 1px solid black; */
-    padding-left: 30px;
-    padding-right: 30px;
-
-}
-.item-margin{
-    margin: 30px 10px;
-}
-
-.item-container{
-    width: 270px;
-    height: 400px;
-    border: 2px solid black;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-.item-photo{
-    width: 60%;
-    position: relative;
-    bottom: 20px;
-}
-.hr-item{
-    width: 95%;
-    margin: 0;
-    margin-bottom: 15px;
-}
-.beer-description{
-    display: flex;
-    flex-direction: column;
-    width: 80%;
-}
-.beer-description p{
-    margin: 0;
-}
-.item-name{
-    font-size: 20px;
-    text-align: center;
-    margin-bottom: 10px !important;
-}
-.item-proof{
-    margin-bottom: 10px !important;
-}
-.bottom-div{
-    display: flex;
-    flex-direction: row;
-    width: 80%;
-    margin-bottom: 15px;
-    justify-content: space-between;
-}
-.item-icons{
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    
-}
-.item-icons i{
-    margin: 10px;
-}
-.item-cost{
-    font-size: 20px;
-    margin: 0;
-}
-i.fa {
-  cursor: pointer;
-  user-select: none;
-}
-
-/* basket animation */
-@keyframes pulse {
-    0% {
-      transform: scale(0.5);
-    }
-    50% {
-      transform: scale(1.2);
-    }
-    90% {
-      transform: scale(0.9);
-    }
-    100%{
-        transform: scale(1.0);
-    }
-
-  }
-.pulse-animation {
-    animation: pulse 0.8s;
-  }
-
 
 footer{
     border-top: 3px solid #3E280E ;
     height: 70px;
+    /* position: fixed; */
     bottom: 0;
     width: 100%;
     margin-top: 70px;
@@ -249,21 +154,127 @@ footer{
 ::-webkit-scrollbar {
     width: 10px;
   }
+  
+  /* Track */
   ::-webkit-scrollbar-track {
     background: #C8AE7D;
   }
+  
+  /* Handle */
   ::-webkit-scrollbar-thumb {
     background: #65451F;
     border-radius: 3px;
   }
+  
+  /* Handle on hover */
   ::-webkit-scrollbar-thumb:hover {
     background: #3E280E;
   }
 
 
-   /* MODAL FOR REGISTRATION/AUTHORIZATION */
+.img-beerinfo{
+    border: solid 3px black;
+    height: 500px;
+    width: 500px;
+    text-align: center;
+    display:flex;
+    justify-content: center;
+    margin-right: 20px;
+    
+}
+.text-beerinfo{
+    margin-left: 20px;
+    background-color: #F5F5F5;
+    padding: 50px;
+}
+.container1-beerinfo{
+    display: grid;
+    justify-content: center;
+    margin-top: 70px;
+}
+.container2-beerinfo{
+    display: flex;
+}
+.rating {
+    font-size: 0;
+  }
+  
+  .star {
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    background-image: url('../img/Star\ 1.png'); /* Посилання на зображення незаповненої зірки */
+    background-size: cover;
+    cursor: pointer;
+  }
+  
+  .star:hover {
+    background-image: url('../img/Star\ 1\ \(1\).png'); /* Посилання на зображення заповненої зірки */
+  }
+  .container-button {
+    display: flex;
+    align-items: center;
+    font-size: 24px;
+  
+    width: 148px;
+}
+.main-container-button{
+    display: flex;
+}
+.container-buy-button{
+    margin-left: 90px;
+   
+}
+.buy-button{
+    padding: 16px;
+    padding-left: 40px;
+    padding-right: 40px;
+    color: #8a6c47;
+    background-color: #F5F5F5;
+    border: solid 3px;
+}
 
-   .modal {
+button {
+    padding: 10px 20px;
+    font-size: 24px;
+    cursor: pointer;
+    background-color: #8a6c47;
+    color: #F5F5F5;
+}
+
+#value {
+    margin: 0 20px;
+}
+@media only screen and (max-width: 859px) {
+    .img-beerinfo{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        border-bottom: 1px solid black;
+        align-items: center;
+        height: 300px;
+        margin: 0;
+        width: 550px;
+        margin-bottom: 10px;
+    }
+    .text-beerinfo{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        margin: 0;
+        align-items: center;
+        height: 400px;
+   
+    justify-content: center;
+    }
+    .container2-beerinfo{
+        display: inline;
+    }
+}
+
+/* MODAL FOR REGISTRATION/AUTHORIZATION */
+
+.modal {
     display: none; 
     position: fixed; 
     justify-content: center;
