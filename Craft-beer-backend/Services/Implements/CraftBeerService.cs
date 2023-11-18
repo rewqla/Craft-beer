@@ -63,5 +63,9 @@ namespace Craft_beer_backend.Services.Implements
             _craftBeerRepository.Delete(_craftBeerRepository.FindById(productId));
         }
 
+        public List<string> GetNames()
+        {
+            return _craftBeerRepository.GetNames();
+        }
     }
 }

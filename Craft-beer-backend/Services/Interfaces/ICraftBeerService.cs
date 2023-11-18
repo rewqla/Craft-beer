@@ -14,5 +14,6 @@ namespace Craft_beer_backend.Services.Interfaces
         void UpdateProduct(FullProductViewModel model);
         void DeleteProduct(CraftBeer product);
         void DeleteProduct(int productId);
+        public List<string> GetNames();
     }
 }
