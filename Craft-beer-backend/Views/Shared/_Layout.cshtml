@@ -85,9 +85,45 @@
         </nav> *@
         <img class="logo-img" src="../img/бочка.png" alt="">
         <h1 class="logo">SipSociety</h1>
-        <div class="button">
-            <a class="sign-in-button" href="#">Увійти</a>
-        </div>
+        @{
+            if (SignInManager.IsSignedIn(User))
+            {
+
+                
+
+                <div class="my-page-btn-div">
+                    <a class="my-page-button" href="/Account/ManageUser">Моя сторінка</a>
+                </div>
+                <div class="logout-btn-div">
+                    <a class="logout-button" href="@Url.Action("Logout", "Account", new { returnUrl = path })">Вийти</a>
+                </div>       
+                @if (User.IsInRole("Admin"))
+                {
+                    <div class="logout-btn-div">
+                        <a class="logout-button" asp-area="" asp-controller="Administration" asp-action="ProductsList">Керування товарами</a>
+                    </div>
+
+                    <div class="logout-btn-div">
+                        <a class="logout-button" asp-area="" asp-controller="Account" asp-action="ListUsers">Managment</a>
+                    </div>
+
+                    <div class="logout-btn-div">
+                        <a class="logout-button" asp-area="" asp-controller="Administration" asp-action="ListOrders">Замовлення</a>
+                    </div>
+                }
+                <a class="cart-shopping" href="/shopping-cart">
+                    <i class="fa-solid fa-cart-shopping fa-2xl" style="color: #412d01; margin-right: 30px;">
+                    </i>
+                </a>
+            }
+            else
+            {
+                <div class="button">
+                    <a class="sign-in-button" id="sign-in-button">Увійти</a>
+                </div>
+            }
+        }
+
     </header>
 
 
@@ -97,7 +133,7 @@
         <div class="modal-content">
             <h2>Увійти</h2>
             <form asp-controller="Account" asp-action="Login" method="post">
-                <input type="text" id="logEmail" placeholder="Електронна пошта..." class="sign-in-form" name="Email" />
+                <input type="text" id="logUsername" placeholder="Нік користувача..." class="sign-in-form" name="Email" />
                 <input type="password" placeholder="Пароль..." class="sign-in-form" id="logPassword" name="Password" />
                 <div>Запам'ятати мене?</div>
                 <input type="checkbox" style="background-color:#65451F" id="logRememberMe" />
@@ -146,13 +182,9 @@
                 </button>
             </form>
         }
-
-@*         <a class="cart-shopping" href="#">
-            <i class="fa-solid fa-cart-shopping fa-2xl" style="color: #412d01; margin-right: 30px;"></i>
-        </a> *@
     </div>
-    <div class="container">
-        <main role="main" class="pb-3">
+    <div class="container" style="min-height: 60%;">
+        <main role="main"  class="pb-3">
             @RenderBody()
         </main>
     </div>

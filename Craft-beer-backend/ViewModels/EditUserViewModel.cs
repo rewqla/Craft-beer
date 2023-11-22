@@ -12,6 +12,8 @@ namespace Craft_beer_backend.ViewModels
         public long Id { get; set; }
         [Required(ErrorMessage = "Необхідний нікнейм")]
         public string UserName { get; set; }
+        [Required(ErrorMessage = "Необхідний адрес пошти")]
+        public string Email { get; set; }
         public string Password { get; set; }
         public string FirstName { get; set; }
         public string PhoneNumber { get; set; }
@@ -19,5 +21,7 @@ namespace Craft_beer_backend.ViewModels
         [Required(ErrorMessage = "Необхідно бути старше 18 років")]
         public string Birthday { get; set; }
         public List<AllRoleViewModel> AllRoles { get; set; }
+        public string City { get; set; }
+        public string Address { get; set; }
     }
 }

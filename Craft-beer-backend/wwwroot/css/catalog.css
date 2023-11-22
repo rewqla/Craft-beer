@@ -1,13 +1,19 @@
+
 .container {
+    margin-top: 50px;
+    width: 100%;
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    /* grid-template-columns: repeat(4, 1fr);  */
     gap: 20px;
-    margin: 5px -27px 15px 13%;
     justify-content: space-between;
-    border-left: 1px solid black;
-    border-right: 1px solid black;
+    /* border-left: 1px solid black;
+    border-right: 1px solid black; */
     padding-left: 30px;
     padding-right: 30px;
+}
+
+.item-margin {
+    margin: 30px 10px;
 }
 
 .item-container {
@@ -20,14 +26,13 @@
 }
 
 .item-photo {
-    margin-top: 20px;
-    width: 150px;
+    width: 60%;
     position: relative;
     bottom: 20px;
 }
 
 .hr-item {
-    width: 240px;
+    width: 95%;
     margin: 0;
     margin-bottom: 15px;
 }
@@ -67,12 +72,38 @@
 }
 
     .item-icons i {
-        margin: 20px;
-        margin-right: 0px;
+        margin: 10px;
     }
 
 .item-cost {
-    font-size: 25px;
+    font-size: 20px;
     margin: 0;
 }
 
+i.fa {
+    cursor: pointer;
+    user-select: none;
+}
+
+/* basket animation */
+@keyframes pulse {
+    0% {
+        transform: scale(0.5);
+    }
+
+    50% {
+        transform: scale(1.2);
+    }
+
+    90% {
+        transform: scale(0.9);
+    }
+
+    100% {
+        transform: scale(1.0);
+    }
+}
+
+.pulse-animation {
+    animation: pulse 0.8s;
+}
