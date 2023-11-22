@@ -35,7 +35,7 @@ function loginUser() {
     $.ajax({
         url: '/Account/Login',
         type: 'POST',
-        data: { email: document.getElementById("logEmail").value, password: document.getElementById("logPassword").value, rememberMe: document.getElementById("logRememberMe").checked  },
+        data: { username: document.getElementById("logUsername").value, password: document.getElementById("logPassword").value, rememberMe: document.getElementById("logRememberMe").checked  },
         success: function (result) {
             if (!result.success) {
                 // Користувач з таким ім'ям вже існує

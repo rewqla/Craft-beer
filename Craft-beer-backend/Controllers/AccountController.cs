@@ -50,11 +50,11 @@ namespace Craft_beer_backend.Controllers
 
 
         [HttpPost]
-        public async Task<JsonResult> Login(string email, string password, bool rememberMe)
+        public async Task<JsonResult> Login(string username, string password, bool rememberMe)
         {
             if (ModelState.IsValid)
             {
-                var identityResult = await signInManager.PasswordSignInAsync(email, password, rememberMe, false);
+                var identityResult = await signInManager.PasswordSignInAsync(username, password, rememberMe, false);
 
                 var success = identityResult.Succeeded;
                     return Json(new { success });
@@ -100,7 +100,9 @@ namespace Craft_beer_backend.Controllers
                 FirstName = user.FirstName,
                 LastName = user.LastName,
                 Birthday = user.Birthday,
-                PhoneNumber = user.PhoneNumber
+                PhoneNumber = user.PhoneNumber,
+                Email = user.Email,
+
             };
 
             return View(model);
@@ -110,7 +112,6 @@ namespace Craft_beer_backend.Controllers
         public async Task<IActionResult> ManageUser(EditUserViewModel model)
         {
             var user = await userManager.FindByIdAsync(model.Id.ToString());
-            IList<string> _allUserRoles = userManager.GetRolesAsync(user).Result;
 
             if (user == null)
             {
@@ -125,6 +126,7 @@ namespace Craft_beer_backend.Controllers
                 user.Id = model.Id;
                 user.UserName = model.UserName;
                 user.PhoneNumber = model.PhoneNumber;
+                user.Email = model.Email;
 
                 if (model.Password != null)
                     if (model.Password.Replace(" ", "") != "")
@@ -134,7 +136,7 @@ namespace Craft_beer_backend.Controllers
                 var result = await userManager.UpdateAsync(user);
 
                 if (result.Succeeded)
-                { return RedirectToAction("Index","Home"); }
+                { return RedirectToAction("ManageUser","Account"); }
 
                 foreach (var error in result.Errors)
                 {
@@ -208,7 +210,8 @@ namespace Craft_beer_backend.Controllers
                 LastName = user.LastName,
                 AllRoles = allRolesModel,
                 Birthday = user.Birthday,
-                PhoneNumber=user.PhoneNumber
+                PhoneNumber=user.PhoneNumber,
+                Email = user.Email
             };
 
             return View(model);
@@ -231,6 +234,7 @@ namespace Craft_beer_backend.Controllers
                 user.FirstName = model.FirstName;
                 user.LastName = model.LastName;
                 user.PhoneNumber = model.PhoneNumber;
+                user.UserName = model.UserName;
 
                 foreach(var role in model.AllRoles)
                 {

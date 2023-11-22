@@ -72,33 +72,39 @@
         </ul>
     </div>
 </div> *@
-<div class="container">
+<div class="w-100 row m-0 mt-4 justify-content-center align-items-center">
 
     @if (Model != null)
     {
         @foreach (var item in Model)
         {
-            <div class="item-container">
-                <img class="item-photo" src="../img/Каталог/fanatic_porter.bmp" alt="">
-                <div class="beer-description">
-                    <p class="item-name">
-                        @item.Name
-                    </p>
-                    <p class="item-desc">Темне, Нефільтроване</p>
-                    <p class="item-proof">Міцність: @item.ABV,6&#186;</p>
-                </div>
-                <hr class="hr-item">
-                <div class="bottom-div">
-                    <span>
-                        <p class="item-cost"> @item.Price</p>
-                        <p style="margin: 0; text-align: center;">грн./л</p>
-                    </span>
-                    <div class="item-icons">
-                        <i class="fa-regular fa-heart  fa-2xl" style="color: red;"></i>
-                        <i class="fa-solid fa-basket-shopping  fa-2xl" style="color: #0f0f0f;"></i>
+                <div class="border border-dark col-xl-3 col-lg-3 col-md-5 col-sm-7 col-7 d-flex flex-column align-items-center justify-content-between item-margin">
+                    <a href="./beerinfo.html" class="d-flex align-items-center justify-content-center">
+                        <img class="item-photo"
+                             src="../img/Каталог/fanatic_porter.bmp"
+                             alt="" />
+                    </a>
+
+                    <div class="align-items-center ">
+                        <p class="fs-5 m-0 fw-semibold text-center">
+                            <a href="./beerinfo.html" class="link-underline-light link-dark">Пиво Fanatic «Porter»</a>
+                        </p>
+                        <p class="m-0 ">Темне, Нефільтроване</p>
+                        <p class="mb-2 ">Міцність: 4,6&#186;</p>
+                    </div>
+                    <hr class="hr-item" />
+                    <div class="bottom-div row w-100 align-items-center">
+                        <span class="col align-items-center text-center flex-row item-cost m-0">66.00 грн./л</span>
+                        <div class="item-icons col justify-content-center">
+                            <i onclick="changeHeartIcon(this)" class="fa fa-regular fa-heart " style="color: red; font-size: 30px;"></i>
+
+
+                            <i id="showAnimation"
+                               class="fa fa-solid fa-basket-shopping "
+                               style="color: #0f0f0f;  font-size: 30px;"></i>
+                        </div>
                     </div>
                 </div>
-            </div>
         }
 
     }
