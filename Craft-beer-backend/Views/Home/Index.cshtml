@@ -1,10 +1,10 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
-    Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
 @using Craft_beer_backend.ViewModels
-<style>
+@model IEnumerable<FullProductViewModel>
+<link rel="stylesheet" href="/css/catalog.css">
+@* <style>
     .item {
         width: 130px;
         height: 125px;
@@ -37,11 +37,7 @@
         display: none;
     }
 </style>
-@model IEnumerable<FullProductViewModel>
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-</div>
-<br />
+
 <div style="height:400px">
     <div style="width: 230px; height: 100%; float: left; background-color: lightgray;">
         <div>від<input id="min" value="0" class="miniInp minmaxInp" /> : до<input id="max" value="9999" class="miniInp minmaxInp" /></div>
@@ -75,12 +71,46 @@
             }
         </ul>
     </div>
+</div> *@
+<div class="container">
+
+    @if (Model != null)
+    {
+        @foreach (var item in Model)
+        {
+            <div class="item-container">
+                <img class="item-photo" src="../img/Каталог/fanatic_porter.bmp" alt="">
+                <div class="beer-description">
+                    <p class="item-name">
+                        @item.Name
+                    </p>
+                    <p class="item-desc">Темне, Нефільтроване</p>
+                    <p class="item-proof">Міцність: @item.ABV,6&#186;</p>
+                </div>
+                <hr class="hr-item">
+                <div class="bottom-div">
+                    <span>
+                        <p class="item-cost"> @item.Price</p>
+                        <p style="margin: 0; text-align: center;">грн./л</p>
+                    </span>
+                    <div class="item-icons">
+                        <i class="fa-regular fa-heart  fa-2xl" style="color: red;"></i>
+                        <i class="fa-solid fa-basket-shopping  fa-2xl" style="color: #0f0f0f;"></i>
+                    </div>
+                </div>
+            </div>
+        }
+
+    }
+    else
+    {
+        <div>За вашим запитом не знайдено результатів.</div>
+    }
+
 </div>
 
-
-
-
-<script src=~/js/home_index.js></script> 
+<script src="https://kit.fontawesome.com/b98ba76176.js" crossorigin="anonymous"></script>
+<script src=~/js/home_index.js></script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
     var elements = Array.from(document.querySelectorAll('.item'));
@@ -171,9 +201,9 @@
     });
 
 
-        ////////////
-        // VOLUME
-        ////////////
+    ////////////
+    // VOLUME
+    ////////////
 
     function ViewItemsByVolume() {
         for (var i = 0; i < elements.length; i++) {
@@ -209,11 +239,11 @@
         }
     }
 
-        ////////////
-        // VOLUME
+    ////////////
+    // VOLUME
 
-        // PRICE
-        ////////////
+    // PRICE
+    ////////////
 
     function checkMinValid() {
         if (Number(min.value) < Number(max.value)) {
@@ -264,11 +294,11 @@
         }
 
     }
-        ////////////
-        // PRICE
+    ////////////
+    // PRICE
 
-        // ABV
-        ////////////
+    // ABV
+    ////////////
     function ViewItemsByABV() {
         for (var i = 0; i < elements.length; i++) {
             let mismaches = elements[i].querySelector(".mismatches");
@@ -317,14 +347,14 @@
         DivSort = document.getElementById("DivSort_" + parameter);
         DivSort.style.backgroundColor = "#ed9726";
         console.log(DivSort);
-            if (SortPriceField) {
-                UplineSort(parameter);
-                DivSort.innerHTML = "за зростанням";
-            } else {
-                DeclineSort(parameter);
-                DivSort.innerHTML = "за спаданням";
-            }
-        SortPriceField= !SortPriceField;
+        if (SortPriceField) {
+            UplineSort(parameter);
+            DivSort.innerHTML = "за зростанням";
+        } else {
+            DeclineSort(parameter);
+            DivSort.innerHTML = "за спаданням";
+        }
+        SortPriceField = !SortPriceField;
 
         // Очищаємо контейнер та вставляємо відсортовані елементи назад
         elements.forEach(item => itemsContainer.appendChild(item));
@@ -341,7 +371,7 @@
 
     function DeclineSort(parameter) {
         elements.sort((a, b) => {
-            const priceA = parseFloat(a.querySelector('.' + parameter).textContent.replace(',','.'));
+            const priceA = parseFloat(a.querySelector('.' + parameter).textContent.replace(',', '.'));
             const priceB = parseFloat(b.querySelector('.' + parameter).textContent.replace(',', '.'));
             return priceB - priceA;
         });
@@ -350,8 +380,5 @@
     ////////////
     // SORTING
     ////////////
-    function redirect(id) {
-        // Change the URL to the new page you want to redirect to
-        window.location.href = 'Home/SimpleItemPreview/' + id;
-    }
+    function redirect(id) { window.location.href = 'Home/SimpleItemPreview/' + id; }
 </script>

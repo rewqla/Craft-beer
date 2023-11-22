@@ -7,6 +7,8 @@ using System.Threading.Tasks;
 using Craft_beer_backend.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Craft_beer_backend.Services.Interfaces;
+using System.ComponentModel.DataAnnotations;
+using Microsoft.EntityFrameworkCore;
 
 namespace Craft_beer_backend.Controllers
 {
@@ -25,65 +27,39 @@ namespace Craft_beer_backend.Controllers
             this.roleManager = roleManager;
             _orderService = orderService;
         }
-        [HttpGet]
-        public IActionResult Register()
-        {
-            return View();
-        }
 
         [HttpPost]
-        public async Task<IActionResult> Register(RegisterViewModel Model)
-        {
+        public async Task<JsonResult> Register(string email, string username, string password)
+        { 
             if (ModelState.IsValid)
             {
                 var user = new DbUser()
                 {
-                    UserName = Model.Email,
-                    Email = Model.Email,
+                    UserName = username,
+                    Email = email,
                 };
 
-                var result = await userManager.CreateAsync(user, Model.Password);
-                if (result.Succeeded)
-                {
-                    await userManager.AddToRoleAsync(user, "User");
+                var result = await userManager.CreateAsync(user, password);
+                    var success = result.Succeeded;
+                if(success)
                     await signInManager.SignInAsync(user, false);
-                    return RedirectToAction("Index", "Home");
-                }
-                foreach (var error in result.Errors)
-                {
-                    ModelState.AddModelError("", error.Description);
-                }
+                return Json(new { success });
             }
-            return View();
+            return Json(false);
         }
 
-
-        [HttpGet]
-        public IActionResult Login()
-        {
-            string ReturnUrl = HttpContext.Request.Query["ReturnUrl"];
-            TempData["ReturnUrl"] = ReturnUrl;
-            return View();
-        }
 
         [HttpPost]
-        public async Task<IActionResult> Login(LoginViewModel Model)
+        public async Task<JsonResult> Login(string email, string password, bool rememberMe)
         {
             if (ModelState.IsValid)
             {
-                var identityResult = await signInManager.PasswordSignInAsync(Model.Email, Model.Password, Model.RememberMe, false);
+                var identityResult = await signInManager.PasswordSignInAsync(email, password, rememberMe, false);
 
-                if (identityResult.Succeeded)
-                {
-                    if (Model.ReturnUrl == null || Model.ReturnUrl == "/")
-                        return RedirectToAction("Index", "Home");
-                    else
-                        return Redirect(Model.ReturnUrl);
-
-                }
-                ModelState.AddModelError("", "ім'я або пароль невірні");
+                var success = identityResult.Succeeded;
+                    return Json(new { success });
             }
-            return View();
+            return Json(false);
         }
 
 

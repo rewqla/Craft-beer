@@ -1,12 +1,13 @@
-body{
+body {
     margin: 0;
 }
-header{
+
+header {
     background-color: #65451F;
     height: 75px;
 }
 
-h1{
+h1 {
     width: 200px;
     padding-top: 10px;
     color: #fff;
@@ -14,141 +15,136 @@ h1{
     font-family: 'Montserrat', sans-serif;
 }
 
-.logo{
+.logo {
     margin-top: 10px;
 }
-.logo-img{
+
+.logo-img {
     float: left;
     margin-right: 10px;
     margin-left: 10px;
     margin-top: 10px;
 }
-.button{
+
+.button {
     float: right;
     margin-top: 30px;
     margin-right: 30px;
-
 }
-.sign-in-button{
+
+.sign-in-button {
     font-size: large;
     border-radius: 7px;
     color: #3E280E;
     padding: 10px 20px;
     background-color: #fff;
     text-decoration: none;
-    /* box-shadow: 0px 3px 0px rgb(0, 0, 0, 0.4); */
     font-family: 'Montserrat', sans-serif;
 }
-.sign-in-button:hover{
-    background-color: #65451F;
-    color: #C8AE7D;
-    border: 1px solid #C8AE7D;
+
+    .sign-in-button:hover {
+        background-color: #65451F;
+        color: #C8AE7D;
+        border: 1px solid #C8AE7D;
+    }
+
+.navbar {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    /* justify-content: space-between; */
 }
+
 .main-menu {
     list-style-type: none;
     padding: 2px;
-    margin-left: 15px;
-    margin-top: 10px;
+    margin: 10px 15px 10px 15px;
     display: flex;
+    margin-right: 250px;
 }
-.main-menu-link{
-    margin-left: 10px;
+
+.main-menu-link {
+    margin-right: 20px;
     text-decoration: none;
     font-family: 'Montserrat', sans-serif;
     color: #65451F;
     font-size: large;
-    
-}
-.main-menu-link:hover{
-    border-bottom: solid #65451F 3px;
-}
-.head-img{
-    width: 100%;
-    height: 488px;
-}
-.head-text{
-    display: flex;
-    text-align: right;
-    position: absolute;
-    float: right;
-    color: #fff;
-    font-family: 'Montserrat', sans-serif;
-    font-size:xx-large;
-    margin-top: 350px;
-    margin-left: 950px;
-}
-ul{
-    margin-bottom: 5px;
-}
-.about-h2{
-    text-align: center;
-    font-size:xx-large;
-    color: #65451F;
-    font-weight: normal;
-}
-.about-img{
-    float: left;
-    margin-right: 20px;
-    width: 600px;
-}
-.about-p{
-    font-size: x-large;
-    font-family: 'Montserrat', sans-serif;
-    margin-top: 0;
-}
-.aboutUs{
-    display: grid;
-    place-items: center;
-}
-.about-container{
-    width: 1200px;
-}
-.katal-button{
-    color: #65451F;
-    text-decoration: none;
-}
-.katal-button:hover{
-    color: black;
-    text-decoration: underline;
 }
 
-.advantages-h2{
-    margin-top: 100px;
-    text-align: center;
-    /* font-size:xx-large; */
-    font-family: 'Montserrat', sans-serif;
-    color: #65451F;
-    font-weight: normal;
-    font-size: 35px;
+    .main-menu-link:hover {
+        border-bottom: solid #65451F 3px;
+    }
+
+.search-form {
+    align-self: center;
+    margin-top: 4px;
+    background-color: #f5f5f5;
+    align-items: center;
+    margin-bottom: 6px;
+    border-radius: 5px;
 }
-.div-icon {
-    display: flex;
-    justify-content: space-around; 
-    align-items: flex-start; 
+
+#search-form {
+    width: 400px;
+    height: 30px;
+    font-size: large;
+    background-color: #f5f5f5;
+    border-radius: 10px;
+    border: none;
+    padding: 2px;
+    padding-left: 10px;
+    overflow: hidden;
+    outline: none;
 }
-  
-.icon-container {
-    margin-top: 40px;
-    text-align: center; 
+
+.search-btn {
+    height: 30px;
+    border: none;
+    padding: 10px;
+    background-color: #f5f5f5;
 }
-  
-.all-icon-text {
-    margin-top: 10px; 
+
+.cart-shopping {
+    margin-top: 15px;
+    margin-left: 460px;
 }
-.all-icon-text{
-    font-family: 'Montserrat', sans-serif;
-    text-transform: uppercase;
-    color: #3E280E;
+
+
+    /* width */
+::-webkit-scrollbar {
+    width: 10px;
 }
-.icon-1, .icon-2, .icon-3, .icon-4{
-    height: 210px;
-    width: 250px;
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: #C8AE7D;
 }
-footer{
-    border-top: solid #3E280E 3px;
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #65451F;
+    border-radius: 3px;
+}
+
+    /* Handle on hover */
+    ::-webkit-scrollbar-thumb:hover {
+        background: #3E280E;
+    }
+
+
+
+
+
+footer {
+    border-top: 3px solid #3E280E;
     height: 70px;
+    /* position: fixed; */
+    bottom: 0;
+    width: 100%;
+    margin-top: 70px;
 }
-.footer-text{
+
+.footer-text {
     margin-top: 30px;
     margin-left: 25px;
     position: relative;
@@ -158,7 +154,8 @@ footer{
     font-family: 'Montserrat', sans-serif;
     display: inline-block;
 }
-.footer-icons{
+
+.footer-icons {
     color: black;
     width: 300px;
     position: relative;
@@ -168,24 +165,7 @@ footer{
     margin: 0 20px 0 0;
     margin-top: 20px;
     margin-right: 30px;
-
 }
-::-webkit-scrollbar {
-    width: 10px;
-  }
-  
-  ::-webkit-scrollbar-track {
-    background: #C8AE7D;
-  }
-  
-  ::-webkit-scrollbar-thumb {
-    background: #65451F;
-    border-radius: 3px;
-  }
-  
-  ::-webkit-scrollbar-thumb:hover {
-    background: #3E280E;
-  }
 
   /* MODAL */
 
@@ -228,7 +208,7 @@ footer{
 .modal-content a:visited{
     color: #65451F;
 }
-#sign-in-form{
+.sign-in-form{
     height: 45px;
     width: 70%;
     font-size: 20px;
@@ -237,7 +217,7 @@ footer{
     border-bottom: solid 3px ;
     color: #65451F;
 }
-#sign-up-form{
+.sign-up-form{
     height: 45px;
     width: 70%;
     font-size: 20px;
@@ -249,13 +229,20 @@ footer{
 .modal-content .button{
     margin-top: 60px;
 }
-#sign-in-link{
+.login-link {
     margin-top: 20px;
+    text-decoration: none;
+    transition: color 0.3s ease;
+    cursor: pointer;
 }
-#reg-link{
-    margin-top: 20px;
+a:not([href]):not([tabindex]) {
+    color: #65451F;
 }
-.sign-button{
+.error-text {
+    color: red;
+    font-size: 14px;
+}
+.sign-button {
     font-size: large;
     border-radius: 7px;
     color: #3E280E;
@@ -266,6 +253,7 @@ footer{
     border-radius: 20px;
     padding: 10px 30px;
     margin-left: 25px;
+    margin-right: 32px;
     font-family: 'Montserrat', sans-serif;
 }
 .reg{
