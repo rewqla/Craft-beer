@@ -1,53 +1,92 @@
-document.addEventListener('DOMContentLoaded', function() {
-    const checkboxes = document.querySelectorAll('.checkbox');
-    const quantities = document.querySelectorAll('.quantity');
-    const totalAmountSpan = document.getElementById('totalAmount');
+function removeProduct(button) {
+    // Find the parent product element
+    const product = button.closest('.product');
 
-    checkboxes.forEach(function(checkbox, index) {
-        checkbox.addEventListener('change', function() {
-            updateTotalAmount();
-        });
+    // Display a confirmation message when the item is removed
+    if (product) {
+        // Remove the product from the favorites
+        product.remove();
 
-        quantities[index].addEventListener('input', function() {
-            if (parseFloat(quantities[index].value) < 0) {
-                alert("Кількість не може бути від'ємною.");
-                quantities[index].value = 0;
-            }
-            updateTotalAmount();
-        });
-    });
+        // Show the confirmation message
+        const confirmationMessage = document.createElement('div');
+        confirmationMessage.classList.add('confirmation-message');
+        confirmationMessage.textContent = 'Товар видалено з кошика';
+        document.body.appendChild(confirmationMessage);
 
-    function updateTotalAmount() {
-        let totalAmount = 0;
-
-        checkboxes.forEach(function(checkbox, index) {
-            if (checkbox.checked) {
-                const price = parseFloat(checkbox.getAttribute('data-price'));
-                const quantity = parseFloat(quantities[index].value);
-
-                if (quantity < 0) {
-                    alert("Кількість не може бути від'ємною.");
-                    quantities[index].value = 0;
-                }
-
-                const totalPrice = price * quantity;
-                totalAmount += totalPrice;
-
-                // Оновлення відображення загальної вартості товару
-                const productDiv = checkbox.closest('.product');
-                const totalPriceSpan = productDiv.querySelector('.total-price');
-                totalPriceSpan.textContent = `${totalPrice.toFixed(2)}ГРН.`;
-            }
-        });
-
-        totalAmountSpan.textContent = totalAmount.toFixed(2);
+        // Remove the confirmation message after a short delay
+        setTimeout(() => {
+            confirmationMessage.remove();
+        }, 4000);
     }
+}
+
+function updateTotalPrice() {};
+var plusButtons = document.querySelectorAll(".plus");
+var minusButtons = document.querySelectorAll(".minus");
+var litresElements = document.querySelectorAll(".litres");
+var costElements = document.querySelectorAll(".cost");
+var resultCostElements = document.querySelectorAll(".res-cost");
+
+var initialCosts = Array.from(costElements).map(costElement => parseFloat(costElement.textContent));
+var currentLitres = Array.from(litresElements).map(litresElement => parseFloat(litresElement.textContent));
+var resultCosts = calculateResultCosts(currentLitres, initialCosts);
+
+updateValues();
+
+function calculateResultCosts(litresArray, costsArray) {
+    return litresArray.map((litres, index) => litres * costsArray[index]);
+}
+
+function updateValues() {
+    Array.from(resultCostElements).forEach((resultCostElement, index) => {
+        litresElements[index].textContent = currentLitres[index].toFixed(1);
+        resultCosts[index] = calculateResultCost(currentLitres[index], initialCosts[index]);
+        resultCostElement.textContent = resultCosts[index].toFixed(0) + " грн";
+    });
+}
+
+function calculateResultCost(litres, cost) {
+    return litres * cost;
+}
+
+Array.from(plusButtons).forEach((plusButton, index) => {
+    plusButton.addEventListener("click", function() {
+        currentLitres[index] += 0.5;
+        updateValues();
+        updateFinalCost();
+    });
 });
 
-function removeProduct(button) {
-    const productDiv = button.parentElement;
-    const checkbox = productDiv.querySelector('.checkbox');
-    checkbox.checked = false;
+Array.from(minusButtons).forEach((minusButton, index) => {
+    minusButton.addEventListener("click", function() {
+        if (currentLitres[index] > 0) {
+            currentLitres[index] -= 0.5;
+            updateValues();
+        }
+    });
+});
 
-    updateTotalAmount();
+function calculateTotalCost() {
+    var totalCost = 0;
+    Array.from(resultCostElements).forEach(resultCostElement => {
+        totalCost += parseFloat(resultCostElement.textContent);
+    });
+    return totalCost;
 }
+
+function updateFinalCost() {
+    var finalCostElement = document.getElementById("final-cost");
+    if (finalCostElement) {
+        finalCostElement.textContent = calculateTotalCost().toFixed(0) + " грн";
+    }
+}
+
+updateFinalCost();
+
+var continueBtn = document.querySelector(".next-step-div");
+var firstBlock = document.querySelector(".first-main-container");
+var secondBlock = document.querySelector(".second-main-container")
+continueBtn.addEventListener("click", () => {
+    firstBlock.style.display="none";
+    secondBlock.style.display="flex";
+});

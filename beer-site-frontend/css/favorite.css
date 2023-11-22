@@ -104,6 +104,7 @@ footer{
     bottom: 0;
     width: 100%;
     margin-top: 70px;
+    background-color: #f5f5f5;
 }
 .footer-text{
     margin-top: 30px;
@@ -285,5 +286,39 @@ i.fa {
 }
 .cart-shopping{
     text-decoration: none;
+}
+html, body{
+    height: 100%;
+    }
+.wrap{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        height: 80%;
+}
+.minus {
+    width: 40px;
+    border: 1px solid #4f300a;
+    font-weight: 600;
+    color: #F5F5F5;
+    background-color: #4f300a;
+}
+.plus {
+    width: 40px;
+    font-weight: 600;
+    color: #F5F5F5;
+    border: 1px solid #4f300a;
+    background-color: #4f300a;
+}
+.plus:hover{
+    cursor: pointer;
+}
+.minus:hover{
+    cursor: pointer;
+}
+.litres{
+    width: 40px;
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
 }
 
