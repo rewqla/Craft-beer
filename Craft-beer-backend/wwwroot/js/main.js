@@ -29,7 +29,6 @@ window.onclick = function(event){
     }
 }
 
-
 function loginUser() {
 
     $.ajax({
