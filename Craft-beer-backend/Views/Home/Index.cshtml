@@ -78,8 +78,9 @@
     {
         @foreach (var item in Model)
         {
-                <div class="border border-dark col-xl-3 col-lg-3 col-md-5 col-sm-7 col-7 d-flex flex-column align-items-center justify-content-between item-margin">
-                    <a href="./beerinfo.html" class="d-flex align-items-center justify-content-center">
+            <div  class=" border border-dark col-xl-3 col-lg-3 col-md-5 col-sm-7 col-7 d-flex flex-column align-items-center justify-content-between item-margin">
+                <div onclick ="redirect(@item.Id)">
+                    <a  class="d-flex align-items-center justify-content-center">
                         <img class="item-photo"
                              src="../img/Каталог/fanatic_porter.bmp"
                              alt="" />
@@ -87,24 +88,22 @@
 
                     <div class="align-items-center ">
                         <p class="fs-5 m-0 fw-semibold text-center">
-                            <a href="./beerinfo.html" class="link-underline-light link-dark">Пиво Fanatic «Porter»</a>
+                            <a class="link-underline-light link-dark">@item.Name</a>
                         </p>
-                        <p class="m-0 ">Темне, Нефільтроване</p>
-                        <p class="mb-2 ">Міцність: 4,6&#186;</p>
+                    <p class="m-0 ">Темне, Нефільтроване</p>
+                        <p class="mb-2 ">Міцність:  @item.ABV,6&#186;</p>
                     </div>
                     <hr class="hr-item" />
                     <div class="bottom-div row w-100 align-items-center">
-                        <span class="col align-items-center text-center flex-row item-cost m-0">66.00 грн./л</span>
-                        <div class="item-icons col justify-content-center">
-                            <i onclick="changeHeartIcon(this)" class="fa fa-regular fa-heart " style="color: red; font-size: 30px;"></i>
-
-
-                            <i id="showAnimation"
-                               class="fa fa-solid fa-basket-shopping "
-                               style="color: #0f0f0f;  font-size: 30px;"></i>
-                        </div>
+                    <span class="col align-items-center text-center flex-row item-cost m-0"> @item.Price грн./л</span>
                     </div>
+
                 </div>
+            <div class="item-icons col justify-content-center">
+                    <button name="craft-beer-button" class="fa fa-solid fa-basket-shopping" data-id="@item.Id" style="color: #0f0f0f;width: 136px;font-size: 20px;margin-bottom: 10px;" onclick="addToCart('@item.Id','@item.Name',' @item.Volume',' @item.Price','@item.ImageUrl',this)"></button>
+            </div>
+            </div>
+            
         }
 
     }
@@ -382,9 +381,8 @@
             return priceB - priceA;
         });
     }
-
+    function redirect(id) { window.location.href = 'Home/SimpleItemPreview/' + id; }
     ////////////
     // SORTING
     ////////////
-    function redirect(id) { window.location.href = 'Home/SimpleItemPreview/' + id; }
 </script>
