@@ -1,4 +1,5 @@
-﻿<div class="container mt-5">
+﻿<link rel="stylesheet" href="~/css/cart.css" />
+@* <div class="container mt-5">
     <h1 class="mb-4">My Cart</h1>
 
     <div class="d-flex justify-content-between align-items-center mb-3">
@@ -12,6 +13,38 @@
     <p id="empty-cart-message" class="text-muted">Your cart is empty.</p>
 
     <button id="make-order" class="btn btn-primary">Place Order</button>
+</div> *@
+
+<div class="main-center">
+    <div class="main-container" id="basket-container">
+        <h2>Кошик</h2>
+        <div class="categ-basket">
+            <p>Фото</p><p style="margin-left: 103px;">Товар</p><p style="margin-left: 180px;">Ціна</p><p style="margin-left: 95px;">Всього</p>
+        </div>
+        <div class="product-container" id="product-container">
+            <div class="product">
+                <input type="checkbox" class="checkbox" data-price="60" data-unit-price="1">
+                <img src="../img/basket/fanatic_porter 5.png" alt="" class="product-img">
+                <label class="text-lab">
+                    Пиво Fanatic «Porter»<br>
+                    Темне, Нефільтроване, 5.6°
+                </label>
+                <label class="label-text">60 ГРН./Л <br><input type="number" class="quantity" step="0.5" value="1"></label>
+                <span class="total-price">60.00 ГРН.</span>
+                <button class="remove-btn button-minus" onclick="removeProduct(this)"></button>
+            </div>
+
+            <div class="total">
+                <p class="container-total">Загальна сума: <span id="total-price">0</span> ГРН.</p>
+                <button id="clear-cart" class="btn btn-danger">Clear Cart</button>
+            </div>
+        </div>
+        <div class="buy-container"><button class="button-buy" id="order-button">Оформити замовлення</button></div>
+    </div>
+    <div class="text-center" id="empty-cart">
+        <img src="~/img/empty-cart.jpg" style="height:400px" alt="empty" />
+        <p>Твоя корзина ще досі пуста, але не сумуй її завжди можна заповнити нашим пивом)</p>
+    </div>
 </div>
 
 <script src="~/js/home_cart.js"></script>
