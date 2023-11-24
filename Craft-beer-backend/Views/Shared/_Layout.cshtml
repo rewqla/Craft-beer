@@ -88,15 +88,12 @@
         @{
             if (SignInManager.IsSignedIn(User))
             {
-
-                
-
                 <div class="my-page-btn-div">
                     <a class="my-page-button" href="/Account/ManageUser">Моя сторінка</a>
                 </div>
                 <div class="logout-btn-div">
                     <a class="logout-button" href="@Url.Action("Logout", "Account", new { returnUrl = path })">Вийти</a>
-                </div>       
+                </div>
                 @if (User.IsInRole("Admin"))
                 {
                     <div class="logout-btn-div">
@@ -162,9 +159,9 @@
     <div class="navbar">
 
         <ul class="main-menu">
-            <li><a class="main-menu-link" href="./index.html">Про нас</a></li>
+            <li><a class="main-menu-link" href="/home/aboutus">Про нас</a></li>
             <li><a class="main-menu-link" href="#">Контакти</a></li>
-            <li><a class="main-menu-link" href="./catalog.html">Каталог</a></li>
+            <li><a class="main-menu-link" href="/">Каталог</a></li>
         </ul>
         @{
             var items = craftBeerService.GetNames();
@@ -184,7 +181,7 @@
         }
     </div>
     <div class="container" style="min-height: 60%;">
-        <main role="main"  class="pb-3">
+        <main role="main" class="pb-3">
             @RenderBody()
         </main>
     </div>
@@ -197,6 +194,7 @@
             <i class="fa-brands fa-instagram"></i>
         </p>
     </footer>
+    <script src="https://kit.fontawesome.com/b98ba76176.js" crossorigin="anonymous"></script>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/main.js" asp-append-version="true"></script>
