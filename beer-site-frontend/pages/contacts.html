@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>detail my order</title>
-    <link rel="stylesheet" href="../css/detailmyorder.css" />
+    <link rel="stylesheet" href="../css/contacts.css" />
     <script
       src="https://kit.fontawesome.com/b98ba76176.js"
       crossorigin="anonymous"
@@ -20,15 +20,16 @@
     <header>
       <img class="logo-img" src="../img/бочка.png" alt="" />
       <h1 class="main-logo">SipSociety</h1>
-
+      <div class="button">
+        <a class="sign-in-button" id="sign-in-button" href="#">Увійти</a>
+      </div>
       <!-- BUTTONS AFTER REGISTRATION/AUTHORIZATION -->
-
-      <div class="my-page-btn-div">
+      <!-- <div class="my-page-btn-div">
         <a class="my-page-button" href="./userpage.html">Моя сторінка</a>
       </div>
       <div class="logout-btn-div">
         <a class="logout-button" href="#">Вийти</a>
-      </div>
+      </div> -->
     </header>
     <!-- NAVBAR -->
     <div class="navbar navbar-expand-lg">
@@ -71,84 +72,56 @@
           </div>
         </div> -->
     <!-- кінець вікна виходу -->
+
     <div class="wrap">
       <div class="content">
-        <div class="first-row">
-          <div class="div-about">
-            <p class="head-p">замовлення</p>
-            <div>
-              <p>Унікальний код:</p>
-              <p>123-456-798</p>
-            </div>
-            <div>
-              <p>Дата замовлення:</p>
-              <p>16.02.2023 17:23:56</p>
-            </div>
-            <div>
-              <p>Статус:</p>
-              <p>Нове</p>
-            </div>
-          </div>
-          <div class="div-about">
-            <p class="head-p">замовник</p>
-            <div>
-              <p>Ім'я:</p>
-              <p>Бачишина Дарина Павлівна</p>
-            </div>
-            <div>
-              <p>Телефон:</p>
-              <p>+380968315057</p>
-            </div>
-          </div>
-          <div class="div-about">
-            <p class="head-p">доставка</p>
-            <div>
-              <p>Місто:</p>
-              <p>Рівне</p>
-            </div>
-            <div>
-              <p>Адреса:</p>
-              <p>Пирогова, 45А</p>
-            </div>
-            <div>
-              <p>Компанія:</p>
-              <p>Новапошта</p>
-            </div>
-          </div>
+        <div>
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d81019.44698857552!2d26.161766700666202!3d50.61118132716636!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x472f6caa2d7c89d7%3A0x27481abdbc4e484!2z0KDRltCy0L3QtSwg0KDRltCy0L3QtdC90YHRjNC60LAg0L7QsdC70LDRgdGC0Yw!5e0!3m2!1suk!2sua!4v1701001704695!5m2!1suk!2sua"
+            width="600"
+            height="450"
+            allowfullscreen=""
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+          ></iframe>
         </div>
-        <div class="second-row">
-          <div class="head-p-second">
-            <p>товари</p>
-          </div>
-          <div class="head-row">
-            <div class="first-div">назва</div>
-            <div>об'єм</div>
-            <div>кількість</div>
-            <div>ціна</div>
-            <div class="last-div">зображення</div>
-          </div>
-          <div class="goods">
-            <div class="first-div">Fanatic «Porter»</div>
-            <div>0.33</div>
-            <div>1</div>
-            <div>60</div>
-            <div class="last-div"><img src="../img/Каталог/fanatic_cryo_apa.bmp" alt=""></div>
-          </div>
-          <div class="goods">
-            <div class="first-div">Fanatic «Porter»</div>
-            <div>0.33</div>
-            <div>1</div>
-            <div>60</div>
-            <div class="last-div"><img src="../img/Каталог/fanatic_cryo_apa.bmp" alt=""></div>
-          </div>
-          <div class="goods">
-            <div class="first-div">Fanatic «Porter»</div>
-            <div>0.33</div>
-            <div>1</div>
-            <div>60</div>
-            <div class="last-div"><img src="../img/Каталог/fanatic_cryo_apa.bmp" alt=""></div>
-          </div>
-
+        <div class="contact-info">
+            <p class="title">контакти</p>
+            <p class="heading">Загальна Інформація:</p>
+            <div>
+                <i class="fa-solid fa-location-dot fa-2xl" style="color: #412d01;"></i>
+                <p>ТОВ Бірмен, Рівне, вул. Соборна, 11</p>
+            </div>
+            <div>
+                <i class="fa-solid fa-envelope fa-xl" style="color: #412d01;"></i>
+                <p>info@beerman.com</p>
+            </div>
+            <p class="heading">Відділ продажу:</p>
+            <div>
+                <i class="fa-solid fa-envelope fa-xl" style="color: #412d01;"></i>
+                <p>sales@beerman.com</p>
+            </div>
+            <div>
+                <i class="fa-solid fa-phone fa-xl" style="color: #412d01;"></i>
+                <p>+380 12 123 45 45</p>
+            </div>
+            <div>
+                <i class="fa-solid fa-phone fa-xl" style="color: #412d01;"></i>
+                <p>+380 98 488 17 17(інтернет-крамниця)</p>
+            </div>
+            <p class="heading">Ви також можете знайти нас в соціальних мережах:</p>
+            <div>
+                <i class="fa-brands fa-instagram fa-2xl" style="color: #412d01;"></i>
+                <p>@beer_man</p>
+            </div>
+            <div>
+                <i class="fa-brands fa-twitter fa-2xl" style="color: #412d01;"></i>
+                <p>@beerman_team</p>
+            </div>
+            <div>
+                <i class="fa-brands fa-facebook fa-2xl" style="color: #412d01;"></i>
+                <p>@beerman_team</p>
+            </div>
         </div>
       </div>
 
