@@ -33,7 +33,7 @@ function displayCart() {
                 </label>
                 <label class="label-text">${item.Price} ГРН./Л <br><input type="number" class="quantity" data-index=${item.Id} value="1" min="1" max="10" style="width:174px"></label>
                 <span data-index=${item.Id} class="total-price">${item.Price} ГРН.</span>
-                <button class="remove-btn button-minus" onclick="removeProduct(this)">X</button>
+                <button class="remove-btn button-minus" data-index=${item.Id} onclick="removeProduct(this)">X</button>
             `;
 
             productDiv.querySelector('.quantity').addEventListener('change', (event) => {
@@ -61,6 +61,20 @@ function displayCart() {
 }
 
 displayCart();
+
+function removeProduct(button) {
+    const productId = button.getAttribute('data-index');
+
+    const index = shoppingCart.findIndex(item => item.Id == productId);
+
+    if (index !== -1) {
+        shoppingCart.splice(index, 1);
+
+        localStorage.setItem('shopping-cart', JSON.stringify(shoppingCart));
+
+        displayCart();
+    }
+}
 
 function ClearCart() {
     localStorage.removeItem('shopping-cart');
