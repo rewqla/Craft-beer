@@ -1,4 +1,270 @@
 ﻿@model CheckoutViewModel;
+<link rel="stylesheet" href="~/css/order.css" />
+
+<form action="Checkout" method="post">
+    <div class="wrap">
+        <div class="main-content">
+            <p class="fs-4 fw-semibold" style="color: #3e280e; display: flex; justify-content: center" id="title">
+                ОФОРМЛЕННЯ ЗАМОВЛЕННЯ
+            </p>
+            <div class="first-main-container">
+                <div class="first-block">
+                    <span class="header-span">
+                        <p class="text-uppercase m-0 fs-5 d-flex justify-content-center pt-2 pb-2 fw-medium" style="
+                  background-color: #decaa4;
+                  border: 2px solid #3e280e;
+                  color: #65451f;
+                ">
+                            покупець
+                        </p>
+                    </span>
+
+                    <span class="align-items-center justify-content-between mt-1" style="display: flex; flex-direction: row"
+                          id="select-input">
+                        <p class="m-0 fw-medium" style="font-size: 19px">Замовник:</p>
+                        <select class="form-select" style="width: 70%" aria-label="Default select example">
+                            <option selected>Дефолтний користувач</option>
+                            <option value="1">One</option>
+                            <option value="2">Two</option>
+                            <option value="3" id="add-new-user">
+                                Додати Нового Користувача
+                            </option>
+                        </select>
+                    </span>
+                    <div class="m-0 p-2 flex-column" id="addNewUserSpan" style="background-color: #d9d9d98b; display: none">
+                        <p class="fs-5" style="color: red">*Введіть дані:</p>
+                        <div class="form-add-new-user">
+                            <span class="d-flex flex-row justify-content-between">
+                                <p class="fs-5">Ім'я:</p>
+                                <form action="">
+                                    <input class="input-new-customer" type="text" placeholder="*Ім'я*" required />
+                                </form>
+                            </span>
+                            <span class="d-flex flex-row justify-content-between">
+                                <p class="fs-5">Прізвище:</p>
+                                <form action="">
+                                    <input class="input-new-customer" type="text" placeholder="*Прізвище*" required />
+                                </form>
+                            </span>
+                            <span class="d-flex flex-row justify-content-between">
+                                <p class="fs-5">Телефон:</p>
+                                <form action="">
+                                    <input class="input-new-customer" type="text" placeholder="*Телефон*" required />
+                                </form>
+                            </span>
+                            <span class="d-flex flex-row justify-content-between mb-2">
+                                <p class="fs-5">Email:</p>
+                                <form action="">
+                                    <input class="input-new-customer" type="text" placeholder="*Email*" required />
+                                </form>
+                            </span>
+                            <span class="d-flex align-items-center justify-content-center">
+                                <button type="button" class="save-new-custumer-btn">
+                                    Зберегти
+                                </button>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="second-block">
+                    <span class="header-span">
+                        <p class="text-uppercase fs-5 d-flex flex-wrap justify-content-center pt-2 pb-2 mb-1 fw-medium" style="
+                  background-color: #decaa4;
+                  border: 2px solid #3e280e;
+                  color: #65451f;
+                ">
+                            товари
+                        </p>
+                    </span>
+                    <span class="d-flex flex-row w-100 justify-content-around m-0 span-names">
+                        <p class="fs-5 fw-medium mb-2">Фото</p>
+                        <p class="fs-5 fw-medium mb-2">Товар</p>
+                        <p class="fs-5 fw-medium mb-2">Ціна</p>
+                        <p class="fs-5 fw-medium mb-2">Всього</p>
+                    </span>
+                    <span class="d-flex flex-row w-100 justify-content-around span-names table-items">
+                        <div class="w-25">
+                            <img src="../img/Каталог/blanche_de_ukraine.bmp" alt="" />
+                        </div>
+                        <div class="item-name w-25">
+                            <p>Пиво Fanatic «Porter» Темне, Нефільтроване, 5.6°</p>
+                        </div>
+                        <div class="w-25 d-flex flex-column">
+                            <div class="d-flex flex-row">
+                                <p class="cost">60</p>
+                                <p>грн./л.</p>
+                            </div>
+                            <span class="d-flex flex-row">
+                                <div class="minus">-</div>
+                                <div class="litres">0</div>
+                                <div class="plus">+</div>
+                            </span>
+                        </div>
+                        <div class="w-25">
+                            <p class="fs-4 res-cost">120 грн</p>
+                        </div>
+                    </span>
+                    <span class="d-flex flex-row w-100 justify-content-around span-names table-items">
+                        <div class="w-25">
+                            <img src="../img/Каталог/fanatic_porter.bmp" alt="" />
+                        </div>
+                        <div class="item-name w-25">
+                            <p>Пиво Fanatic «Porter» Темне, Нефільтроване, 5.6°</p>
+                        </div>
+                        <div class="w-25 d-flex flex-column">
+                            <div class="d-flex flex-row">
+                                <p class="cost">60</p>
+                                <p>грн./л.</p>
+                            </div>
+                            <span class="d-flex flex-row">
+                                <div class="minus">-</div>
+                                <div class="litres">0</div>
+                                <div class="plus">+</div>
+                            </span>
+                        </div>
+                        <div class="w-25">
+                            <p class="fs-4 res-cost">120 грн</p>
+                        </div>
+                    </span>
+                    <span class="d-flex flex-row w-100 final-cost">
+                        <p>Всього:</p>
+                        <p id="final-cost">180</p>
+                    </span>
+                    <div class="next-step-div mt-3">
+                        <p class="next-step-btn fs-3">Продовжити</p>
+                    </div>
+                </div>
+                
+            </div>
+            <div class="second-main-container">
+                <div class="first-column">
+                    <div class="adress">
+                        <div class="header-span">
+                            <p class="text-uppercase fs-5 d-flex flex-wrap justify-content-center p-2 mb-1 fw-medium" style="
+                    background-color: #decaa4;
+                    border: 2px solid #3e280e;
+                    color: #65451f;
+                  ">
+                                Адреса доставки
+                            </p>
+                        </div>
+
+                        <span class="d-flex flex-row justify-content-between">
+                            <p class="fs-5">Місто:</p>
+                            <form action="">
+                                <input class="" type="text" placeholder="*Місто*" required />
+                            </form>
+                        </span>
+                        <span class="d-flex flex-row justify-content-between">
+                            <p class="fs-5">Адреса:</p>
+                            <form action="">
+                                <input class="" type="text" placeholder="*Адреса*" required />
+                            </form>
+                        </span>
+                    </div>
+                    <div class="delivery-method">
+                        <div class="header-span">
+                            <p class="text-uppercase fs-5 d-flex flex-wrap justify-content-center p-2 mb-1 fw-medium" style="
+                    background-color: #decaa4;
+                    border: 2px solid #3e280e;
+                    color: #65451f;
+                  ">
+                                спосіб доставки
+                            </p>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="delivery-method" id="self-delivery" checked />
+                            <label class="form-check-label fs-5" for="self-delivery">
+                                Самовивіз з магазину - безкоштовно
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="delivery-method" id="courier" />
+                            <label class="form-check-label fs-5" for="courier">
+                                Кур’єром
+                            </label>
+                        </div>
+
+                        <div class="del-company">
+                            <div data-company="Нова Пошта">
+                                <img src="../img/пошти/delivery.png" style="width: 50px; margin-right: 15px" alt="" />
+                                <span>
+                                    <p style="font-size: 18px">Нова Пошта</p>
+                                    <p>Від 50 грн</p>
+                                </span>
+                            </div>
+                            <div data-company="Укрпошта Стандарт">
+                                <img src="../img/пошти/1200px-Ukrposhta-ua-icon.svg.png"
+                                     style="width: 30px; margin-left: 10px; margin-right: 23px" alt="" />
+                                <span>
+                                    <p style="font-size: 18px">Укрпошта Стандарт</p>
+                                    <p>Від 25 грн</p>
+                                </span>
+                            </div>
+                            <div data-company="Укрпошта Експрес">
+                                <img src="../img/пошти/1200px-Ukrposhta-ua-icon.svg.png"
+                                     style="width: 30px; margin-left: 10px; margin-right: 23px" alt="" />
+                                <span>
+                                    <p style="font-size: 18px">Укрпошта Експрес</p>
+                                    <p>Від 35 грн</p>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="second-column">
+                    <div class="header-span">
+                        <p class="text-uppercase fs-5 d-flex flex-wrap justify-content-center p-2 mb-1 fw-medium" style="
+                  background-color: #decaa4;
+                  border: 2px solid #3e280e;
+                  color: #65451f;
+                ">
+                            спосіб оплати
+                        </p>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="payment-method" id="naclad" checked />
+                        <label class="form-check-label fs-5" for="naclad">
+                            Оплата при отриманні(накладний платіж)
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="payment-method" id="payByCard" />
+                        <label class="form-check-label fs-5" for="payByCard">
+                            Онлайн-оплата банківською картою
+                        </label>
+                    </div>
+                    <div class="bank-card">
+                        <p class="fs-5">Номер Карти:</p>
+                        <form id="card-num" action="">
+                            <input style="width: 100%" type="text" placeholder="1234 5678 9123 4567" required />
+                        </form>
+                        <div class="d-flex flex-row justify-content-between">
+                            <span>
+                                <p class="fs-5">Термін Дії(ММ/РР):</p>
+                                <form action="">
+                                    <input type="text" placeholder="ММ/РР" required />
+                                </form>
+                            </span>
+                            <span>
+                                <p class="fs-5">CVV:</p>
+                                <form action="">
+                                    <input type="text" placeholder="123" required />
+                                </form>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="order-btn-div w-100 mt-5 d-flex justify-content-center">
+                        <p class="order-btn fs-3">Замовити</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+
 <form action="Checkout" method="post">
     <h2>Total price @Model.Order.Cart.TotalPrice</h2>
     <ul>
@@ -55,11 +321,14 @@
         </div>
     }
 
-    <div id="newCustomerSection" @if (Model.Order.Customers.Count <= 0) {
-    <text>style="display: block;"</text>
- } else {
-    <text>style="display: none;"</text>
- }>
+    <div id="newCustomerSection" @if (Model.Order.Customers.Count <= 0)
+    {
+        <text>style="display: block;"</text>
+    }
+    else
+    {
+        <text>style="display: none;"</text>
+    }>
     <div class="form-group">
         <label asp-for="Customer.FirstName" class="control-label"></label>
         <input asp-for="Customer.FirstName" class="form-control" placeholder="Введіть ім'я отримувача" />
@@ -79,11 +348,14 @@
     </div>
 </div>
 
-    <button id="toggleCustomerSection" type="button" class="btn btn-primary" @if (Model.Order.Customers.Count <= 0) {
-    <text>style="display: none;"</text>
- } else {
-    <text>style="display: block;"</text>
- }>Create New Customer</button>
+    <button id="toggleCustomerSection" type="button" class="btn btn-primary" @if (Model.Order.Customers.Count <= 0)
+    {
+        <text>style="display: none;"</text>
+    }
+    else
+    {
+        <text>style="display: block;"</text>
+    }>Create New Customer</button>
     <button id="selectExistingCustomer" class="btn btn-primary" type="button" style="display: none;">Select from Existing</button>
 
 
@@ -112,78 +384,79 @@
 
     <button class="btn btn-primary" type="submit">Замовити замовлення</button>
 </form>
+
 <script>
-            document.addEventListener("DOMContentLoaded", function () {
-                var toggleButton = document.getElementById("toggleCustomerSection");
-                var selectExistingButton = document.getElementById("selectExistingCustomer");
-                var existingCustomerSection = document.getElementById("existingCustomerSection");
-                var newCustomerSection = document.getElementById("newCustomerSection");
+    document.addEventListener("DOMContentLoaded", function () {
+        var toggleButton = document.getElementById("toggleCustomerSection");
+        var selectExistingButton = document.getElementById("selectExistingCustomer");
+        var existingCustomerSection = document.getElementById("existingCustomerSection");
+        var newCustomerSection = document.getElementById("newCustomerSection");
 
-                toggleButton.addEventListener("click", function () {
-                    toggleButton.style.display = "none";
-                    selectExistingButton.style.display = "block";
-                    existingCustomerSection.style.display = "none";
-                    newCustomerSection.style.display = "block";
+        toggleButton.addEventListener("click", function () {
+            toggleButton.style.display = "none";
+            selectExistingButton.style.display = "block";
+            existingCustomerSection.style.display = "none";
+            newCustomerSection.style.display = "block";
 
-                         newCustomerFirstName.value = "";
-                newCustomerLastName.value = "";
-                newCustomerPhone.value = "";
-                });
+            newCustomerFirstName.value = "";
+            newCustomerLastName.value = "";
+            newCustomerPhone.value = "";
+        });
 
-                selectExistingButton.addEventListener("click", function () {
-                    toggleButton.style.display = "block";
-                    selectExistingButton.style.display = "none";
-                    existingCustomerSection.style.display = "block";
-                    newCustomerSection.style.display = "none";
-                });
+        selectExistingButton.addEventListener("click", function () {
+            toggleButton.style.display = "block";
+            selectExistingButton.style.display = "none";
+            existingCustomerSection.style.display = "block";
+            newCustomerSection.style.display = "none";
+        });
 
-                 var customerDropdown = document.getElementById("customerDropdown");
-                var newCustomerFirstName = document.getElementById("Customer_FirstName");
-                var newCustomerLastName = document.getElementById("Customer_LastName");
-                var newCustomerPhone = document.getElementById("Customer_Phone");
+        var customerDropdown = document.getElementById("customerDropdown");
+        var newCustomerFirstName = document.getElementById("Customer_FirstName");
+        var newCustomerLastName = document.getElementById("Customer_LastName");
+        var newCustomerPhone = document.getElementById("Customer_Phone");
 
-                function updateInputFields(selectedCustomer) {
-                    var parts = selectedCustomer.split(' ');
-                    newCustomerFirstName.value = parts[0];
-                    newCustomerLastName.value = parts[1];
-                    newCustomerPhone.value = parts[2];
-                }
-
-                customerDropdown.addEventListener("change", function () {
-                    var selectedCustomer = customerDropdown.value;
-                    updateInputFields(selectedCustomer);
-                });
-
-                if (@Model.Order.Customers.Count > 0) {
-                    var firstCustomerOption = customerDropdown.querySelector("option");
-                        updateInputFields(firstCustomerOption.value);
-                }
-
-                var bb=@Html.Raw(Json.Serialize(@Model.Order.Cart))
-                console.log(bb)
-                function capitalizeObjectKeys(obj) {
-      const newObj = {};
-      for (const key in obj) {
-        if (obj.hasOwnProperty(key)) {
-          const capitalizedKey = key.charAt(0).toUpperCase() + key.slice(1);
-          newObj[capitalizedKey] = obj[key];
+        function updateInputFields(selectedCustomer) {
+            var parts = selectedCustomer.split(' ');
+            newCustomerFirstName.value = parts[0];
+            newCustomerLastName.value = parts[1];
+            newCustomerPhone.value = parts[2];
         }
-      }
-      return newObj;
-    }
+
+        customerDropdown.addEventListener("change", function () {
+            var selectedCustomer = customerDropdown.value;
+            updateInputFields(selectedCustomer);
+        });
+
+        if (@Model.Order.Customers.Count > 0) {
+            var firstCustomerOption = customerDropdown.querySelector("option");
+            updateInputFields(firstCustomerOption.value);
+        }
+
+        var bb = @Html.Raw(Json.Serialize(@Model.Order.Cart))
+            console.log(bb)
+        function capitalizeObjectKeys(obj) {
+            const newObj = {};
+            for (const key in obj) {
+                if (obj.hasOwnProperty(key)) {
+                    const capitalizedKey = key.charAt(0).toUpperCase() + key.slice(1);
+                    newObj[capitalizedKey] = obj[key];
+                }
+            }
+            return newObj;
+        }
 
 
-                var form = document.querySelector("form");
-            form.addEventListener("submit", function () {
-                let model=@Html.Raw(Json.Serialize(@Model.Order.Cart));
+        var form = document.querySelector("form");
+        form.addEventListener("submit", function () {
+            let model = @Html.Raw(Json.Serialize(@Model.Order.Cart));
 
-                model.items[0]=capitalizeObjectKeys(model.items[0])
-                model.items[1]=capitalizeObjectKeys(model.items[1])
-                model=capitalizeObjectKeys(model);
+            model.items[0] = capitalizeObjectKeys(model.items[0])
+            model.items[1] = capitalizeObjectKeys(model.items[1])
+            model = capitalizeObjectKeys(model);
 
-                var cartData = JSON.stringify(model);
-                document.getElementById("cartData").value = cartData;
-                });
-            });
+            var cartData = JSON.stringify(model);
+            document.getElementById("cartData").value = cartData;
+        });
+    });
 </script>
 
