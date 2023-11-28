@@ -70,6 +70,7 @@ namespace Craft_beer_backend.Entities
                         ABV = 5.0,
                         Rating=4.8,
                         Description = "Пиво Bud – всесвітньо відомий король серед пива був вперше представлений Адольфусом Бушем ще у 1876 році. Відтоді й досі BUD вариться з дотриманням високих стандартів якості, незмінних з плином часу.",
+                        ShortDesc="Будь крутим як Bud",
                         ImageUrl = "https://img3.zakaz.ua/09.1663274872.ad72436478c_2022-09-16_Victoria/09.1663274872.SNCPSG10.obj.0.1.jpg.oe.jpg.pf.jpg.1350nowm.jpg.1350x.jpg"
                     },
                     new CraftBeer
@@ -80,6 +81,7 @@ namespace Craft_beer_backend.Entities
                         ABV = 6.0,
                         Rating=4.6,
                         Description = "Пиво Гребуча корова – це класичний віденський лагер, має збалансований смак, невелику гірчинку, виражений фруктовий післясмак та аромат.",
+                        ShortDesc="Корова по віденськи",
                         ImageUrl = "https://www.beer.ua/wp-content/uploads/2022/10/Pyvo-Hrebucha-Korova.png"
                     },
                     new CraftBeer
@@ -92,8 +94,75 @@ namespace Craft_beer_backend.Entities
                         Description = "На кособокій лавці у таверні, оповитий димом з потертої люльки, старий морський вовк вдихає аромат з келиха, робить ковток і чує шум бурхливих хвиль," +
                         "крики мартинів, гомін матросів, шурхіт піску незвіданих островів під ногами, бачить напнуті вітрила і відчуває гарячі поцілунки південних красунь з далеких портів і " +
                         "солоні долоні океану. Потроху видиво зникає. Ще один келих Captain Salt, будь ласка. Персональне море у келиху – так ми уявляли собі наш перший гозе.",
+                        ShortDesc="Смак з самої таверни",
                         ImageUrl = "https://www.beer.ua/wp-content/uploads/2022/09/Captain-Salt-Varvar-Brew.webp"
-                    }
+                    },
+                    new CraftBeer
+                    {
+                        Name = "GOA",
+                        Price = 53,
+                        Volume = 0.33,
+                        ABV = 4.4,
+                        Rating=4.6,
+                        Description = "Бестселлер серед світлих крафтових сортів. Має карамельно-солодовий смак з яскравим хмельовим ароматом і приємною виразною гіркотою",
+                        ShortDesc="INDIA PALE ALE",
+                        ImageUrl = "https://www.redcat.ua/wp-content/uploads/2020/07/GOA-glass.png"
+                    },
+                    new CraftBeer
+                    {
+                        Name = "DUBLIN",
+                        Price = 49,
+                        Volume = 0.33,
+                        ABV = 5.2,
+                        Rating=4.8,
+                        Description = "Солодкий Stout, оксамитовості якому додає молочний цукор (лактоза). Пиво має насичений підсмажений смак і кавово-шоколадні нотки.",
+                        ShortDesc="MILK STOUT",
+                        ImageUrl = "https://www.redcat.ua/wp-content/uploads/2020/07/Dublin-glass.png"
+                    },
+                    new CraftBeer
+                    {
+                        Name = "WATERLOO",
+                        Price = 37,
+                        Volume = 0.33,
+                        ABV = 5.1,
+                        Rating=4.9,
+                        Description = "Легендарний бельгійський стиль Blanche – насичене пшеничне пиво зі свіжим цитрусовим ароматом і пікантним відтінком коріандру.",
+                        ShortDesc="BLANCHE",
+                        ImageUrl = "https://www.redcat.ua/wp-content/uploads/2020/07/Waterloo-glass.png"
+                    },
+                     new CraftBeer
+                    {
+                        Name = "MUNCHEN",
+                        Price = 46,
+                        Volume = 0.33,
+                        ABV = 4.7,
+                        Rating=4.2,
+                        Description = "Класичний німецький Weissbier на пшеничному солоді. Має м’який смак з фруктовими й пряними нотками і ледь помітну хмельову гіркоту у посмаку.",
+                        ShortDesc="WEISSBIER",
+                        ImageUrl = "https://www.redcat.ua/wp-content/uploads/2020/07/Munchen-glass.png"
+                    },
+                    new CraftBeer
+                    {
+                        Name = "PRAHA",
+                        Price = 46,
+                        Volume = 0.33,
+                        ABV = 5.5,
+                        Rating=4.4,
+                        Description = "Класичний чеський сорт з насиченим смаком і благородною хмельовою гіркотою. Має легкі пряні нотки.",
+                        ShortDesc="PILSNER",
+                        ImageUrl = "https://www.redcat.ua/wp-content/uploads/2020/07/Praha-glass.png"
+                    },
+                    new CraftBeer
+                    {
+                        Name = "ХАРКІВ НЕЗЛАМНИЙ",
+                        Price = 212,
+                        Volume = 3,
+                        ABV = 6.1,
+                        Rating=5,
+                        Description = "Шикарний представник стилю Lager, смак солодкий,насичений з благородною хмельовою гіркотою. Багатий солодовий аромат з легким хмельовим та пряним відтінком.",
+                        ShortDesc="LAGER",
+                        ImageUrl = "https://www.redcat.ua/wp-content/uploads/2023/04/glass-kharkiv.png"
+                    },
                 };
                     context.CraftBeers.AddRange(beers);
 
