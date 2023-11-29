@@ -52,6 +52,8 @@
         font-size: 38px;
         float: left;
         margin-right: 100px;
+        margin-top: 50px;
+        margin-left: -207px;
     }
 
     .icon_info {
@@ -190,52 +192,36 @@
     <div class="wrapper">
         <div class="greating_line">
             <div class="item_image">
-                <img src="~/images/boiler.jpg" alt="">
+                <img src="~/img/бокал пива.jpg" alt="">
             </div>
             <div class="item_sInfo">
-                <div class="title item_name">Велика назва предметa</div>
-                <div class="title deskription">Короткий опис</div>
+                <div class="title item_name">@Model.Name</div>
+                <div class="title deskription"></div>
 
                 <div class="icon_info">
+                    <div class="price">Ціна: @Model.Price грн</div>
                     <div class="stars">
                         <div class="rate_background">
                             ★★★★★
-                            @{ var ratingStr = "";
-                                for (int i = 0; i < Model.Rating; i++)
+                            @{
+                                var ratingStr = "";
+                                for (int i = 0; i < (int)Model.Rating; i++)
                                     ratingStr += "★";
                             }
                             <div class="rate_bar">@ratingStr</div>
                         </div>
                     </div>
-                    <div class="isAvailable">Є в наявності</div>
 
-
-                    <div class="price">1234.56 грн</div>
                     <div style="">
-                        <label class="checkbox">
-                            <input type="checkbox" class="checkbox_input_heart">
-                            <span class="check_box_heart"></span>
-                        </label>
-                        <label class="checkbox">
-                            <input type="checkbox" class="checkbox_input_cart">
-                            <span class="check_box_cart"></span>
-                        </label>
-                    </div>
+                        <div class="item-icons col justify-content-center">
+                            <button name="craft-beer-button" class="fa fa-solid fa-basket-shopping" data-id="@Model.Id" style="color: #0f0f0f;height: 50px;width: 192px;font-size: 20px;margin-bottom: 10px;" onclick="addToCart('@Model.Id','@Model.Name',' @Model.Volume',' @Model.Price','@Model.ImageUrl',this)">Додати до корзини</button>
 
-                    <button class="buy-btn btn">
-                        <b>Купити</b>
-                    </button>
+                        </div>
+                    </div>
                 </div>
                 <div class="pay_info">
-                    <h3>Опис</h3>@Model.Description
-                </div>
-                <div class="pay_info">
-                    <h3>Гарантія</h3>
-                    Готівкою, по безготівковому розрахунку для юр. осіб з ПДВ, терміналами
-                    ПриватБанку, в кредит/розстрочку, за допомогою платіжних
-                    систем Visa/Mastercard, Privat24, Liqpay, Portmone та іншими.
-                    Обмін/повернення товару належної якості протягом 14 днів. Детальніше
-                    Офіційна гарантія виробника: 12 міс. Детальніше
+                    <h3>Опис</h3>
+                    @Model.Description
                 </div>
             </div>
         </div>

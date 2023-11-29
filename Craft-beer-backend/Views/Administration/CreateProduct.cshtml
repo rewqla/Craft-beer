@@ -27,6 +27,12 @@
                     <input type="text" asp-for="@Model.Volume" class="form-control" />
                     <span asp-validation-for="@Model.Volume" class="text-danger"></span>
                 </div>
+
+                <div class="mb-3">
+                    <label asp-for="@Model.ShortDesc">Short Description</label>
+                    <input type="text" asp-for="@Model.ShortDesc" class="form-control" />
+                    <span asp-validation-for="@Model.ShortDesc" class="text-danger"></span>
+                </div>
                 <div class="mb-3">
                     <label asp-for="@Model.Description">Description</label>
                     <input type="text" asp-for="@Model.Description" class="form-control" />

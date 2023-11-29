@@ -197,6 +197,7 @@
     <script src="https://kit.fontawesome.com/b98ba76176.js" crossorigin="anonymous"></script>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script>localStorage.setItem("returnUrl", "@ViewBag.returnUrl");</script>
     <script src="~/js/main.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>

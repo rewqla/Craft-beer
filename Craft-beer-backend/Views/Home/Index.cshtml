@@ -90,7 +90,7 @@
                         <p class="fs-5 m-0 fw-semibold text-center">
                             <a class="link-underline-light link-dark">@item.Name</a>
                         </p>
-                    <p class="m-0 ">Темне, Нефільтроване</p>
+                    <p class="m-0 ">@item.ShortDesc</p>
                         <p class="mb-2 ">Міцність:  @item.ABV,6&#186;</p>
                     </div>
                     <hr class="hr-item" />
@@ -380,7 +380,7 @@
             return priceB - priceA;
         });
     }
-    function redirect(id) { window.location.href = 'Home/SimpleItemPreview/' + id; }
+    function redirect(id) { window.location.href = '/Home/SimpleItemPreview/' + id; }
     ////////////
     // SORTING
     ////////////
