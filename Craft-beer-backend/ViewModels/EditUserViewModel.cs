@@ -12,6 +12,7 @@ namespace Craft_beer_backend.ViewModels
         public long Id { get; set; }
         [Required(ErrorMessage = "Необхідний нікнейм")]
         public string UserName { get; set; }
+        public string Email { get; set; }
         public string Password { get; set; }
         public string FirstName { get; set; }
         public string PhoneNumber { get; set; }
