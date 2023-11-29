@@ -1,34 +1,20 @@
-﻿@model Craft_beer_backend.ViewModels.LoginViewModel
-   
+﻿@model string
 
-
-
- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-<div class="container mt-5">
-    <div class="row justify-content-center align-items-center">
-        <div class="col-sm-12 col-md-12 col-lg-4">
-            <h1 class="mb-3">Login</h1>
-            <form asp-action="Login" method="post">
-                <div class="mb-3">
-                    <label class="form-label" asp-for="@Model.Email">Email Address</label>
-                    <input type="text" asp-for="@Model.Email" class="form-control" />
-                    <span asp-validation-for="@Model.Email" class="text-danger"></span>
-                </div>
-                <div class="mb-3">
-                    <label class="form-label" asp-for="@Model.Password">Password</label>
-                    <input type="text" asp-for="@Model.Password" class="form-control" />
-                    <span asp-validation-for="@Model.Password" class="text-danger"></span>
-                </div>
-                <div class="mb-3 form-check">
-                    <input type="checkbox" asp-for="@Model.RememberMe" class="form-check-input" />
-                    <label class="form-check-label" asp-for="@Model. RememberMe">Remember Me?</label>
-                </div>
-                <div class="mb-3">
-                    <button type="submit" class="btn btn-primary">Login</button>
-                </div>
-                <input type="text" style="display: none;" asp-for="@Model.ReturnUrl" value="@TempData["ReturnUrl"]?.ToString()" />
-
-            </form>
-        </div>
-    </div>
+<h3>Необхідно бути авторизованим</h3>
+<div class="button" id="LoginButton" style="width:500px;height:100px;">
+    <a class="sign-in-button" style="font-size:40px;border-color: #65451F;
+    border-style: solid;
+}">Увійти</a>
 </div>
+
+<script>
+
+        var LoginButton = document.getElementById("LoginButton");
+
+    // Додавання обробника подій для кліку
+    LoginButton.addEventListener("click", function () {
+        var modal = document.getElementById("sign-in-modal");
+        modal.style.display = "flex";
+    });
+
+</script>

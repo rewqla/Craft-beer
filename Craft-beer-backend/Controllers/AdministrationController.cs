@@ -2,6 +2,7 @@
 using Craft_beer_backend.Repositories.Interfaces;
 using Craft_beer_backend.Services.Interfaces;
 using Craft_beer_backend.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -10,6 +11,7 @@ using System.Threading.Tasks;
 
 namespace Craft_beer_backend.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class AdministrationController : Controller
     {
         private readonly ICraftBeerService craftBeerService;

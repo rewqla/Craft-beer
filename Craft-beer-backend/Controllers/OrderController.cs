@@ -1,5 +1,6 @@
 ﻿using Craft_beer_backend.Services.Interfaces;
 using Craft_beer_backend.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -16,6 +17,7 @@ namespace Craft_beer_backend.Controllers
             _orderService = orderService;
         }
 
+        [Authorize]
         [HttpGet]
         public IActionResult Index(string cartModel)
         {
@@ -28,6 +30,7 @@ namespace Craft_beer_backend.Controllers
 
             return View(model);
         }
+        [Authorize]
         [HttpPost]
         public IActionResult Checkout(CheckoutViewModel model, string cartData)
         {
