@@ -5,6 +5,9 @@
 @inject SignInManager<DbUser> SignInManager
 @inject UserManager<DbUser> UserManager
 @inject ICraftBeerService craftBeerService
+@{
+    var path = Context.Request.Path;
+}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -13,142 +16,126 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - Craft_beer_backend</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="stylesheet" href="~/css/main.css" />
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Craft_beer_backend</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="AboutUs">About Us</a>
-                        </li>
-                    </ul>
-                    @{
-                        if (SignInManager.IsSignedIn(User))
-                        {
-                            <ul class="navbar-nav d-flex justify-content-end">
-
-                                @{
-                                    //if (User.IsInRole("Admin"))
-                                    {
-                                        <li class="nav-item">
-                                            <a class="nav-link text-dark" asp-area="" asp-controller="Administration" asp-action="ProductsList">Керування товарами</a>
-                                        </li>
-
-                                        <li class="nav-item">
-                                            <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="ListUsers">Managment</a>
-                                        </li>
-
-                                        <li class="nav-item">
-                                            <a class="nav-link text-dark" asp-area="" asp-controller="Administration" asp-action="ListOrders">Замовлення</a>
-                                        </li>
-                                    }
-                                }
-                                <li class="nav-item">
-                                    <a class="btn btn-primary" href="@Url.Action("Logout", "Account", new { returnUrl = Context.Request.Path })">Logout</a>
-                                </li>
-                                <li class="nav-item" style="margin-left:10px;">
-                                    <a href="/shopping-cart"><svg style="height:40px;" class="btn btn-primary" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256"><rect width="256" height="256" fill="none" /><path d="M184,184H69.8L41.9,30.6A8,8,0,0,0,34.1,24H16" fill="none" stroke="#FFF" stroke-linecap="round" stroke-linejoin="round" stroke-width="18" /><circle cx="80" cy="204" r="20" fill="none" stroke="#FFF" stroke-linecap="round" stroke-linejoin="round" stroke-width="18" /><circle cx="184" cy="204" r="20" fill="none" stroke="#FFF" stroke-linecap="round" stroke-linejoin="round" stroke-width="18" /><path d="M62.5,144H188.1a15.9,15.9,0,0,0,15.7-13.1L216,64H48" fill="none" stroke="#FFF" stroke-linecap="round" stroke-linejoin="round" stroke-width="18" /></svg></a>
-                                </li>
-                                <li class="nav-item" style="margin-left:10px;">
-                                    <a style="width: 10px; height: 10px;" href="/Account/ManageUser"><svg style="width: 50px; height: 50px;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 22 22"> <g> <path fill="none" d="M0 0h24v24H0z" /> <path d="M3 4.995C3 3.893 3.893 3 4.995 3h14.01C20.107 3 21 3.893 21 4.995v14.01A1.995 1.995 0 0 1 19.005 21H4.995A1.995 1.995 0 0 1 3 19.005V4.995zM5 5v14h14V5H5zm2.972 13.18a9.983 9.983 0 0 1-1.751-.978A6.994 6.994 0 0 1 12.102 14c2.4 0 4.517 1.207 5.778 3.047a9.995 9.995 0 0 1-1.724 1.025A4.993 4.993 0 0 0 12.102 16c-1.715 0-3.23.864-4.13 2.18zM12 13a3.5 3.5 0 1 1 0-7 3.5 3.5 0 0 1 0 7zm0-2a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z" /> </g> </svg></a>
-                                </li>
-                            </ul>
-                        }
-                        else
-                        {
-                            <ul class="navbar-nav d-flex justify-content-end flex-grow-1">
-                                <li class="nav-item">
-                                    <a class="btn btn-primary" asp-area="" asp-controller="Account" asp-action="Login">Login</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="btn btn-primary" asp-area="" asp-controller="Account" asp-action="Register">Register</a>
-                                </li>
-                            </ul>
-                        }
-                    }
+        <a href="/Home/Index"><img class="logo-img" src="../img/бочка.png" alt=""></a>
+        <h1 class="logo">SipSociety</h1>
+        @{
+            if (SignInManager.IsSignedIn(User))
+            {
+                <div class="my-page-btn-div">
+                    <a class="my-page-button" href="/Account/ManageUser">Моя сторінка</a>
                 </div>
-            </div>
-        </nav>
+                <div class="logout-btn-div">
+                    <a class="logout-button" href="@Url.Action("Logout", "Account", new { returnUrl = path })">Вийти</a>
+                </div>
+                @if (User.IsInRole("Admin"))
+                {
+                    <div class="logout-btn-div">
+                        <a class="logout-button" asp-area="" asp-controller="Administration" asp-action="ProductsList">Керування товарами</a>
+                    </div>
+
+                    <div class="logout-btn-div">
+                        <a class="logout-button" asp-area="" asp-controller="Account" asp-action="ListUsers">Managment</a>
+                    </div>
+
+                    <div class="logout-btn-div">
+                        <a class="logout-button" asp-area="" asp-controller="Administration" asp-action="ListOrders">Замовлення</a>
+                    </div>
+                }
+                <a class="cart-shopping" href="/shopping-cart">
+                    <i class="fa-solid fa-cart-shopping fa-2xl" style="color: #412d01; margin-right: 30px;">
+                    </i>
+                </a>
+            }
+            else
+            {
+                <div class="button">
+                    <a class="sign-in-button" id="sign-in-button">Увійти</a>
+                </div>
+            }
+        }
+
+    </header>
+
+
+    <!-- MODAL -->
+    <!-- <div class="container-center"> -->
+    <div class="modal" id="sign-in-modal">
+        <div class="modal-content">
+            <h2>Увійти</h2>
+            <form asp-controller="Account" asp-action="Login" method="post">
+                <input type="text" id="logUsername" placeholder="Нік користувача..." class="sign-in-form" name="Email" />
+                <input type="password" placeholder="Пароль..." class="sign-in-form" id="logPassword" name="Password" />
+                <div>Запам'ятати мене?</div>
+                <input type="checkbox" style="background-color:#65451F" id="logRememberMe" />
+                <div class="error-text" id="loginError"></div>
+                <button class="sign-button" type="button" onclick="loginUser()">Увійти</button>
+            </form>
+            <a id="reg-link" class="login-link">Не маєте акаунту?<br> Зареєструйтесь</a>
+        </div>
+    </div>
+
+    <div class="modal" id="sign-up-modal">
+        <div class="modal-content">
+            <h2>Реєстрація</h2>
+            <form asp-controller="Account" asp-action="Register" method="post">
+                <input type="email" id="regEmail" placeholder="Електронна пошта..." class="sign-up-form" name="Email" />
+                <input type="email" id="regUsername" placeholder="Ім’я Користувача..." class="sign-up-form" name="Username" />
+                <input type="password" placeholder="Пароль..." class="sign-up-form" id="regPassword" name="Password" />
+                <input type="password" placeholder="Повторіть Пароль" class="sign-up-form" id="regRePassword" name="RePassword" />
+                <div class="error" id="registerError"></div>
+                <button class="sign-button" type="button" onclick="registerUser()">Зареєструватись</button>
+            </form>
+            <a id="sign-in-link" class="login-link">Вже маєте акаунт? Увійдіть</a>
+        </div>
+    </div>
+    <!-- END MODAL -->
+    <div class="navbar">
+
+        <ul class="main-menu">
+            <li><a class="main-menu-link" href="/Home/AboutUs">Про нас</a></li>
+            <li><a class="main-menu-link" href="#">Контакти</a></li>
+            <li><a class="main-menu-link" href="/">Каталог</a></li>
+        </ul>
         @{
             var items = craftBeerService.GetNames();
-            <div style=" margin: 10px auto; display: block;  width:100%; height:40px;">
-                <form style=" padding: 10px; font-size: 17px; border: 1px solid grey; border-radius: 5px; float: left;margin-top: 40px; margin-left: 10%; width: 80%; background: #f1f1f1;" action="">
-                    <input type="text" placeholder="Search.." name="search" style="width: 80%;" list="list">
-                    <datalist id="list">
-                    @if(items!=null)
+            <form action="" class="search-form">
+                <input type="text" name="search" placeholder="Пошук..." id="search-form" list="list">
+                <datalist id="list">
+                    @if (items != null)
                         @foreach (var option in items)
                         {
                             <option value="@option"></option>
                         }
-                    </datalist>
-                    <button type="submit" style=" height:30px; padding:5px; float: left; margin-left: 3%; width: 10%; font-size: 17px; border: 1px solid grey; text-transform: uppercase;">Пошук</button>
-
-                </form>
-            </div>
+                </datalist>
+                <button class="search-btn">
+                    <i class="fa-solid fa-magnifying-glass fa-xl" style="color: #65451f;"></i>
+                </button>
+            </form>
         }
-        <!-- MODAL -->
-        <div class="modal" id="sign-in-modal">
-            <div class="modal-content">
-                <h2>Увійти</h2>
-                <form asp-action="Login" asp-controller="Account" method="post">
-                    <input type="text" name="Email" placeholder="Електронна пошта..." id="sign-in-form">
-                    <input type="password" name="Password" placeholder="Пароль..." id="sign-in-form">
-                    <p>запам'ятати мене <input type="checkbox" name="RememberMe" id="sign-in-form"></p>
-                    <input type="hidden" name="ReturnUrl" value="@Context.Request.Path">
-                    <div class="button">
-                        <button class="sign-button" type="submit">Увійти</button>
-                    </div>
-                </form>
-                <a id="reg-link">Не маєте акаунту?<br> Зареєструйтесь</a>
-            </div>
-        </div>
-
-        <div class="modal" id="sign-up-modal">
-            <div class="modal-content">
-                <h2>Реєстрація</h2>
-                <form asp-action="Register" asp-controller="Account" method="post">
-                    <input type="email" name="Email" placeholder="Електронна пошта..." id="sign-up-form">
-                    <input type="password" name="Password" placeholder="Пароль..." id="sign-up-form">
-                    <input type="password" name="PasswordSubmit" placeholder="Повторіть Пароль" id="sign-up-form">
-                    <input type="hidden" name="ReturnUrl" value="@Context.Request.Path">
-                    <div class="button">
-                        <button type="submit" class="sign-button">Зареєструватись</button>
-                    </div>
-                </form>
-                <a id="sign-in-link">Вже маєте акаунт? Увійдіть</a>
-
-            </div>
-        </div>
-        <!-- END MODAL -->
-    </header>
-    <div class="container">
+    </div>
+    <div class="container" style="min-height: 60%;">
         <main role="main" class="pb-3">
             @RenderBody()
         </main>
     </div>
 
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2023 - Craft_beer_backend - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-        </div>
+    <footer>
+        <p class="footer-text"><b>© 2023 SipSocieti All rights reserved.</b></p>
+        <p class="footer-icons">
+            <i class="fa-brands fa-twitter"></i>
+            <i class="fa-brands fa-facebook"></i>
+            <i class="fa-brands fa-instagram"></i>
+        </p>
     </footer>
+    <script src="https://kit.fontawesome.com/b98ba76176.js" crossorigin="anonymous"></script>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
+    <script>localStorage.setItem("returnUrl", "@ViewBag.returnUrl");</script>
+    <script src="~/js/main.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
