@@ -1,58 +1,79 @@
 ﻿@model OrderInfoViewModel
+<link href="/css/orderdetails.css" rel="stylesheet" />
 
-<div class="container">
-    <h1 class="mt-5">Order Information</h1>
-
-    <div class="mt-4">
-        <p><strong>Unique Code:</strong> @Model.UniqueCode</p>
-        <p><strong>Date:</strong> @Model.Date</p>
-        <p><strong>Status:</strong> @Model.Status</p>
+<div class="content" style="margin-top: 10%;">
+    <div class="first-row">
+        <div class="div-about">
+            <p class="head-p">замовлення</p>
+            <div>
+                <p>Унікальний код:</p>
+                <p>@Model.UniqueCode</p>
+            </div>
+            <div>
+                <p>Дата замовлення:</p>
+                <p>@Model.Date</p>
+            </div>
+            <div>
+                <p>Статус:</p>
+                <p>@Model.Status</p>
+            </div>
+        </div>
+        <div class="div-about">
+            <p class="head-p">замовник</p>
+            <div>
+                <p>Ім'я:</p>
+                <p>@Model.Customer.FirstName @Model.Customer.LastName</p>
+            </div>
+            <div>
+                <p>Телефон:</p>
+                <p>+@Model.Customer.Phone</p>
+            </div>
+        </div>
+        <div class="div-about">
+            <p class="head-p">доставка</p>
+            <div>
+                <p>Місто:</p>
+                <p>@Model.Delivery.City</p>
+            </div>
+            <div>
+                <p>Адреса:</p>
+                <p>@Model.Delivery.Address</p>
+            </div>
+            <div>
+                <p>Компанія:</p>
+                <p>@Model.Delivery.Company</p>
+            </div>
+        </div>
     </div>
-
-    <div class="mt-4">
-        <h2>Customer Information</h2>
-        <p><strong>Name:</strong> @Model.Customer.FirstName @Model.Customer.LastName</p>
-        <p><strong>Phone:</strong> @Model.Customer.Phone</p>
-    </div>
-
-    <div class="mt-4">
-        <h2>Delivery Information</h2>
-        <p><strong>City:</strong> @Model.Delivery.City</p>
-        <p><strong>Address:</strong> @Model.Delivery.Address</p>
-        <p><strong>Company:</strong> @Model.Delivery.Company</p>
-    </div>
-
-    <div class="mt-4">
-        <h2>Order Items</h2>
-        <table class="table table-bordered table-striped">
-            <thead class="thead-dark">
-                <tr>
-                    <th>Name</th>
-                    <th>Volume</th>
-                    <th>Count</th>
-                    <th>Price</th>
-                    <th>Image</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var item in Model.Items)
-                {
-                    <tr>
-                        <td>@item.Name</td>
-                        <td>@item.Volume</td>
-                        <td>@item.Count</td>
-                        <td>@item.Price</td>
-                        <td><img src="@item.Image" alt="Beer Image" width="100" height="100"></td>
-                    </tr>
-                }
-            </tbody>
-        </table>
+    <div class="second-row">
+        <div class="head-p-second">
+            <p>товари</p>
+        </div>
+        <div class="head-row">
+            <div class="first-div">назва</div>
+            <div>об'єм</div>
+            <div>кількість</div>
+            <div>ціна</div>
+            <div class="last-div">зображення</div>
+        </div>
+        @foreach (var item in Model.Items)
+        {
+            <div class="goods">
+                <div class="first-div">@item.Name</div>
+                <div>@item.Volume</div>
+                <div>@item.Count</div>
+                <div>@item.Price</div>
+                <div class="last-div"><img src=@item.Image alt=""></div>
+            </div>
+        }
         @if (Model.Status == "Нове")
         {
-            <form method="post" asp-action="CancelOrder" asp-controller="Account">
-                <input type="hidden" name="uniqueCode" value="@Model.UniqueCode">
-                <button type="submit" class="btn btn-danger">Cancel Order</button>
-            </form>
+            <div class="goods" style="justify-content: right;margin-right: 10%;">
+                <form method="post" asp-action="CancelOrder" asp-controller="Account">
+                    <input type="hidden" name="uniqueCode" value="@Model.UniqueCode">
+                    <button style="background-color: #977c49;margin-top: 30px;" type="submit" class="btn">Відмінити замовлення</button>
+                </form>
+            </div>
         }
     </div>
 </div>
