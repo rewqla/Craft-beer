@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Craft-beer-backend")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+1a5ab7b579ffbdb9e9f7250392811e5b69f1b9b9")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+d31cb9aa9a97a7420eea67884be78bfe0956d06f")]
 [assembly: System.Reflection.AssemblyProductAttribute("Craft-beer-backend")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Craft-beer-backend")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
