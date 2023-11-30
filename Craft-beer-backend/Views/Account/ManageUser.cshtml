@@ -1,10 +1,12 @@
 ﻿@model Craft_beer_backend.ViewModels.EditUserViewModel
-
+<link rel="stylesheet" href="/css/userpage.css">
+<script src="https://kit.fontawesome.com/b98ba76176.js" crossorigin="anonymous"></script>
 @{
     ViewBag.Title = "Edit User";
 }
-<a href="   orders">Переглянути замовлення</a>
-<form method="post" class="mt-3">
+@*
+    <a href="   orders">Переглянути замовлення</a>
+    <form method="post" class="mt-3">
     <div class="form-group row">
         <input asp-for="Id" hidden class="form-control">
         <label asp-for="UserName" class="col-sm-2 col-form-label"></label>
@@ -54,4 +56,84 @@
             </div>
         </div>
     </div>
-</form>
+</form> *@
+
+<div class=" d-flex flex-wrap flex-row  justify-content-center ">
+    <div class="border border-black rounded  align-items-center p-2 m-3 first-block">
+        <span class="d-flex flex-row align-items-center p-1">
+            <i class="fa-regular fa-user m-2" style="color: #412d01; font-size: 35px;"></i>
+            <p class="mb-0 first-block-text">Вітання, "@Model.UserName"</p>
+        </span>
+        <span class="d-flex flex-row align-items-center p-1">
+            <a href="#">
+                <i class="fa-regular fa-heart m-2 " style="color: red; font-size: 35px; "></i>
+                <p class="mb-0 first-block-text">Улюблене</p>
+            </a>
+        </span>
+        <span class ="d-flex flex-row align-items-center p-1">
+            <a style="color: #412d01; font-size: 15px;">Наш телеграм бот:</p>
+            <a style="color: #412d01; font-size: 15px;" href="https://t.me/craft_beer_notification_bot">https://t.me/craft_beer_notification_bot</a>
+
+        </span>
+        <span class="d-flex flex-row align-items-center p-1">
+            <a href="/account/orders">
+                <i class="fa-solid fa-truck-fast m-2" style="color: #412d01;  font-size: 35px;"></i>
+                <!-- <i class="fa-solid fa-basket-shopping m-2" style="color: #412d01; font-size: 35px;"></i> -->
+                <p class="mb-0 first-block-text">Мої Замовлення</p>
+            </a>
+        </span>
+        <hr class="hr-item">
+        <div class="d-flex justify-content-center align-items-center w-100">
+            <div class="pers-button-one">
+                <a href="@Url.Action("Logout", "Account", new { returnUrl = "/Account/ManageUser" })" class="pers-a ">Вийти</a>
+            </div>
+        </div>
+
+
+    </div>
+    <div class="second-container m-3 p-2">
+        <h3 class="pers-h3 fs-5 m-3">Особиста інформація</h3>
+        <form method ="post">
+            <div class="two-info ">
+                <div class="persInfo-one">
+                    <div class="pers-one">
+                        <div class="pers-form0">
+                            <input type="text" name="pers" asp-for="FirstName" placeholder="Ім'я..." class="form0-item">
+
+                            <input type="text" name="pers" asp-for="LastName" placeholder="Прізвище..." class="form0-item">
+                        </div>
+                    </div>
+                    <div>
+                        <div class="pers-form">
+                            <input type="text" name="pers" asp-for="UserName" placeholder="Нік користувача" class="form-item">
+                            <span asp-validation-for="UserName" class="text-danger"></span>
+                            <input type="text" name="pers" asp-for="Email" placeholder="Електронна пошта" class="form-item">
+                            <span asp-validation-for="Email" class="text-danger"></span>
+                            <input type="text" name="pers" asp-for="Birthday" placeholder="День народження" class="form-item">
+                            <span asp-validation-for="Birthday" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="persInfo-two">
+                    <div class="pers-two">
+                        <div class="pers-form">
+                            <input type="text" name="pers" asp-for="City" placeholder="Місто.." class="form-item">
+                            <input type="text" name="pers" asp-for="Address" placeholder="Адреса Доставки.." class="form-item">
+                            <input type="text" name="pers" asp-for="PhoneNumber" placeholder="Номер телефону.." class="form-item">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pers-button">
+                <div class="pers-button-one">
+                    <button type="submit" class="pers-a">Редагувати</button>
+                </div>
+                <div class="pers-button-one d-flex pers-button-two justify-content-center align-items-center">
+                    <i class="fa-solid fa-pencil fa-2xl align-items-center " style="color: #412d01;"></i>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
