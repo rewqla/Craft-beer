@@ -1862,19 +1862,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Yura\\.nuget\\packages\\": {}
+    "C:\\Users\\User\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "E:\\yura\\projects\\Craft-beer\\Craft-beer-backend\\Craft-beer-backend.csproj",
+      "projectUniqueName": "D:\\vodnik\\3 курс\\Менеджмент\\Craft-beer\\Craft-beer-backend\\Craft-beer-backend.csproj",
       "projectName": "Craft-beer-backend",
-      "projectPath": "E:\\yura\\projects\\Craft-beer\\Craft-beer-backend\\Craft-beer-backend.csproj",
-      "packagesPath": "C:\\Users\\Yura\\.nuget\\packages\\",
-      "outputPath": "E:\\yura\\projects\\Craft-beer\\Craft-beer-backend\\obj\\",
+      "projectPath": "D:\\vodnik\\3 курс\\Менеджмент\\Craft-beer\\Craft-beer-backend\\Craft-beer-backend.csproj",
+      "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
+      "outputPath": "D:\\vodnik\\3 курс\\Менеджмент\\Craft-beer\\Craft-beer-backend\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\Yura\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -1946,7 +1946,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.402\\RuntimeIdentifierGraph.json"
       }
     }
   }

@@ -144,3 +144,4 @@ E:\yura\projects\Craft-beer\Craft-beer-backend\obj\Debug\net5.0\staticwebassets\
 E:\yura\projects\Craft-beer\Craft-beer-backend\obj\Debug\net5.0\staticwebassets\msbuild.build.Craft-beer-backend.props
 E:\yura\projects\Craft-beer\Craft-beer-backend\obj\Debug\net5.0\staticwebassets\msbuild.buildMultiTargeting.Craft-beer-backend.props
 E:\yura\projects\Craft-beer\Craft-beer-backend\obj\Debug\net5.0\staticwebassets\msbuild.buildTransitive.Craft-beer-backend.props
+D:\vodnik\3 курс\Менеджмент\Craft-beer\Craft-beer-backend\obj\Debug\net5.0\Razor\Views\Home\Contacts.cshtml.g.cs
