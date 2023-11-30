@@ -1,189 +1,306 @@
 ﻿@model CheckoutViewModel;
-<form action="Checkout" method="post">
-    <h2>Total price @Model.Order.Cart.TotalPrice</h2>
-    <ul>
-        @foreach (var item in Model.Order.Cart.Items)
-        {
-            <li class="my-2">@item.Name @item.Volume @item.Price @item.Count</li>
-        }
-    </ul>
-    <div>
-        <div class="form-group">
-            <label asp-for="Delivery.City" class="control-label"></label>
-            <input asp-for="Delivery.City" class="form-control" placeholder="Введіть місто" />
-            <span asp-validation-for="Delivery.City" class="text-danger"></span>
-        </div>
+<link rel="stylesheet" href="~/css/order.css" />
 
-        <div class="form-group">
-            <label asp-for="Delivery.Address" class="control-label"></label>
-            <input asp-for="Delivery.Address" class="form-control" placeholder="Введіть адресу" />
-            <span asp-validation-for="Delivery.Address" class="text-danger"></span>
-        </div>
+<form action="Checkout" id="checkout-form" method="post" style="margin-top: 6%;">
+    <div class="wrap">
+        <div class="main-content">
+            <p class="fs-4 fw-semibold" style="color: #3e280e; display: flex; justify-content: center;font-size: 1.5rem!important;" id="title">
+                ОФОРМЛЕННЯ ЗАМОВЛЕННЯ
+            </p>
+            <div class="first-main-container">
+                <div class="first-block">
+                    <span class="header-span">
+                        <p class="text-uppercase m-0 fs-5 d-flex justify-content-center pt-2 pb-2 fw-medium" style="
+                  background-color: #decaa4;
+                  border: 2px solid #3e280e;
+                  color: #65451f;
+                   font-size: 1.5rem!important;">
+                            покупець
+                        </p>
+                    </span>
 
-        <div class="form-group">
-            <label asp-for="Delivery.Company" class="control-label"></label>
-            <select class="form-control" asp-for="Delivery.Company">
-                @foreach (var item in Model.Order.Companies)
-                {
-                    <option>
-                        @item
-                    </option>
-                }
-            </select>
-            <span asp-validation-for="Delivery.Company" class="text-danger"></span>
-        </div>
-    </div>
-
-    <input type="hidden" id="cartData" name="cartData" />
-
-
-    @if (Model.Order.Customers.Count > 0)
-    {
-        <div id="existingCustomerSection">
-            <div class="form-group">
-                <label asp-for="Customer" class="control-label"></label>
-                <select id="customerDropdown" class="form-control">
-                    @foreach (var customer in Model.Order.Customers)
+                    <span class="align-items-center justify-content-between mt-1" style="display: flex; flex-direction: row"
+                          id="select-input">
+                        <p class="m-0 fw-medium" style="font-size: 19px">Замовник:</p>
+                        <select id="customer-dropdown" class="form-select" style="width: 70%" aria-label="Default select example">
+                            @foreach (var customer in Model.Order.Customers)
+                            {
+                                <option data-firstname="@customer.FirstName"
+                                        data-lastname="@customer.LastName"
+                                        data-phone="@customer.Phone">@customer.FirstName @customer.LastName</option>
+                            }
+                            <option id="add-new-user">
+                                Додати Нового Користувача
+                            </option>
+                        </select>
+                    </span>
+                    <div class="m-0 p-2 flex-column" id="addNewUserSpan" style="background-color: #d9d9d98b; display: none">
+                        <p class="fs-5" style="color: red">*Введіть дані:</p>
+                        <div class="form-add-new-user">
+                            <span class="d-flex flex-row justify-content-between">
+                                <p class="fs-5">Ім'я:</p>
+                                <input asp-for="Customer.FirstName" class="input-new-customer" type="text" placeholder="*Ім'я*" />
+                            </span>
+                            <span class="d-flex flex-row justify-content-between">
+                                <p class="fs-5">Прізвище:</p>
+                                <input asp-for="Customer.LastName" class="input-new-customer" type="text" placeholder="*Прізвище*" />
+                            </span>
+                            <span class="d-flex flex-row justify-content-between">
+                                <p class="fs-5">Телефон:</p>
+                                <input asp-for="Customer.Phone" class="input-new-customer" type="text" placeholder="*Телефон*" />
+                            </span>
+                            <span class="d-flex flex-row justify-content-between mb-2">
+                                <p asp-validation-for="Customer.FirstName" class="fs-5" style="color: red"></p>
+                                <p asp-validation-for="Customer.LastName" class="fs-5" style="color: red"></p>
+                                <p asp-validation-for="Customer.Phone" class="fs-5" style="color: red"></p>
+                            </span>
+                            <span class="d-flex align-items-center justify-content-center">
+                                <button id="selectFromExist" type="button" class="save-new-custumer-btn">
+                                    Вибрати з наявих
+                                </button>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="second-block">
+                    <span class="header-span">
+                        <p class="text-uppercase fs-5 d-flex flex-wrap justify-content-center pt-2 pb-2 mb-1 fw-medium" style="
+                  background-color: #decaa4;
+                  border: 2px solid #3e280e;
+                  color: #65451f;
+                  font-size: 1.5rem!important;
+                ">
+                            товари
+                        </p>
+                    </span>
+                    <span class="d-flex flex-row w-100 justify-content-around m-0 span-names">
+                        <p class="fs-5 fw-medium mb-2">Фото</p>
+                        <p class="fs-5 fw-medium mb-2">Товар</p>
+                        <p class="fs-5 fw-medium mb-2">Ціна</p>
+                        <p class="fs-5 fw-medium mb-2">Всього</p>
+                    </span>
+                    @foreach (var item in Model.Order.Cart.Items)
                     {
-                        <option>
-                            @customer.FirstName @customer.LastName @customer.Phone
-                        </option>
+                        <span class="d-flex flex-row w-100 justify-content-around span-names table-items">
+                            <div class="w-25">
+                                <img src=@item.Image alt="@item.Image Image" />
+                            </div>
+                            <div class="item-name w-25">
+                                <p>@item.Name світле @item.Volume л</p>
+                            </div>
+                            <div class="w-25 d-flex flex-column">
+                                <div class="d-flex flex-row" style="padding-top: 10px;">
+                                    <p class="cost">@item.Price</p>
+                                    <p>грн.</p>
+                                </div>
+                                <div class="d-flex flex-row">
+                                    <p class="cost">@item.Count</p>
+                                    <p>шт.</p>
+                                </div>
+                            </div>
+                            <div class="w-25">
+                                <p class="fs-4 res-cost">120 грн</p>
+                            </div>
+                        </span>
                     }
-                </select>
-                <span asp-validation-for="Customer" class="text-danger"></span>
+                    <span class="d-flex flex-row w-100 final-cost">
+                        <p>Всього:</p>
+                        <p id="final-cost">@Model.Order.Cart.TotalPrice грн</p>
+                    </span>
+                    <div class="next-step-div mt-3">
+                        <p class="next-step-btn fs-3" style="font-size: 1.5rem!important;">Продовжити</p>
+                    </div>
+                </div>
+
+            </div>
+            <div class="second-main-container">
+                <div class="first-column">
+                    <div class="adress">
+                        <div class="header-span">
+                            <p class="text-uppercase fs-5 d-flex flex-wrap justify-content-center p-2 mb-1 fw-medium" style="
+                    background-color: #decaa4;
+                    border: 2px solid #3e280e;
+                    color: #65451f;
+                    font-size: 1.5rem!important;
+                  ">
+                                Адреса доставки
+                            </p>
+                        </div>
+
+                        <span class="d-flex flex-row justify-content-between">
+                            <p class="fs-5">Місто:</p>
+                            <input asp-for="Delivery.City" style="width: auto;" class="" type="text" placeholder="*Місто*" />
+                        </span>
+                        <span class="d-flex flex-row justify-content-between">
+                            <p class="fs-5">Адреса:</p>
+                            <input asp-for="Delivery.Address" style="width: auto;" type="text" placeholder="*Адреса*" />
+                        </span>
+                        <span class="d-flex flex-row justify-content-between mb-2">
+                            <span asp-validation-for="Delivery.City" class="fs-5" style="color: red"></span>
+                            <span asp-validation-for="Delivery.Address" class="fs-5" style="color: red"></span>
+                        </span>
+                    </div>
+                    <div class="delivery-method">
+                        <div class="header-span">
+                            <p class="text-uppercase fs-5 d-flex flex-wrap justify-content-center p-2 mb-1 fw-medium" style="
+                    background-color: #decaa4;
+                    border: 2px solid #3e280e;
+                    color: #65451f;
+                    font-size: 1.5rem!important;
+                  ">
+                                спосіб доставки
+                            </p>
+                        </div>
+
+                        <div class="del-company">
+                            <div data-company="Нова Пошта">
+                                <img src="/img/nova-poshta.png" style="width: 50px; margin-right: 15px" alt="" />
+                                <span>
+                                    <p style="font-size: 18px">Нова Пошта</p>
+                                    <p>Від 50 грн</p>
+                                </span>
+                            </div>
+                            <div data-company="Укрпошта Експрес">
+                                <img src="/img/1200px-Ukrposhta-ua-icon.svg.png"
+                                     style="width: 30px; margin-left: 10px; margin-right: 23px" alt="" />
+                                <span>
+                                    <p style="font-size: 18px">Укрпошта Експрес</p>
+                                    <p>Від 35 грн</p>
+                                </span>
+                            </div>
+                        </div>
+
+                        <div class="del-company">
+                            <select class="form-control" style="background:#d9d9d98b" asp-for="Delivery.Company">
+                                @foreach (var item in Model.Order.Companies)
+                                {
+                                    <option>
+                                        @item
+                                    </option>
+                                }
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="second-column">
+                    <div class="header-span">
+                        <p class="text-uppercase fs-5 d-flex flex-wrap justify-content-center p-2 mb-1 fw-medium" style="
+                  background-color: #decaa4;
+                  border: 2px solid #3e280e;
+                  color: #65451f;
+                  font-size: 1.5rem!important;
+                ">
+                            спосіб оплати
+                        </p>
+                    </div>
+                    <div class="form-check">
+                        <label class="form-check-label fs-5" for="payByCard">
+                            Онлайн-оплата банківською картою
+                        </label>
+                    </div>
+                    <div class="bank-card">
+                        <p class="fs-5">Номер Карти:</p>
+                        <input asp-for="Card.Number" style=" width: 100%" type="text" placeholder="1234 5678 9123 4567" />
+                        <div class="d-flex flex-row justify-content-between">
+                            <span>
+                                <p class="fs-5">Термін Дії(ММ/РР):</p>
+                                <input asp-for="Card.Date" style=" width: 95%;" type="text" placeholder="ММ/РР" />
+                            </span>
+                            <span>
+                                <p class="fs-5">CVV:</p>
+                                <input asp-for="Card.CVV" type="text" placeholder="123" />
+                            </span>
+                        </div>
+                        <div class="d-flex flex-row justify-content-between">
+                            <span asp-validation-for="Card.Number" class="fs-5" style="color: red"></span>
+                            <span asp-validation-for="Card.Date" class="fs-5" style="color: red"></span>
+                            <span asp-validation-for="Card.CVV" class="fs-5" style="color: red"></span>
+                        </div>
+                    </div>
+
+                    <input type="hidden" id="cartData" name="cartData" />
+                    <div class="order-btn-div w-100 mt-5 d-flex justify-content-center">
+                        <button type="submit" style="font-size: 1.5rem!important;" class="order-btn fs-3">Замовити</button>
+                    </div>
+                </div>
             </div>
         </div>
-    }
-
-    <div id="newCustomerSection" @if (Model.Order.Customers.Count <= 0) {
-    <text>style="display: block;"</text>
- } else {
-    <text>style="display: none;"</text>
- }>
-    <div class="form-group">
-        <label asp-for="Customer.FirstName" class="control-label"></label>
-        <input asp-for="Customer.FirstName" class="form-control" placeholder="Введіть ім'я отримувача" />
-        <span asp-validation-for="Customer.FirstName" class="text-danger"></span>
     </div>
-
-    <div class="form-group">
-        <label asp-for="Customer.LastName" class="control-label"></label>
-        <input asp-for="Customer.LastName" class="form-control" placeholder="Введіть прізвище отримувача" />
-        <span asp-validation-for="Customer.LastName" class="text-danger"></span>
-    </div>
-
-    <div class="form-group">
-        <label asp-for="Customer.Phone" class="control-label"></label>
-        <input asp-for="Customer.Phone" class="form-control" placeholder="Введіть телефон отримувача" />
-        <span asp-validation-for="Customer.Phone" class="text-danger"></span>
-    </div>
-</div>
-
-    <button id="toggleCustomerSection" type="button" class="btn btn-primary" @if (Model.Order.Customers.Count <= 0) {
-    <text>style="display: none;"</text>
- } else {
-    <text>style="display: block;"</text>
- }>Create New Customer</button>
-    <button id="selectExistingCustomer" class="btn btn-primary" type="button" style="display: none;">Select from Existing</button>
-
-
-
-    <div>
-        <div class="form-group">
-            <label asp-for="Card.Number" class="control-label"></label>
-            <input asp-for="Card.Number" class="form-control" placeholder="1234 5678 9012 3456" />
-            <span asp-validation-for="Card.Number" class="text-danger"></span>
-        </div>
-
-        <div class="form-row">
-            <div class="form-group col-md-6">
-                <label asp-for="Card.Date" class="control-label">Expiry Date (MM/YY)</label>
-                <input asp-for="Card.Date" class="form-control" placeholder="MM/YY" />
-                <span asp-validation-for="Card.Date" class="text-danger"></span>
-            </div>
-
-            <div class="form-group col-md-6">
-                <label asp-for="Card.CVV" class="control-label">CVV</label>
-                <input asp-for="Card.CVV" class="form-control" placeholder="123" />
-                <span asp-validation-for="Card.CVV" class="text-danger"></span>
-            </div>
-        </div>
-    </div>
-
-    <button class="btn btn-primary" type="submit">Замовити замовлення</button>
 </form>
+
 <script>
-            document.addEventListener("DOMContentLoaded", function () {
-                var toggleButton = document.getElementById("toggleCustomerSection");
-                var selectExistingButton = document.getElementById("selectExistingCustomer");
-                var existingCustomerSection = document.getElementById("existingCustomerSection");
-                var newCustomerSection = document.getElementById("newCustomerSection");
+    document.addEventListener("DOMContentLoaded", function () {
+        let addUserWindow = document.getElementById("addNewUserSpan");
+        let selectCustomer = document.getElementById("select-input");
+        let formSelect = document.querySelector(".form-select");
 
-                toggleButton.addEventListener("click", function () {
-                    toggleButton.style.display = "none";
-                    selectExistingButton.style.display = "block";
-                    existingCustomerSection.style.display = "none";
-                    newCustomerSection.style.display = "block";
+        let newCustomerFirstName = document.getElementById("Customer_FirstName");
+        let newCustomerLastName = document.getElementById("Customer_LastName");
+        let newCustomerPhone = document.getElementById("Customer_Phone");
 
-                         newCustomerFirstName.value = "";
+        formSelect.addEventListener("click", () => {
+            if (document.getElementById("add-new-user").selected) {
+                addUserWindow.style.display = "flex";
+                selectCustomer.style.display = "none";
+
+                newCustomerFirstName.value = "";
                 newCustomerLastName.value = "";
                 newCustomerPhone.value = "";
-                });
+            }
+        });
 
-                selectExistingButton.addEventListener("click", function () {
-                    toggleButton.style.display = "block";
-                    selectExistingButton.style.display = "none";
-                    existingCustomerSection.style.display = "block";
-                    newCustomerSection.style.display = "none";
-                });
+        document.getElementById("selectFromExist").addEventListener("click", () => {
+            addUserWindow.style.display = "none";
+            selectCustomer.style.display = "flex";
+            formSelect.getElementsByTagName('option')[0].selected = 'selected'
+        });
 
-                 var customerDropdown = document.getElementById("customerDropdown");
-                var newCustomerFirstName = document.getElementById("Customer_FirstName");
-                var newCustomerLastName = document.getElementById("Customer_LastName");
-                var newCustomerPhone = document.getElementById("Customer_Phone");
+        var continueBtn = document.querySelector(".next-step-btn");
+        var firstMainContainer = document.querySelector(".first-main-container");
+        var secondMainContainer = document.querySelector(".second-main-container")
 
-                function updateInputFields(selectedCustomer) {
-                    var parts = selectedCustomer.split(' ');
-                    newCustomerFirstName.value = parts[0];
-                    newCustomerLastName.value = parts[1];
-                    newCustomerPhone.value = parts[2];
-                }
+        continueBtn.addEventListener("click", () => {
+            firstMainContainer.style.display = "none";
+            secondMainContainer.style.display = "flex";
+        });
 
-                customerDropdown.addEventListener("change", function () {
-                    var selectedCustomer = customerDropdown.value;
-                    updateInputFields(selectedCustomer);
-                });
-
-                if (@Model.Order.Customers.Count > 0) {
-                    var firstCustomerOption = customerDropdown.querySelector("option");
-                        updateInputFields(firstCustomerOption.value);
-                }
-
-                var bb=@Html.Raw(Json.Serialize(@Model.Order.Cart))
-                console.log(bb)
-                function capitalizeObjectKeys(obj) {
-      const newObj = {};
-      for (const key in obj) {
-        if (obj.hasOwnProperty(key)) {
-          const capitalizedKey = key.charAt(0).toUpperCase() + key.slice(1);
-          newObj[capitalizedKey] = obj[key];
+        function updateInputFields(options) {
+            newCustomerFirstName.value = options.dataset.firstname;
+            newCustomerLastName.value = options.dataset.lastname;
+            newCustomerPhone.value = options.dataset.phone;
         }
-      }
-      return newObj;
-    }
+
+        let customerDropdown = document.getElementById("customer-dropdown");
+        updateInputFields(customerDropdown.options[0]);
 
 
-                var form = document.querySelector("form");
-            form.addEventListener("submit", function () {
-                let model=@Html.Raw(Json.Serialize(@Model.Order.Cart));
+        customerDropdown.addEventListener("change", function () {
+            const selectedOption = this.options[this.selectedIndex];
 
-                model.items[0]=capitalizeObjectKeys(model.items[0])
-                model.items[1]=capitalizeObjectKeys(model.items[1])
-                model=capitalizeObjectKeys(model);
+            updateInputFields(selectedOption);
+        });
 
-                var cartData = JSON.stringify(model);
-                document.getElementById("cartData").value = cartData;
-                });
-            });
+        function capitalizeObjectKeys(obj) {
+            const newObj = {};
+            for (const key in obj) {
+                if (obj.hasOwnProperty(key)) {
+                    const capitalizedKey = key.charAt(0).toUpperCase() + key.slice(1);
+                    newObj[capitalizedKey] = obj[key];
+                }
+            }
+            return newObj;
+        }
+
+        function InitializeCartData() {
+            let model = @Html.Raw(Json.Serialize(@Model.Order.Cart));
+
+            model.items = model.items.map(item => capitalizeObjectKeys(item));
+            model = capitalizeObjectKeys(model);
+
+            var cartData = JSON.stringify(model);
+            document.getElementById("cartData").value = cartData;
+        }
+        InitializeCartData();
+    });
 </script>
-

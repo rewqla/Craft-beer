@@ -46,7 +46,6 @@ E:\yura\projects\Craft-beer\Craft-beer-backend\obj\Debug\net5.0\Razor\Views\Home
 E:\yura\projects\Craft-beer\Craft-beer-backend\obj\Debug\net5.0\Razor\Views\Order\Index.cshtml.g.cs
 E:\yura\projects\Craft-beer\Craft-beer-backend\obj\Debug\net5.0\Razor\Views\Shared\Error.cshtml.g.cs
 E:\yura\projects\Craft-beer\Craft-beer-backend\obj\Debug\net5.0\Razor\Views\Shared\_Layout.cshtml.g.cs
-E:\yura\projects\Craft-beer\Craft-beer-backend\obj\Debug\net5.0\Razor\Views\Shared\_UserLayout.cshtml.g.cs
 E:\yura\projects\Craft-beer\Craft-beer-backend\obj\Debug\net5.0\Razor\Views\Shared\_ValidationScriptsPartial.cshtml.g.cs
 E:\yura\projects\Craft-beer\Craft-beer-backend\obj\Debug\net5.0\Razor\Views\_ViewImports.cshtml.g.cs
 E:\yura\projects\Craft-beer\Craft-beer-backend\obj\Debug\net5.0\Razor\Views\_ViewStart.cshtml.g.cs
@@ -136,3 +135,12 @@ D:\vodnik\3 курс\Менеджмент\Craft-beer\Craft-beer-backend\obj\Debu
 D:\vodnik\3 курс\Менеджмент\Craft-beer\Craft-beer-backend\obj\Debug\net5.0\staticwebassets\msbuild.buildTransitive.Craft-beer-backend.props
 D:\vodnik\3 курс\Менеджмент\Craft-beer\Craft-beer-backend\obj\Debug\net5.0\refint\Craft-beer-backend.dll
 D:\vodnik\3 курс\Менеджмент\Craft-beer\Craft-beer-backend\obj\Debug\net5.0\Razor\Views\Home\AboutUs.cshtml.g.cs
+E:\yura\projects\Craft-beer\Craft-beer-backend\obj\Debug\net5.0\Craft-beer-backend.sourcelink.json
+E:\yura\projects\Craft-beer\Craft-beer-backend\obj\Debug\net5.0\Razor\Views\Home\AboutUs.cshtml.g.cs
+E:\yura\projects\Craft-beer\Craft-beer-backend\obj\Debug\net5.0\Razor\Views\Home\Contacts.cshtml.g.cs
+E:\yura\projects\Craft-beer\Craft-beer-backend\obj\Debug\net5.0\Razor\Views\Home\SimpleItemPreview.cshtml.g.cs
+E:\yura\projects\Craft-beer\Craft-beer-backend\obj\Debug\net5.0\staticwebassets\Craft-beer-backend.StaticWebAssets.Pack.cache
+E:\yura\projects\Craft-beer\Craft-beer-backend\obj\Debug\net5.0\staticwebassets\msbuild.Craft-beer-backend.Microsoft.AspNetCore.StaticWebAssets.props
+E:\yura\projects\Craft-beer\Craft-beer-backend\obj\Debug\net5.0\staticwebassets\msbuild.build.Craft-beer-backend.props
+E:\yura\projects\Craft-beer\Craft-beer-backend\obj\Debug\net5.0\staticwebassets\msbuild.buildMultiTargeting.Craft-beer-backend.props
+E:\yura\projects\Craft-beer\Craft-beer-backend\obj\Debug\net5.0\staticwebassets\msbuild.buildTransitive.Craft-beer-backend.props

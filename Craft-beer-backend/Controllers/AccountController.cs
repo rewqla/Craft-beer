@@ -294,7 +294,5 @@ namespace Craft_beer_backend.Controllers
             ViewBag.ErrorMessage = $"Користувача з id = {Id} не знайдено";
             return View("Error");
         }
-
-
     }
 }
