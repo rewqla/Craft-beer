@@ -1,6 +1,7 @@
 
 var modal = document.getElementById("sign-in-modal");
 var btn = document.getElementById("sign-in-button");
+if (btn != null)
 btn.onclick = function() {
     modal.style.display = "flex";
 }
@@ -28,9 +29,8 @@ window.onclick = function(event){
         modal.style.display = "none";      
     }
 }
-
+var returnUrl = localStorage.getItem("returnUrl");
 function loginUser() {
-
     $.ajax({
         url: '/Account/Login',
         type: 'POST',
@@ -42,6 +42,9 @@ function loginUser() {
 
             } else {
                 // Продовжуємо реєстрацію
+                if (returnUrl != null)
+                    location.href = returnUrl;
+                    else
                 location.reload();
                 // Викликайте інший серверний метод для завершення реєстрації
                 // ...

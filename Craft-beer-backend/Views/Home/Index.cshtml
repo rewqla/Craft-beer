@@ -4,74 +4,7 @@
 @using Craft_beer_backend.ViewModels
 @model IEnumerable<FullProductViewModel>
 <link rel="stylesheet" href="/css/catalog.css">
-@* <style>
-    .item {
-        width: 130px;
-        height: 125px;
-        margin: 10px;
-        float: left;
-        border: solid;
-    }
 
-    .miniInp {
-        width: 50px;
-    }
-
-    .slider {
-        -webkit-appearance: none;
-        height: 3px;
-        background: #6f6f80;
-        outline: none;
-    }
-
-        .slider::-webkit-slider-thumb {
-            appearance: none;
-            width: 11px;
-            height: 11px;
-            border-radius: 100%;
-            background: #bfb5a6;
-            cursor: pointer;
-        }
-
-    .unselected {
-        display: none;
-    }
-</style>
-
-<div style="height:400px">
-    <div style="width: 230px; height: 100%; float: left; background-color: lightgray;">
-        <div>від<input id="min" value="0" class="miniInp minmaxInp" /> : до<input id="max" value="9999" class="miniInp minmaxInp" /></div>
-        <div>
-            об'єм
-            <input type="range" min="0" max="2" step="1" value="1" class="slider" id="volumeslider">
-            <span id="volumesliderValue">всі</span>
-            <input type="checkbox" checked id="volumeselectAll">
-            <label for="volumeselectAll">Вибрати всі</label>
-        </div>
-        <div>
-            оберти
-            <input type="range" min="0" max="5" step="1" value="2" class="slider" id="abvslider">
-            <span id="abvsliderValue">всі</span>
-            <input type="checkbox" checked id="abvselectAll">
-            <label for="abvselectAll">Вибрати всі</label>
-        </div>
-
-        <p>Сортування</p>
-        <div>Ціна :<button id="DivSort_price" onclick="sortItems('price')">за зростанням</button></div>
-        <div>Оберти :<button id="DivSort_abv" onclick="sortItems('abv')">за зростанням</button></div>
-        <div>Рейтинг :<button id="DivSort_rating" onclick="sortItems('rating')">за зростанням</button></div>
-    </div>
-    <div>
-        <ul id="items">
-            @foreach (var item in Model)
-            {
-
-                <li class="item" onclick="redirect(@item.Id)">@item.Name<div hidden class="mismatches">1</div><div class="volume">@item.Volume</div><div class="price">@item.Price</div><div class="abv">@item.ABV</div><div class="rating">@item.Rating</div>
-                    <button name="craft-beer-button" class="btn btn-primary" data-id="@item.Id" onclick="addToCart('@item.Id','@item.Name',' @item.Volume',' @item.Price','@item.ImageUrl',this)">Додати в корзину</button></li>
-            }
-        </ul>
-    </div>
-</div> *@
 <div class="w-100 row m-0 mt-4 justify-content-center align-items-center">
 
     @if (Model != null)
@@ -81,8 +14,9 @@
             <div  class=" border border-dark col-xl-3 col-lg-3 col-md-5 col-sm-7 col-7 d-flex flex-column align-items-center justify-content-between item-margin">
                 <div onclick ="redirect(@item.Id)">
                     <a  class="d-flex align-items-center justify-content-center">
-                        <img class="item-photo"
-                             src="../img/Каталог/fanatic_porter.bmp"
+                        <img class="item-photo" style="    width: 120px;
+    height: 120px;"
+                             src="@item.ImageUrl"
                              alt="" />
                     </a>
 
@@ -90,7 +24,7 @@
                         <p class="fs-5 m-0 fw-semibold text-center">
                             <a class="link-underline-light link-dark">@item.Name</a>
                         </p>
-                    <p class="m-0 ">Темне, Нефільтроване</p>
+                    <p class="m-0 ">@item.ShortDesc</p>
                         <p class="mb-2 ">Міцність:  @item.ABV,6&#186;</p>
                     </div>
                     <hr class="hr-item" />
@@ -239,7 +173,6 @@
                 if (mismaches.textContent == "1")
                     elements[i].classList.remove("unselected");
             }
-            console.log(mismaches, 1);
         }
     }
 
@@ -333,7 +266,6 @@
                 if (mismaches.textContent == "1")
                     elements[i].classList.remove("unselected");
             }
-            console.log(mismaches, 1);
         }
     }
 
@@ -350,7 +282,6 @@
         DivSort.style.backgroundColor = "#f0f0f0";
         DivSort = document.getElementById("DivSort_" + parameter);
         DivSort.style.backgroundColor = "#ed9726";
-        console.log(DivSort);
         if (SortPriceField) {
             UplineSort(parameter);
             DivSort.innerHTML = "за зростанням";
@@ -380,7 +311,7 @@
             return priceB - priceA;
         });
     }
-    function redirect(id) { window.location.href = 'Home/SimpleItemPreview/' + id; }
+    function redirect(id) { window.location.href = '/Home/SimpleItemPreview/' + id; }
     ////////////
     // SORTING
     ////////////

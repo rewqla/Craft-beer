@@ -27,7 +27,7 @@ namespace Craft_beer_backend.Controllers
             this.roleManager = roleManager;
             _orderService = orderService;
         }
-
+        [AllowAnonymous]
         [HttpPost]
         public async Task<JsonResult> Register(string email, string username, string password)
         { 
@@ -47,8 +47,14 @@ namespace Craft_beer_backend.Controllers
             }
             return Json(false);
         }
-
-
+        [HttpGet]
+        public IActionResult Login(string ReturnUrl)
+        {if (ReturnUrl == null)
+                ReturnUrl = "/Home/Index";
+            ViewBag.ReturnUrl = ReturnUrl;
+            return View();
+        }
+            [AllowAnonymous]
         [HttpPost]
         public async Task<JsonResult> Login(string username, string password, bool rememberMe)
         {
@@ -62,7 +68,7 @@ namespace Craft_beer_backend.Controllers
             return Json(false);
         }
 
-
+        [Authorize]
         [HttpGet]
         public IActionResult Logout(string returnUrl = null)
         {
@@ -80,7 +86,7 @@ namespace Craft_beer_backend.Controllers
             await signInManager.SignOutAsync();
             return RedirectToAction("Index", "Home");
         }
-
+        [Authorize]
         [HttpGet]
         public async Task<IActionResult> ManageUser()
         {
@@ -107,7 +113,7 @@ namespace Craft_beer_backend.Controllers
 
             return View(model);
         }
-
+        [Authorize]
         [HttpPost]
         public async Task<IActionResult> ManageUser(EditUserViewModel model)
         {
@@ -146,7 +152,7 @@ namespace Craft_beer_backend.Controllers
 
             return View(model);
         }
-
+        [Authorize]
         [HttpGet]
         public async Task<IActionResult> OrdersAsync()
         {
@@ -154,7 +160,7 @@ namespace Craft_beer_backend.Controllers
 
             return View(model);
         }
-
+        [Authorize]
         [HttpGet]
         public IActionResult OrderDetails(string uniqueCode)
         {
@@ -162,6 +168,7 @@ namespace Craft_beer_backend.Controllers
 
             return View(model);
         }
+        [Authorize]
         [HttpPost]
         public IActionResult CancelOrder(string uniqueCode)
         {
@@ -171,6 +178,7 @@ namespace Craft_beer_backend.Controllers
         }
 
         //Administration
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> ListUsers(string id)
         {
             DbUser user = await userManager.FindByIdAsync(id);
@@ -178,7 +186,7 @@ namespace Craft_beer_backend.Controllers
             var users = userManager.Users;
             return View(users);
         }
-
+        [Authorize(Roles = "Admin")]
         [HttpGet]
         public async Task<IActionResult> EditUser(string id)
         {
@@ -216,7 +224,7 @@ namespace Craft_beer_backend.Controllers
 
             return View(model);
         }
-
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         public async Task<IActionResult> EditUser(EditUserViewModel model)
         {
@@ -265,7 +273,7 @@ namespace Craft_beer_backend.Controllers
 
             return View(model);
         }
-
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> DeleteUser(string Id)
         {
             var role = await userManager.FindByIdAsync(Id);

@@ -297,7 +297,6 @@
 
             model.items = model.items.map(item => capitalizeObjectKeys(item));
             model = capitalizeObjectKeys(model);
-            console.log(model);
 
             var cartData = JSON.stringify(model);
             document.getElementById("cartData").value = cartData;
@@ -305,4 +304,3 @@
         InitializeCartData();
     });
 </script>
-

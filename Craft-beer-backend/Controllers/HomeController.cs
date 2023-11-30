@@ -2,6 +2,7 @@
 using Craft_beer_backend.Models;
 using Craft_beer_backend.Repositories.Interfaces;
 using Craft_beer_backend.Services.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
@@ -22,33 +23,37 @@ namespace Craft_beer_backend.Controllers
             _logger = logger;
             _craftBeerService = craftBeerService;
         }
-
+        [AllowAnonymous]
         public IActionResult Index()
         {
             var model = _craftBeerService.GetFullProducts();
             return View(model);
         }
-
+        [AllowAnonymous]
         public IActionResult SimpleItemPreview(string id)
         {
             var model = _craftBeerService.GetFullProductById(id);
             return View(model);
         }
-
+        [Authorize]
         [Route("/shopping-cart")]
         public IActionResult Cart()
         {
             return View();
         }
-        public IActionResult Privacy()
-        {
-            return View();
-        }
 
+        [AllowAnonymous]
         public IActionResult AboutUs()
         {
             return View();
         }
+
+        [AllowAnonymous]
+        public IActionResult Contacts()
+        {
+            return View();
+        }
+
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()

@@ -7,8 +7,6 @@ const emptyCart = document.getElementById('empty-cart');
 function displayCart() {
     productContainer.innerHTML = '';
 
-    console.log(shoppingCart);
-
     if (shoppingCart.length == 0) {
         emptyCart.style.display = 'block';
         basketContainer.style.display = "none";
@@ -26,7 +24,7 @@ function displayCart() {
             item.Count = 1;
 
             productDiv.innerHTML = `
-                <img src="${item.Image}" alt="${item.Image}" style="margin-left:45px;height:100px;width:100px" class="product-img">
+                <img src="${item.Image}" alt="${item.Image}" style="margin-left:45px;height:120px;width:120px" class="product-img">
                 <label class="text-lab">
                     ${item.Name} ${item.Volume}Л<br>
                     Світле не фільтроване

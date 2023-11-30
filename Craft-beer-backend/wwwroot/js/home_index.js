@@ -11,7 +11,6 @@ function addToCart(Id, Name, Volume, Price, Image, Button) {
     Button.textContent = 'В корзині';
     Button.disabled = true;
 }   
-function redirect(id) { window.location.href = 'Home/SimpleItemPreview/' + id; }
 
 document.addEventListener('DOMContentLoaded', () => {
     const buttons = document.querySelectorAll('[name="craft-beer-button"]');
