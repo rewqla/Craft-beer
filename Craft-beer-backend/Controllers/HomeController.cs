@@ -41,12 +41,15 @@ namespace Craft_beer_backend.Controllers
         {
             return View();
         }
-        public IActionResult Privacy()
+
+        [AllowAnonymous]
+        public IActionResult AboutUs()
         {
             return View();
         }
+
         [AllowAnonymous]
-        public IActionResult AboutUs()
+        public IActionResult Contacts()
         {
             return View();
         }

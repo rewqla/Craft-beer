@@ -188,11 +188,11 @@
     }
     /* ///CHECKBOX/// */
 </style>
-<body>
+
     <div class="wrapper">
         <div class="greating_line">
             <div class="item_image">
-                <img src="~/img/бокал пива.jpg" alt="">
+                <img src="@Model.ImageUrl" alt="">
             </div>
             <div class="item_sInfo">
                 <div class="title item_name">@Model.Name</div>
@@ -214,7 +214,7 @@
 
                     <div style="">
                         <div class="item-icons col justify-content-center">
-                            <button name="craft-beer-button" class="fa fa-solid fa-basket-shopping" data-id="@Model.Id" style="color: #0f0f0f;height: 50px;width: 192px;font-size: 20px;margin-bottom: 10px;" onclick="addToCart('@Model.Id','@Model.Name',' @Model.Volume',' @Model.Price','@Model.ImageUrl',this)">Додати до корзини</button>
+                        <button name="craft-beer-button" class="fa fa-solid fa-basket-shopping" data-id="@Model.Id" style="color: #0f0f0f;height: 50px;width: 207px;font-size: 20px;margin-bottom: 10px;" onclick="addToCart('@Model.Id','@Model.Name',' @Model.Volume',' @Model.Price','@Model.ImageUrl',this)">Додати до корзини</button>
 
                         </div>
                     </div>
@@ -226,4 +226,3 @@
             </div>
         </div>
     </div>
-</body>

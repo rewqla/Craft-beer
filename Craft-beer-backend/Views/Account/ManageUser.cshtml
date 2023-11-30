@@ -62,14 +62,18 @@
     <div class="border border-black rounded  align-items-center p-2 m-3 first-block">
         <span class="d-flex flex-row align-items-center p-1">
             <i class="fa-regular fa-user m-2" style="color: #412d01; font-size: 35px;"></i>
-            <p class="mb-0 first-block-text">Вітання, "Username"</p>
-
+            <p class="mb-0 first-block-text">Вітання, "@Model.UserName"</p>
         </span>
         <span class="d-flex flex-row align-items-center p-1">
             <a href="#">
                 <i class="fa-regular fa-heart m-2 " style="color: red; font-size: 35px; "></i>
                 <p class="mb-0 first-block-text">Улюблене</p>
             </a>
+        </span>
+        <span class ="d-flex flex-row align-items-center p-1">
+            <a style="color: #412d01; font-size: 15px;">Наш телеграм бот:</p>
+            <a style="color: #412d01; font-size: 15px;" href="https://t.me/craft_beer_notification_bot">https://t.me/craft_beer_notification_bot</a>
+
         </span>
         <span class="d-flex flex-row align-items-center p-1">
             <a href="/account/orders">
@@ -81,7 +85,7 @@
         <hr class="hr-item">
         <div class="d-flex justify-content-center align-items-center w-100">
             <div class="pers-button-one">
-                <a href="#" class="pers-a ">Вийти</a>
+                <a href="@Url.Action("Logout", "Account", new { returnUrl = "/Account/ManageUser" })" class="pers-a ">Вийти</a>
             </div>
         </div>
 
