@@ -95,15 +95,17 @@ h1 {
   border-color: transparent;
 }
 
-footer {
-  position: absolute;
-  border-top: 3px solid #3e280e;
-  height: 70px;
-  position: fixed;
-  bottom: 0;
-  width: 100%;
-  margin-top: 70px;
+footer{
+    position: absolute;
+    border-top: 3px solid #3E280E ;
+    height: 70px;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    margin-top: 70px;
+    background-color: #f5f5f5;
 }
+
 .footer-text {
   margin-top: 30px;
   margin-left: 25px;
@@ -219,10 +221,66 @@ h2 {
   display: grid;
   justify-content: center;
 }
+<<<<<<< HEAD
 .button-buy {
   width: 200px;
   border: solid 2px #8a6c47;
   background-color: #c8ae7d;
   padding: 8px 5px;
   border-radius: 3px;
+=======
+.button-buy{
+    width: 200px;
+    border:solid 2px #8a6c47;
+    background-color: #C8AE7D;
+    padding: 8px 5px;
+    border-radius: 3px;
+    text-decoration: none;
+    color: #65451F;
+>>>>>>> b09b35dbe7ee419a9538b3742d8740f26dc7e9cc
+}
+html, body{
+    height: 100%;
+    }
+.wrap{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        height: 80%;
+}
+.minus {
+    width: 40px;
+    border: 1px solid #4f300a;
+    font-weight: 600;
+    color: #F5F5F5;
+    background-color: #4f300a;
+}
+.plus {
+    width: 40px;
+    font-weight: 600;
+    color: #F5F5F5;
+    border: 1px solid #4f300a;
+    background-color: #4f300a;
+}
+.plus:hover{
+    cursor: pointer;
+}
+.minus:hover{
+    cursor: pointer;
+}
+.litres{
+    width: 40px;
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
+}
+.confirmation-message{
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    padding: 40px 20px;
+    background-color:#C8AE7D; /* Red background color */
+    color: #fff; /* White text color */
+    padding: 10px;
+    border-radius: 5px;
+    animation: fadeInOut 2s ease-out;
 }

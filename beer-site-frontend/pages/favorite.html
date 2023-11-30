@@ -3,7 +3,7 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="../css/basket.css">
+        <link rel="stylesheet" href="../css/favorite.css">
         <script src="https://kit.fontawesome.com/b98ba76176.js" crossorigin="anonymous"></script>  
         <title>Beer Info</title>
         <link
@@ -36,40 +36,48 @@
                 <button class="btn" id="btn-search" type="submit">Знайти</button>
             </form>
             </form>
-            <a class="cart-shopping" href="#">
-                <i
-                class="fa-solid fa-cart-shopping fa-2xl"
-                style="color: #412d01; margin-right: 30px"
-                ></i>
+            <a id="cartIcon" class="cart-shopping" href="../pages/basket.html">
+                <i class="fa-solid fa-cart-shopping fa-2xl" style="color: #412d01;"></i>
+                <span id="cartCounter"style="color: #412d01; margin-right: 30px;">0</span>
             </a>
+            
+            
         </div>
     </div>
     <div class="main-center">
         <div class="main-container">
-            <h2>Кошик</h2>
+            <h2>Улюблене</h2>
             <div class="categ-basket">
-                <p>Фото</p><p style="margin-left: 103px;">Товар</p><p style="margin-left: 140px;">Ціна</p><p style="margin-left: 120px;">Всього</p>
+                <p>Фото</p><p style="margin-left: 103px;">Товар</p><p style="margin-left: 140px;">Ціна</p><p style="margin-left: 115px;">Всього</p>
+                <p style="margin-left: 65px;">Додати в корзину</p>
             </div>
             <div class="product-container">
                 <div class="product">
-                    <input type="checkbox" class="checkbox" data-price="60" data-unit-price="1">
+                    <div class="item-icons col justify-content-center">
+                        <i onclick="removeProduct(this)" class="fa fa-solid fa-heart" data-price="60" data-unit-price="1" style="color: red; font-size: 30px;"></i>
+                    </div>
                     <img src="../img/basket/fanatic_porter 5.png" alt="" class="product-img"> 
                     <label class="text-lab">Пиво Fanatic «Porter»<br>
                         Темне, Нефільтроване, 5.6°</label>
-                    <label class="label-text"><p class="cost">60 ГРН./Л</p>
-                        <span class="d-flex flex-row">
-                          <div class="minus">-</div>
-                          <div class="litres">0</div>
-                          <div class="plus">+</div>
-                        </span>
-                        </label>
-                        <div class="w-25">
-                            <p class="fs-4 res-cost">120 грн</p>
-                          </div>
-                    <button class="remove-btn button-minus" onclick="removeProduct(this)"></button>
+                        <label class="label-text"><p class="cost">60 ГРН./Л</p>
+                            <span class="d-flex flex-row">
+                              <div class="minus">-</div>
+                              <div class="litres">0</div>
+                              <div class="plus">+</div>
+                            </span>
+                            </label>
+                            <div class="w-25">
+                                <p class="fs-4 res-cost">120 грн</p>
+                              </div>
+                    <button class="add-btn button-add" onclick="addProduct(this)"><i id="showAnimation"
+                        class="fa fa-solid fa-basket-shopping "
+                        style="color: #0f0f0f;  font-size: 30px;"
+                      ></i></button>
                 </div>
                 <div class="product">
-                    <input type="checkbox" class="checkbox" data-price="60" data-unit-price="1">
+                    <div class="item-icons col justify-content-center">
+                        <i onclick="removeProduct(this)" class="fa fa-solid fa-heart" data-price="60" data-unit-price="1" style="color: red; font-size: 30px;"></i>
+                    </div>
                     <img src="../img/basket/fanatic_porter 5.png" alt="Товар 2" class="product-img">
                     <label class="text-lab">Пиво Fanatic «Porter»<br>
                         Темне, Нефільтроване, 5.6°</label>
@@ -83,42 +91,48 @@
                             <div class="w-25">
                                 <p class="fs-4 res-cost">120 грн</p>
                               </div>
-                    <button class="remove-btn button-minus" onclick="removeProduct(this)"></button>
+                    <button class="add-btn button-add" onclick="addProduct(this)"><i id="showAnimation"
+                        class="fa fa-solid fa-basket-shopping "
+                        style="color: #0f0f0f;  font-size: 30px;"
+                      ></i></button>
                 </div>
                 <div class="product">
-                    <input type="checkbox" class="checkbox" data-price="60" data-unit-price="1">
+                    <div class="item-icons col justify-content-center">
+                        <i onclick="removeProduct(this)" class="fa fa-solid fa-heart" data-price="60" data-unit-price="1" style="color: red; font-size: 30px;"></i>
+                    </div>
                     <img src="../img/basket/fanatic_porter 5.png" alt="Товар 3" class="product-img">
                     <label class="text-lab">Пиво Fanatic «Porter»<br>
                         Темне, Нефільтроване, 5.6°</label>
-                        <label class="label-text"><p class="cost">60 ГРН./Л</p>
-                            <span class="d-flex flex-row">
-                              <div class="minus">-</div>
-                              <div class="litres">0</div>
-                              <div class="plus">+</div>
-                            </span>
-                            </label>
-                            <div class="w-25">
-                                <p class="fs-4 res-cost total-price">120 грн</p>
-                              </div>
-                    <button class="remove-btn button-minus" onclick="removeProduct(this)"></button>
+                    <label class="label-text"><p class="cost">60 ГРН./Л</p>
+                        <span class="d-flex flex-row">
+                          <div class="minus">-</div>
+                          <div class="litres">0</div>
+                          <div class="plus">+</div>
+                        </span>
+                        </label>
+                        <div class="w-25">
+                            <p class="fs-4 res-cost">120 грн</p>
+                          </div>
+                    <button class="add-btn button-add" onclick="addProduct(this)"><i id="showAnimation"
+                        class="fa fa-solid fa-basket-shopping "
+                        style="color: #0f0f0f;  font-size: 30px;"
+                      ></i></button>
                     
                 </div>
-            
-                <div class="total">
-                    <p class="container-total ">Загальна сума: <span id="totalAmount">0</span> ГРН.</p>
-                </div>
             </div>
-                <div class="buy-container"><div ><a class="button-buy" href="../pages/orderpage.html">Оформити замовлення</a></div></div>
+                
         </div>
-            
+            <div class="all-price"></div>
             <div class="basket-button"></div>
     </div>
     
     <!-- JS -->
-        <script src="../js/basket.js"></script>
+        <script src="../js/favorite.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 </body>
-<div class="content"></div>
+<div class="wrap">
+     
+    <div class="content"></div>
     <footer>
       <p class="footer-text"><b>© 2023 SipSocieti All rights reserved.</b></p>
       <p class="footer-icons">
