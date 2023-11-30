@@ -158,7 +158,7 @@ h1 {
     }
 
 .input-new-customer {
-    width: 90%;
+    width: 75%;
     height: 80%;
     font-size: medium;
     border-radius: 5px;
@@ -348,10 +348,6 @@ h1 {
 
 .adress input {
     width: 100%;
-}
-
-.adress input {
-    width: 90%;
     height: 80%;
     font-size: medium;
     border-radius: 5px;
@@ -366,7 +362,7 @@ h1 {
 
 .del-company {
     width: 70%;
-    display: none;
+    display: flex;
     flex-direction: column;
     margin-left: 25px;
 }
@@ -394,10 +390,12 @@ h1 {
         margin-right: 10px;
     }
 
+
+
 .bank-card {
     width: 60%;
     margin-left: 40px;
-    display: none;
+    display: flex;
     flex-direction: column;
 }
 
