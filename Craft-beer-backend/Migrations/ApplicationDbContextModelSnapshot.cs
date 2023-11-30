@@ -44,9 +44,6 @@ namespace Craft_beer_backend.Migrations
                     b.Property<double>("Rating")
                         .HasColumnType("double precision");
 
-                    b.Property<string>("ShortDesc")
-                        .HasColumnType("text");
-
                     b.Property<double>("Volume")
                         .HasColumnType("double precision");
 

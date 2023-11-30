@@ -1,131 +1,168 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Catalog</title>
-    <link rel="stylesheet" href="../css/catalog.css" />
-    <script
-      src="https://kit.fontawesome.com/b98ba76176.js"
-      crossorigin="anonymous"
-    ></script>
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
-      crossorigin="anonymous"
-    />
-  </head>
-  <body>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/catalog.css">
+    <script src="https://kit.fontawesome.com/b98ba76176.js" crossorigin="anonymous"></script>   
+
+</head>
+<body>
     <header>
-      <img class="logo-img" src="../img/бочка.png" alt="" />
-      <h1 class="main-logo">SipSociety</h1>
-      <div class="button">
-        <a class="sign-in-button" id="sign-in-button" href="#">Увійти</a>
-      </div>
-
-      <!-- BUTTONS AFTER REGISTRATION/AUTHORIZATION -->
-      
-        <!-- <div class="my-page-btn-div">
-            <a class="my-page-button" href="./userpage.html" >Моя сторінка</a>
-        </div>
-        <div class="logout-btn-div">
-            <a class="logout-button" href="#" >Вийти</a>
-        </div> -->
-    </header>
-    <!-- MODAL WINDOWS FOR REGISTRATION/AUTHORIZATION -->
-    <div class="modal" id="sign-in-modal">
-      <div class="modal-content" >
-        <h2>Увійти</h2>
-        <input type="text" name="sign-in" placeholder="Електронна пошта..." id="sign-in-form">
-        <input type="password" name="sign-in" placeholder="Пароль..." id="sign-in-form">
+        <img class="logo-img" src="../img/бочка.png" alt="">
+        <h1 class="logo">SipSociety</h1>
         <div class="button">
-            <a class="sign-button" href="#">Увійти</a>
+            <a class="sign-in-button" href="#" >Увійти</a>
         </div>
-        <a href="#" id="reg-link">Не маєте акаунту?<br> Зареєструйтесь</a>
-      </div>
-    </div>
-    <div class="modal" id="sign-up-modal">
-      <div class="modal-content" >
-        <h2>Реєстрація</h2>
-            <input type="email" name="sign-up" placeholder="Електронна пошта..." id="sign-up-form">
-            <input type="text" name="sign-up" placeholder="Ім’я Користувача" id="sign-up-form">
-            <input type="password" name="sign-up" placeholder="Пароль..." id="sign-up-form">
-            <input type="password" name="sign-up" placeholder="Повторіть Пароль" id="sign-up-form">
-            <div class="button">
-                <a class="sign-button" href="#">Зареєструватись</a>
-            </div>
-            <a href="#" id="sign-in-link">Вже маєте акаунт? Увійдіть</a>
-        
-      </div>
-    </div>
-    <!-- END MODAL -->
-    
-    <!-- NAVBAR -->
-    <div class="navbar navbar-expand-lg">
-        <div class="collapse navbar-collapse" style="justify-content: space-between;" >
-      <ul class="main-menu">
-        <li><a class="main-menu-link" href="./index.html">Про нас</a></li>
-        <li><a class="main-menu-link" href="#">Контакти</a></li>
-        <li><a class="main-menu-link" href="./catalog.html">Каталог</a></li>
-      </ul>
-      <form class="d-flex" style="width: 550px;" role="search">
-        <input class="form-control me-2" id="search" placeholder="Пошук.." aria-label="Search">
-        <button class="btn" id="btn-search" type="submit">Знайти</button>
-      </form>
-      </form>
-      <a class="cart-shopping" href="#">
-        <i id="basket"
-          class="fa-solid fa-cart-shopping fa-2xl"
-          style="color: #412d01; margin-right: 30px"
-        ></i>
-      </a>
-    </div>
-    </div>
+    </header>
+    <div class="navbar">
 
-    <div class="w-100 row m-0 mt-4 justify-content-center align-items-center">   
-      <div class="border border-dark col-xl-2 col-lg-2 col-md-5 col-sm-7 col-7 d-flex flex-column align-items-center justify-content-between item-margin">
-        <a href="./beerinfo.html" class="d-flex align-items-center justify-content-center" >
-          <img
-          class="item-photo"
-          src="../img/Каталог/fanatic_porter.bmp"
-          alt=""
-        />
+        <ul class="main-menu" >
+            <li><a class="main-menu-link" href="./index.html">Про нас</a></li>
+            <li><a class="main-menu-link" href="#">Контакти</a></li>
+            <li><a class="main-menu-link" href="./catalog.html">Каталог</a></li>
+        </ul>
+        <form action="" class="search-form">
+            <input type="text" name="search" placeholder="Пошук..." id="search-form">
+            <button class="search-btn">
+                <i class="fa-solid fa-magnifying-glass fa-xl" style="color: #65451f;"></i>
+            </button>
+        </form>
+        <a class="cart-shopping" href="#">
+            <i class="fa-solid fa-cart-shopping fa-2xl" style="color: #412d01; margin-right: 30px;"></i>
         </a>
-      
-        <div class="align-items-center ">
-          <p class="fs-5 m-0 fw-semibold text-center"><a href="./beerinfo.html" class="link-underline-light link-dark"
-            >Пиво Fanatic «Porter»</a></p>
-          <p class="m-0 ">Темне, Нефільтроване</p>
-          <p class="mb-2 ">Міцність: 4,6&#186;</p>
-        </div>
-        <hr class="hr-item" />
-        <div class="bottom-div row w-100 align-items-center">
-          <span class="col align-items-center text-center flex-row item-cost m-0">66.00 грн./л</span>
-          <div class="item-icons col justify-content-center">
-              <i onclick="changeHeartIcon(this)" class="fa fa-regular fa-heart "  style="color: red; font-size: 30px;"></i>
-            
-              
-                <i id="showAnimation"
-              class="fa fa-solid fa-basket-shopping "
-              style="color: #0f0f0f;  font-size: 30px;"
-            ></i>
-          </div>
-        </div>
-      </div> 
     </div>
+<div class="container">
+    <div class="item-container">
+        <img class="item-photo" src="../img/Каталог/fanatic_porter.bmp" alt="">
+        <div class="beer-description">
+            <p class="item-name">Пиво Fanatic «Porter»
+            </p>
+            <p class="item-desc">Темне, Нефільтроване</p>
+            <p class="item-proof">Міцність: 4,6&#186;</p>
+        </div>
+        <hr class="hr-item">
+        <div class="bottom-div">
+            <span>
+                <p class="item-cost"> 66.00</p>
+                <p style="margin: 0; text-align: center;">грн./л</p>
+            </span>
+            <div class="item-icons">
+                    <i class="fa-regular fa-heart  fa-2xl" style="color: red;"></i>
+                    <i class="fa-solid fa-basket-shopping  fa-2xl" style="color: #0f0f0f;"></i>
+            </div>
+        </div>
+    </div>
+    <div class="item-container">
+        <img class="item-photo" src="../img/Каталог/fanatic_porter.bmp" alt="">
+        <div class="beer-description">
+            <p class="item-name">Пиво Fanatic «Porter»
+            </p>
+            <p class="item-desc">Темне, Нефільтроване</p>
+            <p class="item-proof">Міцність: 4,6&#186;</p>
+        </div>
+        <hr class="hr-item">
+        <div class="bottom-div">
+            <span>
+                <p class="item-cost"> 66.00</p>
+                <p style="margin: 0; text-align: center;">грн./л</p>
+            </span>
+            <div class="item-icons">
+                    <i class="fa-regular fa-heart  fa-2xl" style="color: red;"></i>
+                    <i class="fa-solid fa-basket-shopping  fa-2xl" style="color: #0f0f0f;"></i>
+            </div>
+        </div>
+    </div>
+    <div class="item-container">
+        <img class="item-photo" src="../img/Каталог/fanatic_porter.bmp" alt="">
+        <div class="beer-description">
+            <p class="item-name">Пиво Fanatic «Porter»
+            </p>
+            <p class="item-desc">Темне, Нефільтроване</p>
+            <p class="item-proof">Міцність: 4,6&#186;</p>
+        </div>
+        <hr class="hr-item">
+        <div class="bottom-div">
+            <span>
+                <p class="item-cost"> 66.00</p>
+                <p style="margin: 0; text-align: center;">грн./л</p>
+            </span>
+            <div class="item-icons">
+                    <i class="fa-regular fa-heart  fa-2xl" style="color: red;"></i>
+                    <i class="fa-solid fa-basket-shopping  fa-2xl" style="color: #0f0f0f;"></i>
+            </div>
+        </div>
+    </div>
+    <div class="item-container">
+        <img class="item-photo" src="../img/Каталог/fanatic_porter.bmp" alt="">
+        <div class="beer-description">
+            <p class="item-name">Пиво Fanatic «Porter»
+            </p>
+            <p class="item-desc">Темне, Нефільтроване</p>
+            <p class="item-proof">Міцність: 4,6&#186;</p>
+        </div>
+        <hr class="hr-item">
+        <div class="bottom-div">
+            <span>
+                <p class="item-cost"> 66.00</p>
+                <p style="margin: 0; text-align: center;">грн./л</p>
+            </span>
+            <div class="item-icons">
+                    <i class="fa-regular fa-heart  fa-2xl" style="color: red;"></i>
+                    <i class="fa-solid fa-basket-shopping  fa-2xl" style="color: #0f0f0f;"></i>
+            </div>
+        </div>
+    </div>
+    <div class="item-container">
+        <img class="item-photo" src="../img/Каталог/fanatic_porter.bmp" alt="">
+        <div class="beer-description">
+            <p class="item-name">Пиво Fanatic «Porter»
+            </p>
+            <p class="item-desc">Темне, Нефільтроване</p>
+            <p class="item-proof">Міцність: 4,6&#186;</p>
+        </div>
+        <hr class="hr-item">
+        <div class="bottom-div">
+            <span>
+                <p class="item-cost"> 66.00</p>
+                <p style="margin: 0; text-align: center;">грн./л</p>
+            </span>
+            <div class="item-icons">
+                    <i class="fa-regular fa-heart  fa-2xl" style="color: red;"></i>
+                    <i class="fa-solid fa-basket-shopping  fa-2xl" style="color: #0f0f0f;"></i>
+            </div>
+        </div>
+    </div>
+    <div class="item-container">
+        <img class="item-photo" src="../img/Каталог/fanatic_porter.bmp" alt="">
+        <div class="beer-description">
+            <p class="item-name">Пиво Fanatic «Porter»
+            </p>
+            <p class="item-desc">Темне, Нефільтроване</p>
+            <p class="item-proof">Міцність: 4,6&#186;</p>
+        </div>
+        <hr class="hr-item">
+        <div class="bottom-div">
+            <span>
+                <p class="item-cost"> 66.00</p>
+                <p style="margin: 0; text-align: center;">грн./л</p>
+            </span>
+            <div class="item-icons">
+                    <i class="fa-regular fa-heart  fa-2xl" style="color: red;"></i>
+                    <i class="fa-solid fa-basket-shopping  fa-2xl" style="color: #0f0f0f;"></i>
+            </div>
+        </div>
+    </div>
+</div>
 
     <footer>
-      <p class="footer-text"><b>© 2023 SipSocieti All rights reserved.</b></p>
-      <p class="footer-icons">
-        <i class="fa-brands fa-twitter"></i>
-        <i class="fa-brands fa-facebook"></i>
-        <i class="fa-brands fa-instagram"></i>
-      </p>
-    </footer>
-
-<!-- JS -->
-    <script src="../js/catalog.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
-  </body>
+        <p class="footer-text"><b>© 2023 SipSocieti All rights reserved.</b></p>
+        <p class="footer-icons">
+            <i class="fa-brands fa-twitter"></i>
+            <i class="fa-brands fa-facebook"></i>
+            <i class="fa-brands fa-instagram"></i>
+        </p>
+      </footer>
+</body>
 </html>
