@@ -47,7 +47,7 @@ namespace Craft_beer_backend.Services.Implements
 
             if (order != null)
             {
-                order.OrderStatusId = 5;
+                order.OrderStatusId = _orderStatusRepository.GetAll().FirstOrDefault(x => x.Name.Equals("Скасоване")).Id;
             }
 
             _orderRepository.Update(order);
@@ -55,11 +55,11 @@ namespace Craft_beer_backend.Services.Implements
 
         public void ChangeStatus(string uniqueCode, string status)
         {
-            var order=_orderRepository.GetAll().FirstOrDefault(x=>x.UniqueCode == uniqueCode);
+            var order = _orderRepository.GetAll().FirstOrDefault(x => x.UniqueCode == uniqueCode);
 
-            if(order != null)
+            if (order != null)
             {
-                order.OrderStatusId = _orderStatusRepository.GetAll().FirstOrDefault(x=>x.Name == status).Id;
+                order.OrderStatusId = _orderStatusRepository.GetAll().FirstOrDefault(x => x.Name == status).Id;
 
                 _orderRepository.Update(order);
             }
@@ -80,7 +80,7 @@ namespace Craft_beer_backend.Services.Implements
             {
                 UniqueCode = GenerateOrderUniqueId(),
                 Date = DateTime.Now.ToString(),
-                OrderStatusId = 3,
+                OrderStatusId = _orderStatusRepository.GetAll().FirstOrDefault(x => x.Name.Equals("Нове")).Id,
                 DeliveryAddressId = address.Id,
                 CustomerInfoId = GetCustomerId(model.Customer, userId),
                 DbUserId = userId,
